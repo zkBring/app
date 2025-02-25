@@ -1,0 +1,3 @@
+{
+  "/verify/[multiscan_secret]/page": "app/verify/[multiscan_secret]/page.js"
+}

@@ -1,0 +1,38 @@
+{
+  "node": {
+    "40310945b97452608f92fb5a7a3aa6469c79163ab7": {
+      "workers": {
+        "app/verifier/[qr_secret]/[qr_enc_code]/page": {
+          "moduleId": "[project]/.next-internal/server/app/verifier/[qr_secret]/[qr_enc_code]/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/layout.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/verifier/[qr_secret]/[qr_enc_code]/page.tsx [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/verifier/[qr_secret]/[qr_enc_code]/page": "rsc"
+      }
+    },
+    "00a248aff6c4b96b290d6c9c79b88bb3da3e286053": {
+      "workers": {
+        "app/verifier/[qr_secret]/[qr_enc_code]/page": {
+          "moduleId": "[project]/.next-internal/server/app/verifier/[qr_secret]/[qr_enc_code]/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/layout.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/verifier/[qr_secret]/[qr_enc_code]/page.tsx [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/verifier/[qr_secret]/[qr_enc_code]/page": "rsc"
+      }
+    },
+    "7fd68b99fdd09bbd6cfa5684a2fdee730fed271115": {
+      "workers": {
+        "app/verifier/[qr_secret]/[qr_enc_code]/page": {
+          "moduleId": "[project]/.next-internal/server/app/verifier/[qr_secret]/[qr_enc_code]/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/layout.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/verifier/[qr_secret]/[qr_enc_code]/page.tsx [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/verifier/[qr_secret]/[qr_enc_code]/page": "rsc"
+      }
+    }
+  },
+  "edge": {}
+}

@@ -1,0 +1,49 @@
+{
+  "node": {
+    "7ff75857dbfe463c6bc49346dca79231a686687afc": {
+      "workers": {
+        "app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page": {
+          "moduleId": "[project]/.next-internal/server/app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/layout.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page.tsx [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page": "rsc"
+      }
+    },
+    "00a248aff6c4b96b290d6c9c79b88bb3da3e286053": {
+      "workers": {
+        "app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page": {
+          "moduleId": "[project]/.next-internal/server/app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/layout.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page.tsx [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page": "rsc"
+      }
+    },
+    "40310945b97452608f92fb5a7a3aa6469c79163ab7": {
+      "workers": {
+        "app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page": {
+          "moduleId": "[project]/.next-internal/server/app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/layout.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page.tsx [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page": "rsc"
+      }
+    },
+    "7f60ff0c466e1ac708204e4c7dba53de287f530444": {
+      "workers": {
+        "app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page": {
+          "moduleId": "[project]/.next-internal/server/app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/layout.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page.tsx [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page": "rsc"
+      }
+    }
+  },
+  "edge": {}
+}
