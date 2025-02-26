@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/src/app/page.module.css"],"sourcesContent":[".page {\n  margin: 0;\n  min-height: 100vh;\n  padding: 20px!important;\n  background: #F7F8FA;\n}\n"],"names":[],"mappings":"AAAA"}},
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}

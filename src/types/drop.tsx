@@ -20,6 +20,8 @@ type TDrop = {
   factory_address?: string
   campaign_id: string
   provider_type: TProviderType
+  encrypted_multiscan_qr_enc_code: string
+  encrypted_multiscan_qr_secret: string
 }
 
 export default TDrop

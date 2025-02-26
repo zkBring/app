@@ -5,7 +5,7 @@ import {
 } from '@/components/common'
 
 export const Container = styled.div`
-  max-width: 375px;
+  max-width: ${props => props.theme.mobileBreakpoint};
   display: flex;
   flex-direction: column;
   justify-content: center;

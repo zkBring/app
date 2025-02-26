@@ -25,9 +25,10 @@ import DropsList from './drops-list'
 
 import type { Metadata } from 'next'
 import { ThemeProvider } from 'styled-components'
-import { light } from '@/themes'
+import { dark } from '@/themes'
 import {
-  Header
+  Header,
+  Footer
 } from '@/components/common'
 import { useEffect, FC } from 'react'
 import TProps from './types'
@@ -37,7 +38,7 @@ const getData = async (
   query: string
 ) => {
   try {
-    const drops = await dropsApi.get(
+    const drops = await dropsApi.getAll(
       query
     )
     return drops.data.campaigns_array
@@ -57,7 +58,7 @@ const Content: FC<TProps> = ({
 
   }, [])
 
-  return <ThemeProvider theme={light}>
+  return <ThemeProvider theme={dark}>
     <Header />
     <Container>
       <Search
@@ -71,6 +72,7 @@ const Content: FC<TProps> = ({
       />
 
     </Container>
+    <Footer />
   </ThemeProvider>
 }
 

@@ -4,24 +4,32 @@ import tokenSymbol from '@/images/erc20-token-placeholder.png'
 import { FC } from 'react'
 import {
   TokenAmount,
-  TitleERC20Component,
   SymbolERC20,
   Container,
-  ImageStyled
+  ImageStyled,
+  SubtitleStyled,
+  TextStyled
 } from './styled-components'
-
+import { CoinIcon } from '@/components/icons'
 
 import { ethers } from 'ethers'
 import TProps, { TStatus } from './types'
+
+const defineText = (status?: TStatus) => {
+  switch (status) {
+    case 'finished':
+      return null
+    default:
+      return <>The tokens are waiting for you.<br/>Claim them now, it’s free.</>
+  }
+}
 
 const defineTitle = (status?: TStatus) => {
   switch (status) {
     case 'finished':
       return 'You have received'
-    case 'initial':
-      return 'You were sent'
     default:
-      return null
+      return 'You were sent'
   }
 }
 
@@ -33,17 +41,18 @@ const ERC20TokenPreview: FC<TProps> = ({
   status
 }) => {
   return <Container> 
-    <TitleERC20Component>
-      {defineTitle(status)}
-      <ImageStyled
-        src={src || tokenSymbol}
-        alt={name}
-        width={16}
-        height={16}
-      />
+    <SubtitleStyled>
+      {defineTitle(status)} 
+      <CoinIcon />
       <SymbolERC20>{name}</SymbolERC20>
-    </TitleERC20Component>
-    <TokenAmount>{ethers.formatUnits(amount as string, decimals)}</TokenAmount>
+    </SubtitleStyled>
+    
+    <TokenAmount>
+      {ethers.formatUnits(amount as string, decimals)} 
+    </TokenAmount>
+    <TextStyled>
+      {defineText(status)}
+    </TextStyled>
   </Container>
 }
 

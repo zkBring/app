@@ -1,6 +1,7 @@
 import Button from "./button"
 import Loader from './loader'
 import Header from './header'
+import Footer from './footer'
 import TokenPreviewERC20 from './token-preview-erc20'
 import TokenPreviewNFT from './token-preview-nft'
 import TokenImage from './token-image'
@@ -22,6 +23,7 @@ export {
   CustomRedirectButton,
   NetworkIndicator,
   LinkButton,
+  Footer,
   Button,
   ExplorerButton,
   Link,

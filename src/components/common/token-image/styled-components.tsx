@@ -4,7 +4,7 @@ import Image from 'next/image'
 export const TokenImage = styled.img`
   width: 226px;
   height: 226px;
-  background: ${props => props.theme.widgetColor};
+  background: ${props => props.theme.secondaryBackgroundColor};
   object-fit: cover;
   display: block; 
   border-radius: 8px;

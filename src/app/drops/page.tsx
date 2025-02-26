@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const getInitialData = cache(async () => {
   try {
-    const drops = await dropsApi.get()
+    const drops = await dropsApi.getAll()
     return drops.data.campaigns_array
   } catch (err: unknown) {
     console.log({

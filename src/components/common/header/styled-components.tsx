@@ -10,13 +10,14 @@ const backgroundAnimation = keyframes`
   100% { background-position: left top; }
 `
 
-export const LinkdropHeader = styled.header<TAccount>`
-  position: relative;
-  width: 100%;
-  display: flex;
-  min-height: 58px;
-  justify-content: center;
-  align-items: center;
+export const Header = styled.header<TAccount>`
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 43px;
+    padding: 50px 0;
 
   ${props => props.address && css`
     justify-content: space-between;
@@ -34,7 +35,7 @@ export const Account = styled.div`
   font-size: 14px;
   border-radius: 36px;
   border: 1px solid ${props => props.theme.primaryBorderColor};
-  background: ${props => props.theme.backgroundColor};
+  background: ${props => props.theme.primaryBackgroundColor};
 
   @media (max-width: 450px) {
     display: none;
@@ -79,7 +80,7 @@ export const Profile = styled.div`
 export const Logout = styled.div`
   border-radius: 36px;
   border: 1px solid ${props => props.theme.primaryBorderColor};
-  background: ${props => props.theme.backgroundColor};
+  background: ${props => props.theme.primaryBackgroundColor};
   width: 36px;
   height: 36px;
   cursor: pointer;

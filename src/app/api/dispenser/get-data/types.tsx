@@ -8,5 +8,6 @@ type TGetDispenserDataResponse = {
 }
 
 export type TGetDispenserData = (
-  multiscanQRId: string
+  multiscanQRId: string,
+  multiscanQREncCode: string
 ) => Promise<AxiosResponse<TGetDispenserDataResponse>>

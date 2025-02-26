@@ -1,7 +1,7 @@
 import { TDrop } from "@/types"
 
 type TProps = {
-  drops: TDrop[]
+  drop: TDrop
 }
 
 export default TProps

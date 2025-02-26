@@ -2,9 +2,7 @@
 import { TProps } from './types'
 import { FC } from 'react'
 import {
-  Container,
-  TitleStyled,
-  SubtitleStyled
+  Container
 } from './styled-components'
 import {
   Button,
@@ -27,10 +25,6 @@ const InitialScreen: FC<TProps> = ({
       decimals={tokenData.decimals}
       claimed={false}
     />
-    <TitleStyled>Claim {tokenData.symbol}</TitleStyled>
-    <SubtitleStyled>
-      Please proceed to receive tokens
-    </SubtitleStyled>
     <Button
       appearance='action'
       onClick={() => {

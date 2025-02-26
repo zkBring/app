@@ -1,32 +1,15 @@
 'use server'
 import {
-  LinkdropSDK,
-  NotFoundError,
-  ForbiddenError,
-  ValidationError,
-  ConflictError,
-  ClaimLink
-} from 'linkdrop-sdk'
-import randomBytes from 'randombytes'
-import { sdkApiKey } from '@/app/configs/index'
-import {
-  getTokenERC20Data,
-  getTokenERC721Data,
-  getTokenERC1155Data,
   generateMetadataUtil
 } from '@/utils'
-import {
-  headers
-} from 'next/headers'
-import {
-  TTokenStandard,
-  TTokenData,
-  TWalletName
-} from '@/types'
+
 import type { Metadata } from 'next'
 import { cache } from 'react'
 import Content from './content'
 import { drops as dropsApi } from '@/app/api'
+import { use } from "react"
+
+type tParams = Promise<{ drop_id: string }>
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataUtil({
@@ -34,10 +17,10 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 }
 
-const getInitialData = cache(async () => {
+const getInitialData = cache(async (drop_id: string) => {
   try {
-    const drops = await dropsApi.get()
-    return drops.data.campaigns_array
+    const drops = await dropsApi.getOne(drop_id)
+    return drops.data.campaign
   } catch (err: unknown) {
     console.log({
       err
@@ -45,12 +28,18 @@ const getInitialData = cache(async () => {
   }
 })
 
-export default async function Drop() {
-  const data = await getInitialData()
+export default async function Drop({
+  params
+}: {
+  params: tParams
+}) {
+
+  const paramsData = use(params)
+  const data = await getInitialData(paramsData.drop_id)
   if (!data) {
     return <h1>Not found</h1>
   }
 
-  return <Content drops={data} />
+  return <Content drop={data} />
 }
 

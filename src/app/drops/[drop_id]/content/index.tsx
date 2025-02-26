@@ -22,44 +22,32 @@ import {
 
 import type { Metadata } from 'next'
 import { ThemeProvider } from 'styled-components'
-import { light } from '@/themes'
+import { dark } from '@/themes'
 import {
-  Header
+  Header,
+  Footer
 } from '@/components/common'
 import { useEffect, FC } from 'react'
 import TProps from './types'
 import { drops as dropsApi } from '@/app/api'
 
-const getData = async (
-  query: string
-) => {
-  try {
-    const drops = await dropsApi.get(
-      query
-    )
-    return drops.data.campaigns_array
-  } catch (err: unknown) {
-    console.log({
-      err
-    })
-  }
-}
-
 
 const Content: FC<TProps> = ({
-  drops
+  drop
 }) => {
 
   useEffect(() => {
 
   }, [])
-
-  return <ThemeProvider theme={light}>
+  console.log({
+    drop
+  })
+  return <ThemeProvider theme={dark}>
     <Header />
     <Container>
-      
-
+      {drop.title}
     </Container>
+    <Footer />/ 
   </ThemeProvider>
 }
 

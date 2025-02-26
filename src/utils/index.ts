@@ -20,7 +20,7 @@ import metadataUrlResolve from './metadata-resolve-url'
 import createQueryString from './create-query-string'
 import defineApiHeaders from "./define-api-headers"
 import getDispenserData from './get-dispenser-data'
-import getDispenserClaimLink from './get-dispenser-claiming-link'
+import getDispenserClaimLink from './get-dispenser-claim-link'
 
 export {
   getTokenERC20Data,

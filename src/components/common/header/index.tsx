@@ -1,21 +1,20 @@
 'use client'
-import Image from 'next/image'
 import { FC } from 'react'
 import {
-  LinkdropHeader,
+  Header,
   Account,
   Address,
   Profile,
   Logout
 } from './styled-components'
-import LinkdropImage from 'images/linkdrop.png'
 import { useAppSelector } from '@/lib/hooks'
 import { NetworkIndicator } from '..'
 import {
   shortenString
 } from '@/utils'
 import {
-  LogoutIcon
+  LogoutIcon,
+  LogoIcon
 } from '@/components/icons'
 import { useDisconnect } from "wagmi"
 import {
@@ -47,14 +46,8 @@ const PageHeader: FC = () => {
     }
   }))
 
-  return <LinkdropHeader address={address}>
-    <Image
-      src={LinkdropImage}
-      alt="Application Logo"
-      width='107'
-      height='40'
-    />
-
+  return <Header address={address}>
+    <LogoIcon />
     {address && <Profile>
       <Account>
         <Address loading={loading}>
@@ -75,7 +68,7 @@ const PageHeader: FC = () => {
       </Logout>
     </Profile>}
     
-  </LinkdropHeader>
+  </Header>
 }
 
 export default PageHeader

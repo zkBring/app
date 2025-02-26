@@ -5,7 +5,7 @@ const qrOptions: TQROptions = {
   'zkbring': {
     cornersSquareOptions: {
       color: "#FFF",
-      type: 'extra-rounded'
+      type: 'square'
     },
     cornersDotOptions: {
       color: "#FFF",
@@ -13,7 +13,7 @@ const qrOptions: TQROptions = {
     },
     dotsOptions: {
       color: "#FFF",
-      type: "dots"
+      type: "square"
     },
     backgroundOptions: {
       color: "#000"

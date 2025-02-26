@@ -1,3 +1,0 @@
-{
-  "/verify/[qr_secret]/[qr_enc_code]/page": "app/verify/[qr_secret]/[qr_enc_code]/page.js"
-}

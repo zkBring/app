@@ -6,7 +6,8 @@ import {
 } from '@/app/configs'
 
 const getMultiQRCampaignData: TGetDispenserData = (
-  multiscanQRId
+  multiscanQRId,
+  multiscanQREncCode
 ) => {
 
   const headers = defineApiHeaders()
@@ -16,7 +17,10 @@ const getMultiQRCampaignData: TGetDispenserData = (
   })
   return axios.get(`${dashboardServerURL}/api/v2/claimer/dispensers/multiscan-qrs/${multiscanQRId}/campaign`,
     {
-      headers
+      headers,
+      params: {
+        multiscanQREncCode: multiscanQREncCode
+      }
     }
   )
 }

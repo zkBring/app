@@ -12,9 +12,10 @@ import {
 } from '@/types'
 import InitialScreen from './initial'
 import { ThemeProvider } from 'styled-components'
-import { light } from '@/themes'
+import { dark } from '@/themes'
 import {
-  Header
+  Header,
+  Footer
 } from '@/components/common'
 import SelectWallet from './select-wallet'
 import ClaimReady from './claim-ready'
@@ -97,7 +98,7 @@ const Content: FC<TProps> = ({
     ComponentsScreen
   >(initialStatus)
 
-  return <ThemeProvider theme={light}>
+  return <ThemeProvider theme={dark}>
     <Header />
     {defineScreen(
       screen,
@@ -105,6 +106,7 @@ const Content: FC<TProps> = ({
       linkParams,
       tokenData
     )}
+    <Footer />
   </ThemeProvider>
 }
 

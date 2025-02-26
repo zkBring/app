@@ -1,16 +1,13 @@
 'use client'
-import { Input }  from '@/components/common'
 
 import {
   FC,
-  useEffect,
-  useState
 } from 'react'
 import {
   Container,
-  Title
+  Title,
+  LinkStyled
 } from './styled-components'
-import { useRouter } from 'next/navigation'
 
 import { TDrop } from './types'
 
@@ -18,18 +15,14 @@ const Drop: FC<TDrop> = ({
   title,
   campaignId
 }) => {
-  const router = useRouter()
 
-  return <Container>
-    <Title>
-      {title}
-      <button onClick={() => {
-        router.push(`/drops/${campaignId}`)
-      }}>
-        go
-      </button>
-    </Title>
-  </Container>
+  return <LinkStyled href={`/drops/${campaignId}`}>
+    <Container>
+      <Title>
+        {title}
+      </Title>
+    </Container>
+  </LinkStyled>
 }
 
 export default Drop

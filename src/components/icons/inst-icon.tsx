@@ -14,7 +14,3 @@ const InstIcon: FC<TProps> = ({
 }
 
 export default InstIcon
-
-
-
-

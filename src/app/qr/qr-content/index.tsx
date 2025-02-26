@@ -5,7 +5,7 @@ import {
   TQRScreen
 } from '@/types'
 import { ThemeProvider } from 'styled-components'
-import { light } from '@/themes'
+import { dark } from '@/themes'
 import { defineQRScreen } from '@/utils'
 import ErrorQRNotFound from './error-qr-not-found'
 import ErrorQRNotMapped from './error-qr-not-mapped'
@@ -22,7 +22,8 @@ import * as wccrypto from '@walletconnect/utils/dist/esm'
 import { isAxiosError } from 'axios'
 import { redirect } from 'next/navigation'
 import {
-  Header
+  Header,
+  Footer
 } from '@/components/common'
 
 const defineScreen = (
@@ -135,11 +136,12 @@ const Content: FC<TProps> = () => {
 
 
   // const screen = defineQRScreen(error)
-  return <ThemeProvider theme={light}>
+  return <ThemeProvider theme={dark}>
     <Header />
     {defineScreen(
       screen
     )}
+    <Footer />
   </ThemeProvider>
 }
 

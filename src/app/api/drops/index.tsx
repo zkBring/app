@@ -1,5 +1,7 @@
 import getDrops from "./get-drops"
+import getDrop from "./get-drop"
 
 export default {
-  get: getDrops
+  getAll: getDrops,
+  getOne: getDrop
 }

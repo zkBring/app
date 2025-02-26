@@ -6,12 +6,12 @@ import {
   TProviderType,
   TDispenserError
 } from '../types'
-
 import { getTokenERC20Data } from '.'
 import { ethers } from 'ethers'
 
 type TGetDispenserData = (
-  multiscanQRId: string
+  multiscanQRId: string,
+  multiscanQREncCode: string
 ) => Promise<{
   reclaimVerificationURL: string | null,
   tokenAmount: string | null,
@@ -23,16 +23,18 @@ type TGetDispenserData = (
 }> 
 
 const getDispenserData: TGetDispenserData = async (
-  multiscanSecret
+  multiscanSecret,
+  multiscanQREncCode
 ) => {
   try {
 
     const linkKey = ethers.id(multiscanSecret)
     const qrKeysPair = new ethers.Wallet(linkKey)
-    const MULTISCAN_QR_ID = qrKeysPair.address.toLowerCase()
+    const multiscanQRId = qrKeysPair.address.toLowerCase()
   
     const { data } = await dispenser.get(
-      MULTISCAN_QR_ID
+      multiscanQRId,
+      multiscanQREncCode
     )
 
     const {

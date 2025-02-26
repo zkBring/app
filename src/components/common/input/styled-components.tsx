@@ -39,7 +39,7 @@ export const InputField = styled.input<TInputFieldProps>`
   border: none;
   outline: none;
   margin: 0;
-  background-color: ${props => props.theme.backgroundColor};
+  background-color: ${props => props.theme.primaryBackgroundColor};
 
   ::placeholder {
     color: ${(props) => (props.theme && props.theme.additionalTextColor)};

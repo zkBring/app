@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/hazobaykulov/www/reclaim/drops-dashboard/src/app/page.tsx"],"sourcesContent":["'use client'\nimport { useRouter } from 'next/navigation'\n\nexport default function Page() {\n  const router = useRouter()\n  return (\n    <div>\n      <button type=\"button\" onClick={() => router.push('/redeem')}>\n        Redeem\n      </button>\n    </div>\n  )\n}"],"names":[],"mappings":";;;;AACA;AADA;;;AAGe,SAAS;IACtB,MAAM,SAAS,CAAA,GAAA,kIAAA,CAAA,YAAS,AAAD;IACvB,qBACE,8OAAC;kBACC,cAAA,8OAAC;YAAO,MAAK;YAAS,SAAS,IAAM,OAAO,IAAI,CAAC;sBAAY;;;;;;;;;;;AAKnE"}},
-    {"offset": {"line": 33, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}

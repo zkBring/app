@@ -19,9 +19,9 @@ export const TokenImageStyled = styled(TokenImage)`
 
 export const DoneIconStyled = styled(DoneIcon)`
   position: absolute;
-  border: 6px solid ${props => props.theme.backgroundColor};
+  border: 6px solid ${props => props.theme.primaryBackgroundColor};
   border-radius: 100%;
   top: 0px;
   right: 0px;
-  background: ${props => props.theme.backgroundColor};
+  background: ${props => props.theme.primaryBackgroundColor};
 `

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 23, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/src/middleware.tsx"],"sourcesContent":["import { NextResponse } from \"next/server\";\nimport type { NextRequest } from \"next/server\";\n\nexport function middleware(request: NextRequest) {\n  // Add a new header x-current-path which passes the path to downstream components\n  const headers = new Headers(request.headers);\n  headers.set(\"x-current-path\", request.nextUrl.href);\n  return NextResponse.next({ headers });\n}\n\nexport const config = {\n  matcher: [\n    // match all routes except static files and APIs\n    \"/((?!api|_next/static|_next/image|favicon.ico).*)\",\n  ],\n}"],"names":[],"mappings":";;;;AAAA;AAAA;;AAGO,SAAS,WAAW,OAAoB;IAC7C,iFAAiF;IACjF,MAAM,UAAU,IAAI,QAAQ,QAAQ,OAAO;IAC3C,QAAQ,GAAG,CAAC,kBAAkB,QAAQ,OAAO,CAAC,IAAI;IAClD,OAAO,qLAAA,CAAA,eAAY,CAAC,IAAI,CAAC;QAAE;IAAQ;AACrC;AAEO,MAAM,SAAS;IACpB,SAAS;QACP,gDAAgD;QAChD;KACD;AACH"}},
-    {"offset": {"line": 44, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}

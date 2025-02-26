@@ -1,4 +1,11 @@
 {
-  "/verify/[multiscan_secret]/page": "app/verify/[multiscan_secret]/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/drops/[drop_id]/page": "app/drops/[drop_id]/page.js",
+  "/qr/page": "app/qr/page.js",
+  "/redeem/[link_id]/page": "app/redeem/[link_id]/page.js",
+  "/verify/[multiscan_secret]/[enc_code]/[session_id]/verification-complete/page": "app/verify/[multiscan_secret]/[enc_code]/[session_id]/verification-complete/page.js",
+  "/drops/page": "app/drops/page.js",
+  "/verify/[multiscan_secret]/[enc_code]/page": "app/verify/[multiscan_secret]/[enc_code]/page.js"
 }

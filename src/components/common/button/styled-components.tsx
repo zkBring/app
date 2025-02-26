@@ -41,8 +41,7 @@ export const Button = styled.button.attrs((props) => ({
     props.appearance === 'default' &&
     props.disabled &&
     css`
-      border-color: ${(props) =>
-        (props.theme && props.theme.buttonDefaultDisabledBorderColor)};
+      border-color: trasparent;
       color: ${(props) =>
         (props.theme && props.theme.buttonDefaultDisabledTextColor)};
     `}

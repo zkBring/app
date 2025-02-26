@@ -1,3 +1,0 @@
-{
-  "/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page": "app/scan/[multiscan_qr_id]/[scan_id]/[scan_id_sig]/[multiscan_qr_enc_code]/page.js"
-}
