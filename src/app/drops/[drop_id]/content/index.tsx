@@ -1,26 +1,12 @@
 'use client'
-import {
-  LinkdropSDK,
-  NotFoundError,
-  ForbiddenError,
-  ValidationError,
-  ConflictError,
-  ClaimLink
-} from 'linkdrop-sdk'
-import randomBytes from 'randombytes'
-import { sdkApiKey } from '@/app/configs/index'
-import {
-  getTokenERC20Data,
-  getTokenERC721Data,
-  getTokenERC1155Data,
-  generateMetadataUtil
-} from '@/utils'
+
 
 import {
-  Container
+  Container,
 } from '../../styled-components'
-
-import type { Metadata } from 'next'
+import {
+  LinkStyled
+} from './styled-components'
 import { ThemeProvider } from 'styled-components'
 import { dark } from '@/themes'
 import {
@@ -29,8 +15,6 @@ import {
 } from '@/components/common'
 import { useEffect, FC } from 'react'
 import TProps from './types'
-import { drops as dropsApi } from '@/app/api'
-
 
 const Content: FC<TProps> = ({
   drop
@@ -42,12 +26,27 @@ const Content: FC<TProps> = ({
   console.log({
     drop
   })
+
+// encrypted_multiscan_qr_enc_code: "GMqe7zrdsrNp"
+// encrypted_multiscan_qr_secret: "3rf9bbAuiHyF"
+
+  const link = '/verify/3rf9bbAuiHyF/GMqe7zrdsrNp'
   return <ThemeProvider theme={dark}>
     <Header />
     <Container>
-      {drop.title}
+    title {drop.title} <br />
+    campaign_id {drop.campaign_id} <br />
+    expiration_time {drop.expiration_time} <br />
+    symbol {drop.symbol} <br />
+    token_amount {drop.token_amount}<br />
+    token_standard {drop.token_standard}<br />
+
+    creator_address {drop.creator_address}<br />
+    token_address {drop.token_address}<br />
+    
+    Go to check verification <LinkStyled href={link}>here</LinkStyled>
     </Container>
-    <Footer />/ 
+    <Footer />
   </ThemeProvider>
 }
 

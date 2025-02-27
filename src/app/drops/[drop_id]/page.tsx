@@ -7,7 +7,6 @@ import type { Metadata } from 'next'
 import { cache } from 'react'
 import Content from './content'
 import { drops as dropsApi } from '@/app/api'
-import { use } from "react"
 
 type tParams = Promise<{ drop_id: string }>
 
@@ -34,7 +33,7 @@ export default async function Drop({
   params: tParams
 }) {
 
-  const paramsData = use(params)
+  const paramsData = await params
   const data = await getInitialData(paramsData.drop_id)
   if (!data) {
     return <h1>Not found</h1>

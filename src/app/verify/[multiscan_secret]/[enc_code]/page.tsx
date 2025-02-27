@@ -3,7 +3,6 @@ import Content from './content'
 import {
   getDispenserData
 } from '@/utils'
-import { use } from "react"
 
 type tParams = Promise<{
   multiscan_secret: string,
@@ -16,7 +15,7 @@ async function Verify ({
 }: {
   params: tParams
 }) {
-  const paramsData = use(params)
+  const paramsData = await params
 
   const dispenserData  = await getDispenserData(
     paramsData.multiscan_secret,

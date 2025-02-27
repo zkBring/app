@@ -11,10 +11,6 @@ const getMultiQRCampaignData: TGetDispenserData = (
 ) => {
 
   const headers = defineApiHeaders()
-
-  console.log({
-    url: `${dashboardServerURL}/api/v2/claimer/dispensers/multiscan-qrs/${multiscanQRId}/campaign`
-  })
   return axios.get(`${dashboardServerURL}/api/v2/claimer/dispensers/multiscan-qrs/${multiscanQRId}/campaign`,
     {
       headers,
