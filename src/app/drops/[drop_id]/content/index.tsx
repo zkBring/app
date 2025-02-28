@@ -39,6 +39,7 @@ const Content: FC<TProps> = ({
     encrypted_multiscan_qr_secret
   } = drop
   console.log({ drop })
+  
 // encrypted_multiscan_qr_enc_code: "GMqe7zrdsrNp"
 // encrypted_multiscan_qr_secret: "3rf9bbAuiHyF"
 
