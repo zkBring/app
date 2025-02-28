@@ -46,7 +46,6 @@ const getTokenERC20Data: TGetTokenERC20Data = async (tokenAddress, chainId) => {
 
       const decimals = await contractInstance.decimals()
       console.log({ decimals })
-
       return {
         symbol,
         decimals,
