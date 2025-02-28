@@ -15,7 +15,6 @@ const Drop: FC<TDrop> = ({
   title,
   campaignId
 }) => {
-
   return <LinkStyled href={`/drops/${campaignId}`}>
     <Container>
       <Title>

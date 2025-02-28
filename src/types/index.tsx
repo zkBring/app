@@ -9,17 +9,17 @@ import type TMetadataArgs from './metadata-args'
 import type TClaimError from './claim-error'
 import type TQRScreen from './qr-screen'
 import type TClaimErrorType from './claim-error-type'
+import type TProviderType from "./provider-type"
 import type TDrop from './drop'
 import type TApiSource from './api-source'
-import type TProviderType from "./provider-type"
 import type TDispenserError from './dispenser-error'
 import type TDispenserScreen from './dispenser-screen'
 import type TQROption from "./qr-option"
 
 export {
   TClaimErrorType,
-  TDrop,
   TProviderType,
+  TDrop,
   TApiSource,
   TWalletName,
   TMetadataArgs,

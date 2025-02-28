@@ -4,8 +4,7 @@ import {
   // useEffect,
   // useState
 } from 'react'
-import {
-} from 'components/common'
+
 import {
   ButtonStyled,
   // LoaderStyled
@@ -24,34 +23,6 @@ const CustomRedirectButton: FC<TProps> = ({
   if (!claimingFinishedButtonOn) {
     return null
   }
-  // const { connectors } = useConnect()
-  // const [ isSmartWallet, setIsSmartWallet ] = useState<boolean>(false)
-  // const [ loading, setLoading ] = useState<boolean>(true)
-
-  // useEffect(( ) => {
-  //   const init = async () => {
-  //     const coinbaseConnector = connectors.find(connector => connector.id === "coinbaseWalletSDK")
-  //     if (coinbaseConnector) {
-  //       const isAuthorized = await coinbaseConnector?.isAuthorized()
-  //       setIsSmartWallet(isAuthorized)
-  //     }
-
-  //     if (claimingFinishedAutRedirect) {
-  //       if (claimingFinishedButtonURL) {
-  //         window.location.href = claimingFinishedButtonURL
-  //         return
-  //       }
-  //     }
-
-  //     setLoading(false)
-  //   }
-
-  //   init()
-  // }, [])
-
-  // if (loading) {
-  //   return <LoaderStyled size='small' />
-  // }
 
   if (claimingFinishedButtonURL) {
     return <ButtonStyled
@@ -64,16 +35,6 @@ const CustomRedirectButton: FC<TProps> = ({
     </ButtonStyled>
   }
 
-  // if (isSmartWallet) {
-  //   return <ButtonStyled
-  //     href="https://keys.coinbase.com"
-  //     target='_blank'
-  //     appearance='action'
-  //   >
-  //     See in Wallet
-  //   </ButtonStyled>
-  // } 
-  
   return null
 }
 
