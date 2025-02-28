@@ -9,5 +9,4 @@ const defineNetworkName = (chainId: number | null) : string => {
     default: return 'mainnet'
   }
 }
-
 export default defineNetworkName
