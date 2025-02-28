@@ -22,6 +22,8 @@ async function Verify ({
     paramsData.enc_code
   )
 
+  console.log({ dispenserData })
+
   if (dispenserData) {
     return <Content
       {...dispenserData}

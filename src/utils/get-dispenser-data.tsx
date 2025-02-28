@@ -49,6 +49,8 @@ const getDispenserData: TGetDispenserData = async (
       Number(campaign.chain_id)
     )
 
+    console.log({ tokenData })
+
     return {
       reclaimVerificationURL,
       tokenAmount: campaign.token_amount,
