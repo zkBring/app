@@ -35,6 +35,7 @@ export default async function Drop({
 
   const paramsData = await params
   const data = await getInitialData(paramsData.drop_id)
+  console.log({ data })
   if (!data) {
     return <h1>Not found</h1>
   }
