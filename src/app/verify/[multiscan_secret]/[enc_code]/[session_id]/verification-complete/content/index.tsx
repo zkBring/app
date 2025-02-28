@@ -16,7 +16,7 @@ const defineContent = (
 
   if (claimLink) {
     return <LinkReady
-    claimLink={claimLink}
+      claimLink={claimLink}
     />
   }
 

@@ -8,5 +8,6 @@ type TPopLinkResponse = {
 }
 
 export type TPopLink = (
-  multiscanQRId: string
+  multiscanQRId: string,
+  reclaimSessionId: string
 ) => Promise<AxiosResponse<TPopLinkResponse>>

@@ -7,6 +7,7 @@ async function VerificationComplete ({
   params
 }: {
   params: Promise<{
+    session_id: string,
     multiscan_secret: string,
     enc_code: string
   }>
@@ -14,6 +15,7 @@ async function VerificationComplete ({
   const paramsData = await params
   const data = await getDispenserClaimLink(
     paramsData.multiscan_secret,
+    paramsData.session_id,
     paramsData.enc_code
   )
 

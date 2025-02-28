@@ -6,13 +6,16 @@ import {
 } from '@/app/configs'
 
 const popLink: TPopLink = (
-  multiscanQRId
+  multiscanQRId,
+  reclaimSessionId
 ) => {
 
   const headers = defineApiHeaders()
 
 
-  return axios.get(`${dashboardServerURL}/api/v2/claimer/dispensers/multiscan-qrs/${multiscanQRId}/campaign`,
+  return axios.post(`${dashboardServerURL}/api/v2/dashboard/dispensers/pop-reclaim/multiscan-qrs/${multiscanQRId}`, {
+      reclaim_session_id: reclaimSessionId
+    },
     {
       headers
     }

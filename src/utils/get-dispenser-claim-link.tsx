@@ -10,6 +10,7 @@ import { ethers } from 'ethers'
 
 type TGetDispenserClaimLink = (
   multiscanSecret: string,
+  sessionId: string,
   multiscanQREncCode: string
 ) => Promise<{
   claimLink: string | null,
@@ -19,16 +20,18 @@ type TGetDispenserClaimLink = (
 
 const getDispenserClaimLink: TGetDispenserClaimLink = async (
   multiscanSecret,
+  sessionId,
   multiscanQREncCode
 ) => {
   try {
 
     const linkKey = ethers.id(multiscanSecret)
     const qrKeysPair = new ethers.Wallet(linkKey)
-    const MULTISCAN_QR_ID = qrKeysPair.address.toLowerCase()
+    const multiscanQRId = qrKeysPair.address.toLowerCase()
   
     const { data } = await dispenser.popLink(
-      MULTISCAN_QR_ID
+      multiscanQRId,
+      sessionId
     )
 
     const { encrypted_claim_link, success }: { encrypted_claim_link: string, success: boolean } = data
