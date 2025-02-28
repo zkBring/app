@@ -7,8 +7,8 @@ import Content from '@/app/qr/qr-content'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Linkdrop Claim App',
-    description: `QR set`,
+    title: 'zkBring platform',
+    description: `zkBring platform`,
   }
 }
 

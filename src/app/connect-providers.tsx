@@ -22,9 +22,9 @@ if (!projectId) {
 
 // Set up metadata
 const metadata = {
-  name: 'Linkdrop Claim App',
-  description: 'Linkdrop Claim App',
-  url: 'https://linkdrop.io', // origin must match your domain & subdomain
+  name: 'zkBring platform',
+  description: 'zkBring platform',
+  url: 'https://zkbring.com', // origin must match your domain & subdomain
   icons: ['https://avatars.githubusercontent.com/u/37784886']
 }
 

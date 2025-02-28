@@ -16,10 +16,10 @@ const generateMetadataUtil: TGenerateMetadata = ({
   image
 }) => {
   return {
-    title: title || 'Linkdrop Claim App',
+    title: title || 'zkBring Platform',
     description,
     openGraph: {
-      title: title || 'Linkdrop Claim App',
+      title: title || 'zkBring Platform',
       images: [image || '/meta-image.png'],
       description
     }

@@ -10,8 +10,7 @@ import { headers } from 'next/headers' // added
 export async function generateMetadata(): Promise<Metadata> {
 
   return {
-    title: 'Linkdrop Claim App',
-    description: 'You have received a digital asset. Click to claim it',
+    title: 'zkBring platform'
   }
 }
 
