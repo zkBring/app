@@ -17,7 +17,7 @@ export const Header = styled.header<TAccount>`
     justify-content: center;
     align-items: center;
     min-height: 43px;
-    padding: 50px 0;
+    padding: 10px 0;
 
   ${props => props.address && css`
     justify-content: space-between;

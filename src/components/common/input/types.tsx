@@ -11,6 +11,8 @@ export type TProps = {
   className?: string
   note?: string
   refProp?: React.Ref<HTMLInputElement>
+  icon?: React.ReactNode
+  prefix?: string
 }
 
 export type TInputContainerProps = {

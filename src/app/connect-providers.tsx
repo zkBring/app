@@ -8,7 +8,7 @@ import {
 } from '@/app/configs'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createAppKit } from '@reown/appkit/react'
-import { mainnet, arbitrum } from '@reown/appkit/networks'
+import { base } from '@reown/appkit/networks'
 import React, { type ReactNode } from 'react'
 import { cookieToInitialState, WagmiProvider, type Config } from 'wagmi'
 
@@ -18,7 +18,6 @@ const queryClient = new QueryClient()
 if (!projectId) {
   throw new Error('Project ID is not defined')
 }
-
 
 // Set up metadata
 const metadata = {
@@ -31,8 +30,8 @@ const metadata = {
 createAppKit({
   adapters: [wagmiAdapter],
   projectId,
-  networks: [mainnet, arbitrum],
-  defaultNetwork: mainnet,
+  networks: [base],
+  defaultNetwork: base,
   metadata: metadata,
   featuredWalletIds: [
     'fd20dc426fb37566d803205b19bbc1d4096b248ac04548e3cfb6b3a38bd033aa',

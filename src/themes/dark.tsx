@@ -1,10 +1,14 @@
 const theme = {
   primaryTextColor: '#BCBCBC',
-  secondaryTextColor: '#FFF',
-  additionalTextColor: '#888889',
+  secondaryTextColor: '#686869',
+  additionalTextColor: '#FFF',
+  extraTextColor: '#8D8D8D', 
+  placeholderTextColor: 'rgba(255, 255, 255, .3)',
   dangerTextColor: '#FF2C2C',
 
   highlightColor: '#0C5EFF',
+
+
   primaryBackgroundColor: '#0A0B0D',
   secondaryBackgroundColor: '#161618',
   additionalBackgroundColor: '#1A1A1A',
@@ -29,6 +33,16 @@ const theme = {
 
 
   buttonGradient: 'linear-gradient(to right, #00B2FF 0%, #FA00FF 50%, #00B2FF 100%)',
+
+
+  inputIconZoneBackgroundColor: '#19191A',
+
+
+
+  // switcher
+  switcherItemBackgroundColor: '#242426',
+  switcherTagBackgroundColor: '#2A271F',
+  switcherTagTextColor: '#A0873C'
 
 }
 

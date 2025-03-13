@@ -28,6 +28,24 @@ export const InputTitle = styled.h3<TInputTitleProps>`
     `}
 `
 
+export const InputFieldContainer = styled.div`
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  border: 1px solid ${props => props.theme.primaryBorderColor};
+  border-radius: 8px;
+  overflow: hidden;
+`
+
+export const InputPrefix = styled.div`
+  display: flex;
+  padding: 13px 16px;
+  align-items: center;
+  justify-content: cetner;
+  border-right: 1px solid ${props => props.theme.primaryBorderColor};
+  background-color: ${props => props.theme.inputIconZoneBackgroundColor};
+`
+
+
 export const InputField = styled.input<TInputFieldProps>`
   color: ${(props) => (props.theme && props.theme.primaryTextColor)};
   font-size: 16px;

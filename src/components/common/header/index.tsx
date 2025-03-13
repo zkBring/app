@@ -1,5 +1,5 @@
 'use client'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import {
   Header,
   Account,
@@ -7,7 +7,6 @@ import {
   Profile,
   Logout
 } from './styled-components'
-import { useAppSelector } from '@/lib/hooks'
 import { NetworkIndicator } from '..'
 import {
   shortenString
@@ -23,6 +22,7 @@ import {
 import {
   setUserAddress
 } from '@/lib/slices'
+import { useAppSelector } from '@/lib/hooks'
 
 const PageHeader: FC = () => {
   const { disconnect } = useDisconnect()
