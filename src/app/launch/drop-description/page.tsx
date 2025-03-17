@@ -17,7 +17,11 @@ import {
 import {
   InputDropIcon
 } from '@/components/icons'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
+import {
+  setDropData
+} from '@/lib/slices'
+import { useDispatch } from 'react-redux'
 
 const LaunchDropDescription: FC = () => {
 
@@ -37,6 +41,7 @@ const LaunchDropDescription: FC = () => {
   }
 
   const router = useRouter()
+  const dispatch = useDispatch()
 
   return <Page>
     <LaunchContainer
@@ -54,8 +59,6 @@ const LaunchDropDescription: FC = () => {
       ]}
     >
       <LaunchWidget title='What are you dropping?'>
-
-
       <InputStyled
           value={title}
           disabled={loading}
@@ -84,20 +87,20 @@ const LaunchDropDescription: FC = () => {
             appearance='action'
             disabled={defineIfNextDisabled()}
             onClick={() => {
-              // setCampaignData(
-              //   title,
-              //   description,
-              //   () => {
-                router.push(`/campaigns/new/ERC20/transactions`)
-              //   }
-              // )
+
+              dispatch(setDropData({
+                title,
+                description
+              }))
+
+              router.push(`/launch/transactions`)
             }}
           >
             Next
           </Button>
 
           <Button
-            to={`/campaigns/new/ERC20/token-data`}
+            to={`/launch/token-data`}
           >
             Back
           </Button>

@@ -8,3 +8,4 @@ export const infuraApiKey = process.env.NEXT_PUBLIC_APP_INFURA_ID
 export const dashboardServerURL = process.env.NEXT_PUBLIC_DASHBOARD_SERVER_URL
 
 export const jsonRPCBase = process.env.NEXT_PUBLIC_JSON_RPC_BASE
+export const zerionApiKey = process.env.NEXT_PUBLIC_ZERION_API_KEY

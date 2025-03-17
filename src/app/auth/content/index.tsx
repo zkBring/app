@@ -1,6 +1,6 @@
 'use client'
 import {
-  FC
+  FC, useEffect
 } from 'react'
 import {
   Container,
@@ -13,32 +13,51 @@ import {
 import { useAppKit } from '@reown/appkit/react'
 import { useAccount, useDisconnect } from "wagmi"
 import { TProps } from './types'
+import { useRouter } from 'next/navigation'
 
 import {
   Page
 } from '@/components/common'
+import { TAuthorizationStep } from '@/types'
+import {
+  Connect,
+  Authorize
+} from './components'
+import { useAppSelector } from '@/lib/hooks'
+
+const defineContent = (
+  step: TAuthorizationStep
+) => {
+  switch (step) {
+    case 'connect':
+      return <Connect />
+    case 'login':
+      return <Authorize />
+  }
+}
 
 const AuthContent: FC<TProps> = () => {
-  const dispatch = useAppDispatch()
-  const { open } = useAppKit()
-  const { address, isConnected, chain } = useAccount()
-  const { disconnect } = useDisconnect()
 
+  const {
+    user: {
+      authorizationStep
+    }
+  } = useAppSelector(state => ({
+    user: state.user
+  }))
 
+  const router = useRouter()
+
+  const content = defineContent(authorizationStep)
+
+  console.log({ authorizationStep })
+  useEffect(() => {
+    if (authorizationStep === 'authorized') {
+      router.push(`/launch/audience`)
+    }
+  }, [authorizationStep])
   return <Page>
-    <Container>
-      <ButtonStyled
-        appearance='action'
-        onClick={() => {
-        if (isConnected) {
-          disconnect()
-        }
-        open()
-      }}
-      >
-        Connect
-      </ButtonStyled>
-    </Container>
+    {content}
   </Page>
 }
 

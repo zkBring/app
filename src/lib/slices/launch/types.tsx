@@ -2,22 +2,40 @@ import {
   TTokenStandard,
   TLaunchStage,
   TClaimPattern,
-  TLaunchAsset,
   TZKTLSService,
   TProofProvider,
   TLaunchTransactionStage
 } from '@/types'
 
 export interface TInitialState {
-  title?: string | null
-  description?: string | null
+  // token data
   tokenAddress: string | null
-  campaignAddress?: string | null 
   tokenStandard: TTokenStandard | null
-  assets: TLaunchAsset[] | null
-  loading: boolean
   decimals: number | null
   symbol: string | null
+  tokensPerClaim: string | null
+  totalClaims: string | null
+
+
+
+  // campaign data
+  title?: string | null
+  description?: string | null
+
+
+  // audience
+  zkTLSService: TZKTLSService | null
+  proofProvider: TProofProvider | null
+  appID: string | null
+  secret: string | null 
+  providerID: string | null
+  handleKey: string | null
+
+
+
+  
+  campaignAddress?: string | null 
+  loading: boolean
   wallet: string | null
   proxyContractAddress: string | null
   approved: boolean | null
@@ -31,10 +49,5 @@ export interface TInitialState {
   additionalWalletsOn: boolean | null
   launchStage: TLaunchStage | null
   transactionStage: TLaunchTransactionStage | null
-  zkTLSService: TZKTLSService | null
-  proofProvider: TProofProvider | null
-  appId: string | null
-  secret: string | null 
-  providerId: string | null
-  handleKey: string | null
+
 }

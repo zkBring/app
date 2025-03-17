@@ -1,6 +1,15 @@
-import { TLaunchAsset, TTokenStandard } from '@/types'
+import {
+  TLaunchAsset,
+  TTokenStandard
+} from '@/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { TInitialState } from './types'
+import {
+  setZKTLSOptionsAction,
+  setTokenDataAction,
+  setDropDataAction
+} from './actions'
+import { approve } from './async-actions'
 
 const initialState: TInitialState = {
   title: null,
@@ -8,7 +17,6 @@ const initialState: TInitialState = {
   tokenAddress: null,
   campaignAddress: null,
   tokenStandard: 'ERC20',
-  assets: null,
   loading: false,
   decimals: null,
   symbol: null,
@@ -27,10 +35,12 @@ const initialState: TInitialState = {
   transactionStage: 'initial',
   zkTLSService: null,
   proofProvider: null,
-  appId: null,
+  appID: null,
   secret: null,
-  providerId: null,
-  handleKey: null
+  providerID: null,
+  handleKey: null,
+  totalClaims: null,
+  tokensPerClaim: null
 }
 
 const launchSlice = createSlice({
@@ -56,22 +66,49 @@ const launchSlice = createSlice({
     setLaunchAssets: (state, action: PayloadAction<TLaunchAsset[]>) => ({
       ...state, assets: action.payload
     }),
+
+    setZKTLSOptions: setZKTLSOptionsAction,
+    setTokenData: setTokenDataAction,
+    setDropData: setDropDataAction
    
   },
-  extraReducers: () => {
-    
-  }
+  extraReducers: (builder) => {
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(approve.fulfilled, (state, action) => {
+      // Add user to the state array
+      console.log({
+        action,
+        state
+      }) 
+    })
+  },
 })
 
 // Extract the action creators object and the reducer
 const { actions, reducer } = launchSlice
 // Extract and export each action creator by name
-export const {
+const {
   setLaunchTitle,
   setLaunchDescription,
   setLaunchTokenAddress,
   setLaunchTokenStandard,
-  setLaunchAssets
+  setLaunchAssets,
+  setZKTLSOptions,
+  setTokenData,
+  setDropData,
 } = actions
+
+export {
+  setLaunchTitle,
+  setLaunchDescription,
+  setLaunchTokenAddress,
+  setLaunchTokenStandard,
+  setLaunchAssets,
+  setZKTLSOptions,
+  setTokenData,
+  setDropData,
+  approve
+}
+
 // Export the reducer, either as a default or named export
 export default reducer

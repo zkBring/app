@@ -2,24 +2,37 @@ import { ethers } from 'ethers'
 import { TLaunchAsset } from '@/types'
 
 const countLaunchAmounts = (
-  assets: TLaunchAsset[],
+  tokensPerClaim: string,
+  totalClaims: string,
   decimals: number
 ) => {
-  if (!assets[0] || !assets[0].amount) {
+  if (tokensPerClaim === '0' || totalClaims === '0') {
     return {
       amount: '0',
       comission: '0',
       totalAmount: '0'
     }
   }
-  const amount: bigint = BigInt(assets[0].amount) * BigInt(assets.length)
+
+  const tokensPerClaimFormatted = ethers.parseUnits(
+    tokensPerClaim,
+    decimals
+  ) // atomic
+
+  const amount: bigint = BigInt(tokensPerClaimFormatted) * BigInt(totalClaims)
   const comission: bigint = amount / BigInt(1000) * BigInt(3)
   const totalAmount: bigint = amount + comission
 
+  console.log({
+    amount,
+    comission,
+    totalAmount
+  })
+
   return {
-    amount: ethers.formatUnits(amount, decimals),
-    comission: ethers.formatUnits(comission, decimals),
-    totalAmount: ethers.formatUnits(totalAmount, decimals)
+    amount,
+    comission,
+    totalAmount
   }
 }
 

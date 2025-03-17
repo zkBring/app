@@ -23,7 +23,12 @@ import {
   TTransactionStage,
   TLaunchAsset
 } from '@/types'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
+import {
+  approve
+} from '@/lib/slices'
+import { useDispatch } from 'react-redux'
+import { useAppSelector } from '@/lib/hooks'
 
 const defineButton = (
   totalAmount: string,
@@ -98,28 +103,50 @@ const defineStages = (
 const LaunchTransaction: FC = () => {
   const router = useRouter()
   const transactionStage = 'initial'
-  const decimals = 18
   const loading = false
-  const approve = () => {}
   const secure = () => {}
   const stages = defineStages(transactionStage)
   const assets: TLaunchAsset[] = []
   const symbol = 'XZX'
+  const dispatch = useDispatch()
+  const {
+    launch: {
+      decimals,
+      tokensPerClaim,
+      totalClaims
+    }
+  } = useAppSelector(state => ({
+    launch: state.launch
+  }))
+
+
+
+  
 
   const {
     comission,
     amount,
     totalAmount
   } = countLaunchAmounts(
-    assets as TLaunchAsset[],
+    tokensPerClaim as string,
+    totalClaims as string,
     decimals as number
   )
 
+  console.log({
+    comission,
+    amount,
+    totalAmount
+  })
+
   const button = defineButton(
-    totalAmount,
+    String(totalAmount),
     transactionStage,
     loading,
-    approve,
+    () => {
+      dispatch(approve(String(totalAmount)))
+      // approve(totalAmount)
+    },
     secure,
     () => {
       router.push(`/launch/start`)
@@ -133,9 +160,9 @@ const LaunchTransaction: FC = () => {
       />
 
       <TransactionsData
-        comission={comission}
-        amount={amount}
-        totalAmount={totalAmount}
+        comission={String(comission)}
+        amount={String(amount)}
+        totalAmount={String(totalAmount)}
         symbol={symbol as string}
       />
       {button}

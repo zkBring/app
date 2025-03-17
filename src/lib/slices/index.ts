@@ -3,7 +3,11 @@ import LaunchSlice, {
   setLaunchDescription,
   setLaunchTitle,
   setLaunchTokenAddress,
-  setLaunchTokenStandard
+  setLaunchTokenStandard,
+  setZKTLSOptions,
+  setTokenData,
+  setDropData,
+  approve
 } from './launch'
 
 
@@ -11,6 +15,9 @@ import LaunchSlice, {
 import UserSlice, {
   setUserChainId,
   setUserAddress,
+  authorize,
+  setSigner,
+  setConnectedUserData
 } from './user'
 
 import TokenSlice, {
@@ -46,6 +53,10 @@ export {
   UserSlice,
   setUserChainId,
   setUserAddress,
+  authorize,
+  setSigner,
+  setConnectedUserData,
+
   LinkSlice,
   setLinkTxHash,
   setLinkOptimisticClaimUI,
@@ -68,10 +79,15 @@ export {
   setTokenImage,
   setTokenStandard,
   setTokenSymbol,
+
   LaunchSlice,
   setLaunchAssets,
   setLaunchDescription,
   setLaunchTitle,
   setLaunchTokenAddress,
-  setLaunchTokenStandard
+  setLaunchTokenStandard,
+  setZKTLSOptions,
+  setTokenData,
+  setDropData,
+  approve
 }

@@ -22,6 +22,7 @@ const getTokenERC20Data: TGetTokenERC20Data = async (tokenAddress, chainId) => {
       decimals,
       logo
     } = tokenData
+
     return {
       symbol: symbol || 'ERC20 Token',
       decimals: Number(decimals),
@@ -31,7 +32,6 @@ const getTokenERC20Data: TGetTokenERC20Data = async (tokenAddress, chainId) => {
       address: tokenAddress
     } 
   } catch (err) {
-    console.log(err)
     try {
       const jsonRpcUrl = defineJSONRPC(chainId as number)
       const provider = new ethers.JsonRpcProvider(jsonRpcUrl, chainId as number, {
@@ -40,12 +40,10 @@ const getTokenERC20Data: TGetTokenERC20Data = async (tokenAddress, chainId) => {
     
       const contractInstance = new ethers.Contract(tokenAddress, ERC20Contract, provider)
 
-      console.log({ contractInstance })
       const symbol = await contractInstance.symbol()
-      console.log({ symbol })
 
       const decimals = await contractInstance.decimals()
-      console.log({ decimals })
+
       return {
         symbol,
         decimals,

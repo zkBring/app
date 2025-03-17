@@ -31,6 +31,7 @@
     "react-select": "^5.10.1",
     "redux": "^4.1.1",
     "redux-thunk": "^2.4.1",
+    "siwe": "^2.3.2",
     "styled-components": "^6.1.13",
     "viem": "^2.21.59",
     "wagmi": "^2.14.6"

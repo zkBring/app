@@ -1,19 +1,23 @@
 'use client'
 import {
   FC,
-  useState
+  useState,
+  useEffect
 } from 'react'
 import {
   shortenString,
   alertError,
-  defineIfUserOwnsContractERC20
+  defineIfUserOwnsContractERC20,
+  getTokenERC20TokenList,
+  getTokenERC20Data,
+  getERC20TokenBalance
 } from '@/utils'
 import {
   InputCoinIcon,
   InputProfileIcon
 } from '@/components/icons'
 import {
-  TTokenData
+  TTokenData, TZerionERC20Item
 } from '@/types'
 import {
   Page,
@@ -32,12 +36,18 @@ import {
   TokenBalanceValue,
   InputSubtitle
 } from './styled-components'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
+import { useAppSelector } from '@/lib/hooks'
+import { ethers } from "ethers"
+import {
+  setTokenData
+} from '@/lib/slices'
+import { useDispatch } from 'react-redux'
 
 const defineContractsOptions = (contractsERC20: TTokenData[]) => {
   return contractsERC20.map(contract => {
     return {
-      label: `${contract.symbol} ${shortenString(contract.address)}`,
+      label: `${contract.symbol} ${shortenString(contract.address)} (balance: ${ethers.formatUnits(contract.amount as string, contract.decimals)})`,
       value: contract
     }
   })
@@ -45,22 +55,22 @@ const defineContractsOptions = (contractsERC20: TTokenData[]) => {
 
 const LaunchTokenData: FC = () => {
 
-  // define
-    const loading = false
-    const userLoading = false
-    const tokenAmount = '0'
-    const tokenAmountFormatted = '0'
-    const chainId = 8453
-    const symbol = 'XZX'
+  const {
+    user: {
+      address,
+      chainId
+    }
+  } = useAppSelector(state => ({
+    user: state.user
+  }))
 
-    const address = 'sss'
-    const signer = {}
-  // -----
-  const [
-    tokenAddress,
-    setTokenAddress
-  ] = useState<string>('')
-  
+  const dispatch = useDispatch()
+
+  // define
+  const loading = false
+  const userLoading = false
+  const signer = {}
+
   const [
     currentType,
     setCurrentType
@@ -81,23 +91,43 @@ const LaunchTokenData: FC = () => {
     setCurrentSwitcherValue
   ] = useState<string>('tokens')
 
-  // useEffect(() => {
-  //   return getERC20Contracts()
-  // }, [])
+  const [
+    tokensList,
+    setTokensList
+  ] = useState<TTokenData[]>([])
+
+  const [
+    token,
+    setToken
+  ] = useState<TTokenData | null>(null)
+
+  useEffect(() => {
+    if (!address || !chainId) { return }
+    const init = async () => {
+
+      const tokenList = await getTokenERC20TokenList(
+        address,
+        chainId
+      )
+
+      console.log({ tokenList })
+      setTokensList(tokenList)
+    }
+    init()
+  }, [address])
+
 
   // useEffect(() => {
   //   if (!tokenAddress.length) { return }
   //   setTokenContractData(tokenAddress, currentType as TTokenType)
   // }, [tokenAddress, currentType])
 
-  const selectTokenOptions: any[] = defineContractsOptions(
-    []
-  )
+  const selectTokenOptions: any[] = defineContractsOptions(tokensList)
 
   const router = useRouter()
 
   const defineIfNextDisabled = () => {
-    return !tokenAddress ||
+    return !token ||
            loading ||
            !totalClaims ||
            !tokensPerClaim ||
@@ -106,7 +136,7 @@ const LaunchTokenData: FC = () => {
   }
 
   const selectCurrentValue = () => {
-    const currentOption = selectTokenOptions.find(option => option.value.address === tokenAddress)
+    const currentOption = selectTokenOptions.find(option => option.value.address === (token && token?.address))
     if (!currentOption) {
       return null
     }
@@ -115,12 +145,14 @@ const LaunchTokenData: FC = () => {
     }
   }
 
+  const tokenbalance = token ? ethers.formatUnits(token.amount as string, token.decimals) : '0'
+
   const selectCurrentPlaceholder = () => {
-    if (!tokenAddress) {
+    if (!token) {
       return 'Choose token address'
     }
     const selectValue = selectCurrentValue()
-    if (!selectValue) { return tokenAddress }
+    if (!selectValue) { return token.address }
     return selectValue.label
   }
 
@@ -163,30 +195,40 @@ const LaunchTokenData: FC = () => {
         <InputSubtitle>
           Token contract address
           <TokenBalance>
-            Token balance: {tokenAmount ? <Tooltip text={`${tokenAmountFormatted} ${symbol}`}><TokenBalanceValue>{tokenAmountFormatted}</TokenBalanceValue> {symbol}</Tooltip> : '0'}
+            Token balance: {token ? <Tooltip text={`${tokenbalance} ${token.symbol}`}><TokenBalanceValue>{tokenbalance}</TokenBalanceValue> {token.symbol}</Tooltip> : '0'}
           </TokenBalance>
         </InputSubtitle>
         <SelectStyled
           disabled={loading || userLoading}
           onChange={async ({ value }: { value: TTokenData | string}) => {
             if (typeof value === 'string') {
-              if (currentType === 'ERC20' && chainId) {
+              if (currentType === 'ERC20' && chainId && address) {
                 const tokenOwnership = await defineIfUserOwnsContractERC20(address, value, signer)
                 if (!tokenOwnership) {
                   return alertError('No tokens of provided contract found')
                 }
-                setTokenAddress(value)
+
+                const tokenData = await getTokenERC20Data(
+                  value,
+                  chainId as number
+                )
+
+                const tokenBalance = await getERC20TokenBalance(
+                  value,
+                  address as string,
+                  chainId as number
+                )
+
+                const tokenDataResult = {
+                  ...tokenData,
+                  balance: tokenBalance
+                }
+                
               } else {
                 alertError('No chainId provided')
               }
             } else {
-              const contractAddress = String(value.address).toLowerCase()
-              const tokenType = String(value.standard)
-              if (tokenType === 'UNKNOWN') {
-                return alertError('Token type is UNKNOWN. Unable to select')
-              }
-              setCurrentType(tokenType)
-              setTokenAddress(contractAddress)
+              setToken(value)
             }
           }}
           placeholder={selectCurrentPlaceholder()}
@@ -232,21 +274,23 @@ const LaunchTokenData: FC = () => {
             appearance='action'
             disabled={defineIfNextDisabled()}
             onClick={() => {
-              // setTokenData(
-              //   currentType as TTokenType,
-              //   totalClaims,
-              //   tokensPerClaim,
-              //   () => {
-                router.push(`/campaigns/campaign-data`)
-              //   }
-              // )
+              if (defineIfNextDisabled()) {
+                return alertError('Please, choose token, set claims amount and amount of tokens per claim')
+              }
+              dispatch(setTokenData({
+                tokenData: token as TTokenData,
+                claimPattern: 'transfer',
+                totalClaims,
+                tokensPerClaim
+              }))
+              router.push(`/launch/drop-description`)
             }}
           >
             Next
           </Button>
 
           <Button
-            to={`/campaigns/new/ERC20/audience`}
+            to={`/launch/audience`}
           >
             Back
           </Button>

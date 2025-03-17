@@ -24,9 +24,13 @@ import getDispenserClaimLink from './get-dispenser-claim-link'
 import alertError from './alert-error'
 import defineIfUserOwnsContractERC20 from './define-if-user-owns-erc20-contract'
 import countLaunchAmounts from './count-launch-amounts'
+import getTokenERC20TokenList from './get-erc20-token-list'
+import getERC20TokenBalance from './get-erc20-token-balance'
+import defineEthersSigner from './define-ethers-signer'
 
 export {
   alertError,
+  defineEthersSigner,
   getTokenERC20Data,
   getDispenserClaimLink,
   getDispenserData,
@@ -51,5 +55,7 @@ export {
   defineNetworkName,
   defineExplorerURL,
   defineIfUserOwnsContractERC20,
-  countLaunchAmounts
+  countLaunchAmounts,
+  getTokenERC20TokenList,
+  getERC20TokenBalance
 }

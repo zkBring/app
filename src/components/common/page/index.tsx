@@ -1,7 +1,8 @@
 'use client'
 import {
   FC,
-  useEffect
+  useEffect,
+  useState
 } from 'react'
 import {
   Main
@@ -14,32 +15,79 @@ import {
   Footer
 } from '@/components/common'
 import {
+  defineEthersSigner
+} from '@/utils'
+import {
   useAppDispatch
 } from '@/lib/hooks'
+
 import {
   setUserAddress,
-  setUserChainId
+  setUserChainId,
+  setSigner,
+  setConnectedUserData
 } from '@/lib/slices'
 import { useAppKit } from '@reown/appkit/react'
-import { useAccount, useDisconnect } from "wagmi"
+import {
+  useAccount,
+  useDisconnect
+} from "wagmi"
+import { useWalletClient } from 'wagmi'
 
 const Page: FC<TProps> = ({
   children
 }) => {
-  const { address, chain } = useAccount()
+  const {
+    address,
+    chain
+  } = useAccount()
+
+  const { data: walletClient } = useWalletClient()
+
+
+  const [
+    userSigner,
+    setUserSigner
+  ] = useState<any>(null)
+
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    if (!address || !chain) {
+    if (!walletClient) {
+      return
+    }
+    const init = async () => {
+      const userSigner = await defineEthersSigner(walletClient)
+      setUserSigner(userSigner)
+    }
+
+    init()
+
+  }, [walletClient])
+
+  useEffect(() => {
+
+    console.log({
+      address,
+      chain,
+      userSigner
+    })
+    if (!address || !chain || !userSigner) {
       return
     }
 
-    dispatch(setUserAddress(address))
-    dispatch(setUserChainId(chain.id))
+
+    dispatch(setConnectedUserData({
+      address,
+      chainId: chain.id,
+      signer: userSigner
+    }))
+
 
   }, [
     address,
-    chain
+    chain,
+    userSigner
   ])
 
   return <ThemeProvider theme={dark}>

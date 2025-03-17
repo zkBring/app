@@ -29,7 +29,7 @@ const TransactionsData: FC<TProps> = ({
 
     <TTableItem>
       <TTableItemTitle>
-        Fee {BigInt(COMISSION_VALUE) * BigInt(COMISSION_VALUE)}
+        Fee {COMISSION_VALUE}
       </TTableItemTitle>
       <TTableItemValue>
       {comission} {symbol}

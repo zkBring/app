@@ -20,6 +20,10 @@ import {
   TProofProvider,
   TZKTLSService
 } from '@/types'
+import {
+  setZKTLSOptions
+} from '@/lib/slices'
+import { useDispatch } from 'react-redux'
 
 import {
   DropAudienceIcon,
@@ -28,7 +32,7 @@ import {
   GithubIcon,
   AmazonIcon
 } from '@/components/icons'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 const proofProvidersOptions = [
   {
@@ -66,8 +70,9 @@ const LaunchAudience: FC = () => {
   const [ proofProvider, setProofProvider ] = useState<TProofProvider>('x')
   const [ zkTLSService, setZkTLSService ] = useState<TZKTLSService>('reclaim')
   const router = useRouter()
-  return <Page>
+  const dispatch = useDispatch()
 
+  return <Page>
     <LaunchContainer
       breadcrumbs={[
         {
@@ -150,19 +155,18 @@ const LaunchAudience: FC = () => {
           <ButtonStyled
             appearance='action'
             onClick={() => {
-              // console.log(
-              //   zkTLSService,
-              //   proofProvider,
-              //   appID,
-              //   secret,
-              //   providerID,
-              //   handleKey,
-              //   () => {
-                  router.push(`/campaigns/new/ERC20/token-data`)
-              //   }
-              // )
+              dispatch(
+                setZKTLSOptions({
+                  zkTLSService,
+                  proofProvider,
+                  appID,
+                  secret,
+                  providerID,
+                  handleKey
+                })
+              )
+              router.push(`/launch/token-data`)
             }}
-            // disabled={!instagramID}
             disabled={false}
           >
             Next

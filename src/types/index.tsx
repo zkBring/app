@@ -28,8 +28,10 @@ import type {
   TTransactionStage,
   TTransactionStageStatus
 } from './transaction-stage'
+import type TAuthorizationStep from "./authorization-step"
 
 export {
+  TAuthorizationStep,
   TClaimErrorType,
   TProviderType,
   TLaunchStage,
