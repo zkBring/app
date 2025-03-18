@@ -24,9 +24,11 @@ import SmallCoinIcon from './small-coin-icon'
 import ProfileIcon from './profile-icon'
 import BringTokenIcon from './bring-token-icon'
 import DropAudienceIcon from './drop-audience-icon'
+import DropIcon from './drop-icon'
 
 export {
   DoneIcon,
+  DropIcon,
   BookIcon,
   LockIcon,
   LogoutIcon,

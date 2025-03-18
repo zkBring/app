@@ -1,20 +1,33 @@
 'use client'
 
-
 import {
-  Container,
-} from '../../styled-components'
-import {
-  LinkStyled
+  LinkStyled,
+  StatsStyled,
+  Container
 } from './styled-components'
 import { ThemeProvider } from 'styled-components'
 import { dark } from '@/themes'
 import {
-  Header,
-  Footer
+  Page
 } from '@/components/common'
-import { useEffect, FC } from 'react'
+import {
+  ClaimsCounter,
+  DropDescription,
+  Verify,
+  Claim
+} from './components'
+import {
+  useEffect,
+  FC
+} from 'react'
 import TProps from './types'
+import {
+  SmallCoinIcon,
+  ProfileIcon
+} from '@/components/icons'
+import {
+  shortenString
+} from '@/utils'
 
 const Content: FC<TProps> = ({
   drop
@@ -23,9 +36,6 @@ const Content: FC<TProps> = ({
   useEffect(() => {
 
   }, [])
-  console.log({
-    drop
-  })
   const {
     title,
     campaign_id,
@@ -36,7 +46,10 @@ const Content: FC<TProps> = ({
     creator_address,
     token_address,
     encrypted_multiscan_qr_enc_code,
-    encrypted_multiscan_qr_secret
+    encrypted_multiscan_qr_secret,
+    description,
+    claims_count,
+    tokens_per_claim
   } = drop
   console.log({ drop })
   
@@ -44,23 +57,51 @@ const Content: FC<TProps> = ({
 // encrypted_multiscan_qr_secret: "3rf9bbAuiHyF"
 
   const link = `/verify/${encrypted_multiscan_qr_secret}/${encrypted_multiscan_qr_enc_code}`
-  return <ThemeProvider theme={dark}>
-    <Header />
+  return <Page>
     <Container>
-    title {title} <br />
-    campaign_id {campaign_id} <br />
-    expiration_time {expiration_time} <br />
-    symbol {symbol} <br />
-    token_amount {token_amount}<br />
-    token_standard {token_standard}<br />
+      <DropDescription
+        title={title}
+        description={description}
+      />
 
-    creator_address {creator_address}<br />
-    token_address {token_address}<br />
+      <StatsStyled
+        stats={[
+          {
+            title: 'Drop amount',
+            value: `${tokens_per_claim || '0'} ${symbol}`,
+            icon: <SmallCoinIcon />
+          },
+          {
+            title: 'Drop claims',
+            value: claims_count || '0',
+            limit: '1000',
+            icon: <ProfileIcon />
+          },
+          {
+            title: 'Created by',
+            value: shortenString(creator_address as string),
+          }
+        ]}
+      />
+
+      <ClaimsCounter
+        value='7250000'
+        limit='10000000'
+        symbol={symbol}
+      />
+
+      <Verify />
+
+      <Claim
+        disabled={true}
+        amount={tokens_per_claim || '0'}
+        symbol={symbol as string}
+      />
+
     
     Go to check verification <LinkStyled href={link}>here</LinkStyled>
     </Container>
-    <Footer />
-  </ThemeProvider>
+  </Page>
 }
 
 

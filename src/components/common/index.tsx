@@ -16,6 +16,7 @@ import Input from './input'
 import NetworkIndicator from './network-indicator'
 import Drop from './drop'
 import List from './list'
+import Menu from './menu'
 import Header from './header'
 import Footer from './footer'
 import LaunchWidget from './launch-widget'
@@ -31,6 +32,8 @@ import Tooltip from './tooltip'
 import Textarea from './textarea'
 import Stages from './stages'
 import ProgressBar from './progress-bar'
+import Widget from './widget'
+import Stats from './stats'
 
 export {
   Subtitle,
@@ -65,5 +68,8 @@ export {
   Tooltip,
   Textarea,
   Stages,
-  ProgressBar
+  ProgressBar,
+  Widget,
+  Stats,
+  Menu
 }

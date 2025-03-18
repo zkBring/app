@@ -17,6 +17,7 @@ type TDrop = {
   sponsored?: boolean
   link_key?: string
   title: string
+  description?: string
   factory_address?: string
   campaign_id: string
   provider_type: TProviderType
@@ -24,6 +25,11 @@ type TDrop = {
 
   encrypted_multiscan_qr_enc_code: string
   encrypted_multiscan_qr_secret: string
+
+  // new
+  claims_count: string
+  tokens_per_claim: string
 }
+
 
 export default TDrop

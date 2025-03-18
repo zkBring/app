@@ -21,7 +21,7 @@ const theme = {
   buttonActionBackgroundColor: '#0C5EFF',
   buttonActionBackgroundHoverColor: '#357AFF',
   buttonActionBackgroundActiveColor: '#095AF5',
-  buttonDisabledBackgroundColor: '#E4E4E4',
+  buttonDisabledBackgroundColor: '#3A3A41',
 
   buttonDefaultBackgroundColor: '#1B1C1E',
   buttonDefaultBackgroundHoverColor: '#1B1C1E',
@@ -42,7 +42,17 @@ const theme = {
   // switcher
   switcherItemBackgroundColor: '#242426',
   switcherTagBackgroundColor: '#2A271F',
-  switcherTagTextColor: '#A0873C'
+  switcherTagTextColor: '#A0873C',
+
+
+  widgetBackgroundColor: '#161618',
+  widgetBorderColor: '#232326',
+  blankColor: '#111113',
+
+
+
+  menuItemActiveBackgroundColor: '#212124',
+  menuItemHoverBackgroundColor: '#212124'
 
 }
 

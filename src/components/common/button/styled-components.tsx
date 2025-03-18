@@ -87,7 +87,7 @@ export const Button = styled.button.attrs((props) => ({
       border: none;
       background-color: ${(props) =>
         props.theme && props.theme.buttonActionBackgroundColor};
-      color: ${(props) => props.theme && props.theme.secondaryTextColor};
+      color: ${(props) => props.theme && props.theme.additionalTextColor};
 
       ${!props.disabled &&
       css`
@@ -116,7 +116,7 @@ export const Button = styled.button.attrs((props) => ({
       border: none;
       background-color: ${(props) =>
         (props.theme && props.theme.buttonAdditionalBackgroundColor)};
-      color: ${(props) => (props.theme && props.theme.highlightColor)};
+      color: ${(props) => (props.theme && props.theme.additionalTextColor)};
 
       ${!props.disabled &&
       css`
@@ -176,6 +176,7 @@ export const Button = styled.button.attrs((props) => ({
     props.disabled &&
     css`
       cursor: not-allowed;
+      opacity: .3;
     `}
 `
 

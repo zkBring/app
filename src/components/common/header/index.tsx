@@ -1,5 +1,5 @@
 'use client'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import {
   Header,
   Account,
@@ -23,6 +23,9 @@ import {
   setUserAddress
 } from '@/lib/slices'
 import { useAppSelector } from '@/lib/hooks'
+import {
+  Menu
+} from '../'
 
 const PageHeader: FC = () => {
   const { disconnect } = useDisconnect()
@@ -38,7 +41,7 @@ const PageHeader: FC = () => {
     }
   } = useAppSelector(state => ({
     user: {
-      chainId: state.user.chain_id,
+      chainId: state.user.chainId,
       address: state.user.address
     },
     link: {
@@ -46,18 +49,22 @@ const PageHeader: FC = () => {
     }
   }))
 
+  console.log({ address })
+
   return <Header address={address}>
     <LogoIcon />
+    <Menu />
     {address && <Profile>
       <Account>
         <Address loading={loading}>
-          {shortenString(address)}
           <NetworkIndicator
             chainId={chainId}
           />
+          {shortenString(address)}
+          
         </Address>
       </Account>
-       <Logout
+      <Logout
         onClick={() => {
           dispatch(setUserAddress(null))
           disconnect()

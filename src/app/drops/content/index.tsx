@@ -1,20 +1,4 @@
 'use client'
-import {
-  LinkdropSDK,
-  NotFoundError,
-  ForbiddenError,
-  ValidationError,
-  ConflictError,
-  ClaimLink
-} from 'linkdrop-sdk'
-import randomBytes from 'randombytes'
-import { sdkApiKey } from '@/app/configs/index'
-import {
-  getTokenERC20Data,
-  getTokenERC721Data,
-  getTokenERC1155Data,
-  generateMetadataUtil
-} from '@/utils'
 
 import {
   Container
@@ -22,13 +6,8 @@ import {
 
 import Search from './search'
 import DropsList from './drops-list'
-
-import type { Metadata } from 'next'
-import { ThemeProvider } from 'styled-components'
-import { dark } from '@/themes'
 import {
-  Header,
-  Footer
+  Page
 } from '@/components/common'
 import { useEffect, FC } from 'react'
 import TProps from './types'
@@ -58,8 +37,7 @@ const Content: FC<TProps> = ({
 
   }, [])
 
-  return <ThemeProvider theme={dark}>
-    <Header />
+  return <Page>
     <Container>
       <Search
         onChange={async (value) => {
@@ -72,8 +50,7 @@ const Content: FC<TProps> = ({
       />
 
     </Container>
-    <Footer />
-  </ThemeProvider>
+  </Page>
 }
 
 
