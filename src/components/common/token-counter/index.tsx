@@ -9,7 +9,6 @@ import {
   Texts,
   ToggleStyled
 } from './styled-components'
-import { ethers } from 'ethers'
 import TProps from './types'
 
 const defineTexts = (

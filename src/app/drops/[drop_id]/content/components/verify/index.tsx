@@ -11,8 +11,11 @@ import {
 import {
   StepTitle
 } from '../../styled-components'
+import TProps from './types'
 
-const Verify: FC = () => {
+const Verify: FC<TProps> = ({
+  onStart
+}) => {
   return <Container>
     <StepTitle>
       1. Verify Eligibility
@@ -26,6 +29,7 @@ const Verify: FC = () => {
       <ButtonStyled
         appearance='action'
         size='extra-small'
+        onClick={onStart}
       >
         Verify with zkTLS
       </ButtonStyled>

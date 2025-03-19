@@ -14,11 +14,13 @@ import {
   ClaimsCounter,
   DropDescription,
   Verify,
-  Claim
+  Claim,
+  DialogVerification
 } from './components'
 import {
   useEffect,
-  FC
+  FC,
+  useState
 } from 'react'
 import TProps from './types'
 import {
@@ -32,6 +34,12 @@ import {
 const Content: FC<TProps> = ({
   drop
 }) => {
+
+
+  const [
+    verificationStart,
+    setVerificationStart
+  ] = useState<boolean>(false)
 
   useEffect(() => {
 
@@ -58,6 +66,10 @@ const Content: FC<TProps> = ({
 
   const link = `/verify/${encrypted_multiscan_qr_secret}/${encrypted_multiscan_qr_enc_code}`
   return <Page>
+
+    {verificationStart && <DialogVerification onClose={() => {
+      setVerificationStart(false)
+    }} />}
     <Container>
       <DropDescription
         title={title}
@@ -90,7 +102,11 @@ const Content: FC<TProps> = ({
         symbol={symbol}
       />
 
-      <Verify />
+      <Verify
+        onStart={() => {
+          setVerificationStart(true)
+        }}
+      />
 
       <Claim
         disabled={true}

@@ -8,6 +8,7 @@ import { cache } from 'react'
 import Content from './content'
 import { drops as dropsApi } from '@/app/api'
 
+
 type tParams = Promise<{ drop_id: string }>
 
 export async function generateMetadata(): Promise<Metadata> {

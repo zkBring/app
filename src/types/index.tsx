@@ -29,8 +29,10 @@ import type {
   TTransactionStageStatus
 } from './transaction-stage'
 import type TAuthorizationStep from "./authorization-step"
+import type TDropStatus from './drop-status'
 
 export {
+  TDropStatus,
   TAuthorizationStep,
   TClaimErrorType,
   TProviderType,

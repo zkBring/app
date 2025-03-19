@@ -9,6 +9,7 @@ type TDrop = {
   expiration_time: number
   transfer_id: string
   proxy_contract_version?: string
+  proxy_contract_address?: string
   creator_address?: string
   campaign_number: string
   symbol?: string
@@ -21,6 +22,8 @@ type TDrop = {
   factory_address?: string
   campaign_id: string
   provider_type: TProviderType
+  is_public: boolean
+  created_at: string
 
 
   encrypted_multiscan_qr_enc_code: string

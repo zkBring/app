@@ -28,7 +28,6 @@ const getData = async (
   }
 }
 
-
 const Content: FC<TProps> = ({
   drops
 }) => {

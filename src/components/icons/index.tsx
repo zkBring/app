@@ -25,8 +25,16 @@ import ProfileIcon from './profile-icon'
 import BringTokenIcon from './bring-token-icon'
 import DropAudienceIcon from './drop-audience-icon'
 import DropIcon from './drop-icon'
+import VerificationCheckIcon from './verification-check-icon'
+import VerificationLockIcon from './verification-lock-icon'
+import VerificationClickIcon from './verification-click-icon'
+import VerificationProfileIcon from './verification-profile-icon'
 
 export {
+  VerificationCheckIcon,
+  VerificationLockIcon,
+  VerificationClickIcon,
+  VerificationProfileIcon,
   DoneIcon,
   DropIcon,
   BookIcon,

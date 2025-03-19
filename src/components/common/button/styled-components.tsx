@@ -28,8 +28,6 @@ export const Button = styled.button.attrs((props) => ({
   border-radius: 12px;
   //default
   transition: color 0.3s, background-color 0.3s, border-color 0.3s;
-  max-width: 345px;
-  width: 100%;
   background-color: ${(props) =>
     props.theme && props.theme.buttonDefaultBackgroundColor};
   color: ${(props) => props.theme && props.theme.primaryTextColor};

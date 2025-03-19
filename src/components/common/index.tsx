@@ -34,8 +34,25 @@ import Stages from './stages'
 import ProgressBar from './progress-bar'
 import Widget from './widget'
 import Stats from './stats'
+import Dialog from './dialog'
+import SmallSubtitle from './small-subtitle'
+import SmallText from './small-text'
+import IconedList from './iconed-list'
+import EditableWidget from './editable-widget'
+
+import {
+  TableRow,
+  TableText,
+  TableValue
+} from './table/styled-components'
 
 export {
+  TableRow,
+  TableText,
+  TableValue,
+  SmallText,
+  SmallSubtitle,
+  IconedList,
   Subtitle,
   Title,
   Text,
@@ -71,5 +88,7 @@ export {
   ProgressBar,
   Widget,
   Stats,
-  Menu
+  Menu,
+  Dialog,
+  EditableWidget
 }
