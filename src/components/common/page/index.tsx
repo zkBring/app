@@ -44,7 +44,6 @@ const Page: FC<TProps> = ({
 
   const { data: walletClient } = useWalletClient()
 
-
   const [
     userSigner,
     setUserSigner

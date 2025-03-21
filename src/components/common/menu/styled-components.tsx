@@ -16,7 +16,7 @@ export const MenuList = styled.ul`
 `
 
 export const MenuItem = styled.li`
-
+  width: max-content;
 `
 
 export const LinkStyled = styled(Link)<{

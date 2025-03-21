@@ -1,3 +1,4 @@
+'use client'
 import { FC } from 'react'
 import {
   Container,
@@ -8,13 +9,25 @@ import {
 } from './styled-components'
 import {
   BookIcon,
-  DropIcon
+  DropIcon,
+  SatelliteIcon
 } from '@/components/icons'
 import { usePathname } from "next/navigation"
+import {
+  useAppDispatch,
+  useAppSelector
+} from '@/lib/hooks'
 
 const Menu: FC = () => {
   const pathname = usePathname()
 
+  const {
+    user: {
+      address
+    }
+  } = useAppSelector(state => ({
+    user: state.user
+  }))
   return <Container>
     <MenuList>
       <MenuItem>
@@ -28,6 +41,12 @@ const Menu: FC = () => {
           <BookIcon /> About
         </LinkStyled>
       </MenuItem>
+      {address && <MenuItem>
+        <LinkStyled href='/drops/own' className={pathname === "/drops/own" ? LinkStyledActiveClassName : undefined}>
+          <SatelliteIcon />
+          My Drops
+        </LinkStyled>
+      </MenuItem>}
     </MenuList>
   </Container>
 }

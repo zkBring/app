@@ -9,3 +9,4 @@ export const dashboardServerURL = process.env.NEXT_PUBLIC_DASHBOARD_SERVER_URL
 
 export const jsonRPCBase = process.env.NEXT_PUBLIC_JSON_RPC_BASE
 export const zerionApiKey = process.env.NEXT_PUBLIC_ZERION_API_KEY
+export const onchainApiKey = process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY

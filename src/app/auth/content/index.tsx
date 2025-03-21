@@ -25,10 +25,13 @@ import {
 } from './components'
 import { useAppSelector } from '@/lib/hooks'
 
+
+
 const defineContent = (
   step: TAuthorizationStep
 ) => {
   switch (step) {
+    case 'initial':
     case 'connect':
       return <Connect />
     case 'login':
