@@ -42,6 +42,10 @@ const launchSlice = createSlice({
       ...state, title: action.payload
     }),
 
+    clearLaunch: (state) => ({
+      ...initialState
+    }),
+
     setLoading: (state, action: PayloadAction<boolean>) => ({
       ...state, loading: action.payload
     }),
@@ -154,7 +158,8 @@ const {
   setZKTLSOptions,
   setTokenData,
   setDropData,
-  setLoading
+  setLoading,
+  clearLaunch
 } = actions
 
 export {
@@ -168,7 +173,8 @@ export {
   setDropData,
   approve,
   createDrop,
-  setLoading
+  setLoading,
+  clearLaunch
 }
 
 // Export the reducer, either as a default or named export

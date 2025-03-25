@@ -9,7 +9,8 @@ import LaunchSlice, {
   setDropData,
   approve,
   createDrop,
-  setLoading
+  setLoading,
+  clearLaunch
 } from './launch'
 
 
@@ -94,5 +95,6 @@ export {
   setDropData,
   approve,
   setLoading,
-  createDrop
+  createDrop,
+  clearLaunch
 }
