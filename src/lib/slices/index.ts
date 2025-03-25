@@ -1,6 +1,25 @@
+import LaunchSlice, {
+  setLaunchAssets,
+  setLaunchDescription,
+  setLaunchTitle,
+  setLaunchTokenAddress,
+  setLaunchTokenStandard,
+  setZKTLSOptions,
+  setTokenData,
+  setDropData,
+  approve,
+  createDrop,
+  setLoading
+} from './launch'
+
+
+
 import UserSlice, {
   setUserChainId,
   setUserAddress,
+  authorize,
+  setSigner,
+  setConnectedUserData
 } from './user'
 
 import TokenSlice, {
@@ -31,20 +50,19 @@ import LinkSlice, {
 } from './link'
 
 
+
 export {
   UserSlice,
   setUserChainId,
   setUserAddress,
+  authorize,
+  setSigner,
+  setConnectedUserData,
+
   LinkSlice,
   setLinkTxHash,
   setLinkOptimisticClaimUI,
   setLinkChainId,
-  setTokenAmount,
-  setTokenAddress,
-  setTokenDecimals,
-  setTokenImage,
-  setTokenStandard,
-  setTokenSymbol,
   setLinkClaimingFinishedAutoRedirect,
   setLinkClaimingFinishedButtonHref,
   setLinkClaimingFinishedButtonTitle,
@@ -55,6 +73,26 @@ export {
   setLinkId,
   setLinkPreferredWallet,
   setLinkWeiAmount,
+  setLinkLoading,
+
   TokenSlice,
-  setLinkLoading
+  setTokenAmount,
+  setTokenAddress,
+  setTokenDecimals,
+  setTokenImage,
+  setTokenStandard,
+  setTokenSymbol,
+
+  LaunchSlice,
+  setLaunchAssets,
+  setLaunchDescription,
+  setLaunchTitle,
+  setLaunchTokenAddress,
+  setLaunchTokenStandard,
+  setZKTLSOptions,
+  setTokenData,
+  setDropData,
+  approve,
+  setLoading,
+  createDrop
 }

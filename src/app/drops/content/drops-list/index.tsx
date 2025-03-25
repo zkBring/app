@@ -16,7 +16,7 @@ const DropsList: FC<TProps> = ({
     {drops.map(drop => {
       return <Drop
         title={drop.title}
-        campaignId={drop.campaign_id}
+        address={drop.address}
       />
     })}
   </Drops>

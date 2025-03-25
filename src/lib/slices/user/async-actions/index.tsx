@@ -1,5 +1,5 @@
-import initialLoad from "./initial-load"
+import authorize from "./authorize"
 
 export {
-  initialLoad
+  authorize
 }

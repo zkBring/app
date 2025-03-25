@@ -16,9 +16,34 @@ import type TDispenserError from './dispenser-error'
 import type TDispenserScreen from './dispenser-screen'
 import type TQROption from "./qr-option"
 
+import type TLaunchStage from "./launch-stage"
+import type TLaunchTransactionStage from "./launch-transaction-stage"
+import type TClaimPattern from "./claim-pattern"
+import type TLaunchAsset from "./launch-asset"
+import type TZKTLSService from "./zktls-service"
+import type TProofProvider from "./proof-provider"
+import type TZerionERC20Item from "./zerion-erc20-item"
+import type TZerionNetworkItem from "./zerion-network-item"
+import type {
+  TTransactionStage,
+  TTransactionStageStatus
+} from './transaction-stage'
+import type TAuthorizationStep from "./authorization-step"
+import type TDropStatus from './drop-status'
+import type TFees from './fees'
+
 export {
+  TDropStatus,
+  TFees,
+  TAuthorizationStep,
   TClaimErrorType,
   TProviderType,
+  TLaunchStage,
+  TLaunchTransactionStage,
+  TClaimPattern,
+  TLaunchAsset,
+  TZKTLSService,
+  TProofProvider,
   TDrop,
   TApiSource,
   TWalletName,
@@ -33,5 +58,9 @@ export {
   TQRScreen,
   TDispenserError,
   TDispenserScreen,
-  TQROption
+  TQROption,
+  TZerionERC20Item,
+  TZerionNetworkItem,
+  TTransactionStage,
+  TTransactionStageStatus
 }

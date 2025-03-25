@@ -12,6 +12,20 @@
 }
 
 @font-face {
+  font-family: 'FK Roman';
+  font-weight: 400;
+  src: url('./FKRasterRomanCompact.woff2') format('woff2')
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 700;
+  src: url('./Inter-Bold.woff2') format('woff2'),
+       url('./Inter-Bold.woff') format('woff');
+}
+
+
+@font-face {
   font-family: 'SF Mono';
   font-weight: 400;
   src: url('./sf-mono-regular.woff') format('woff'),

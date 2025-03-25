@@ -1,13 +1,8 @@
 'use client'
 import { FC } from 'react'
 import {
-  Header,
-  Account,
-  Address,
-  Profile,
-  Logout
+  Header
 } from './styled-components'
-import { useAppSelector } from '@/lib/hooks'
 import { NetworkIndicator } from '..'
 import {
   shortenString
@@ -16,17 +11,17 @@ import {
   LogoutIcon,
   LogoIcon
 } from '@/components/icons'
-import { useDisconnect } from "wagmi"
+
 import {
-  useAppDispatch
+  useAppSelector
 } from '@/lib/hooks'
 import {
-  setUserAddress
-} from '@/lib/slices'
+  Menu
+} from '../'
+import Account from './account'
 
 const PageHeader: FC = () => {
-  const { disconnect } = useDisconnect()
-  const dispatch = useAppDispatch()
+
 
   const {
     user: {
@@ -38,7 +33,7 @@ const PageHeader: FC = () => {
     }
   } = useAppSelector(state => ({
     user: {
-      chainId: state.user.chain_id,
+      chainId: state.user.chainId,
       address: state.user.address
     },
     link: {
@@ -46,28 +41,10 @@ const PageHeader: FC = () => {
     }
   }))
 
-  return <Header address={address}>
+  return <Header>
     <LogoIcon />
-    {address && <Profile>
-      <Account>
-        <Address loading={loading}>
-          {shortenString(address)}
-          <NetworkIndicator
-            chainId={chainId}
-          />
-        </Address>
-      </Account>
-       <Logout
-        onClick={() => {
-          dispatch(setUserAddress(null))
-          disconnect()
-          window.location.reload()
-        }}
-      >
-        <LogoutIcon />
-      </Logout>
-    </Profile>}
-    
+    <Menu />
+    <Account />
   </Header>
 }
 

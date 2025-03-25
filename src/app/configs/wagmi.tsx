@@ -1,6 +1,6 @@
 import { cookieStorage, createStorage } from '@wagmi/core'
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
-import { mainnet, arbitrum, base, polygon } from '@reown/appkit/networks'
+import { baseSepolia } from '@reown/appkit/networks'
 import { coinbaseWallet } from 'wagmi/connectors'
 
 import {
@@ -12,10 +12,7 @@ if (!projectId) {
 }
 
 export const networks = [
-  mainnet,
-  arbitrum,
-  base,
-  polygon
+  baseSepolia
 ]
 
 //Set up the Wagmi Adapter (Config)

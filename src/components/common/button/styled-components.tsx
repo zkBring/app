@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from 'styled-components'
 import Loader from '../loader'
 import { TProps } from './types'
+import Link from '../link'
 
 const backgroundAnimation = keyframes`
   0% { background-position: left top; }
@@ -23,13 +24,11 @@ export const Button = styled.button.attrs((props) => ({
   line-height: 1;
   display: flex;
   align-items: center;
-  font-weight: 500;
+  font-weight: 400;
   justify-content: center;
   border-radius: 12px;
   //default
   transition: color 0.3s, background-color 0.3s, border-color 0.3s;
-  max-width: 345px;
-  width: 100%;
   background-color: ${(props) =>
     props.theme && props.theme.buttonDefaultBackgroundColor};
   color: ${(props) => props.theme && props.theme.primaryTextColor};
@@ -87,7 +86,7 @@ export const Button = styled.button.attrs((props) => ({
       border: none;
       background-color: ${(props) =>
         props.theme && props.theme.buttonActionBackgroundColor};
-      color: ${(props) => props.theme && props.theme.secondaryTextColor};
+      color: ${(props) => props.theme && props.theme.additionalTextColor};
 
       ${!props.disabled &&
       css`
@@ -116,7 +115,7 @@ export const Button = styled.button.attrs((props) => ({
       border: none;
       background-color: ${(props) =>
         (props.theme && props.theme.buttonAdditionalBackgroundColor)};
-      color: ${(props) => (props.theme && props.theme.highlightColor)};
+      color: ${(props) => (props.theme && props.theme.additionalTextColor)};
 
       ${!props.disabled &&
       css`
@@ -150,7 +149,7 @@ export const Button = styled.button.attrs((props) => ({
       background-position: left top;
       transition: background-position 0.3s, transform 0.3s;
       border: none;
-      color: ${(props) => (props.theme && props.theme.secondaryTextColor)};
+      color: ${(props) => props.theme && props.theme.primaryTextColor};
       animation-name: ${backgroundAnimation};
       animation-duration: 10s;
       animation-iteration-count: infinite;
@@ -176,11 +175,14 @@ export const Button = styled.button.attrs((props) => ({
     props.disabled &&
     css`
       cursor: not-allowed;
+      opacity: .3;
     `}
 `
 
-
-export const Anchor = styled.a`
+export const ExternalLink = styled.a`
   text-decoration: none;
-  width: 100%;
+`
+
+export const InternalLink = styled(Link)`
+  text-decoration: none;
 `

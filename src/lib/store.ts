@@ -2,7 +2,8 @@ import { configureStore } from '@reduxjs/toolkit'
 import {
   LinkSlice,
   UserSlice,
-  TokenSlice
+  TokenSlice,
+  LaunchSlice
 } from './slices'
 
 export const makeStore = () => {
@@ -10,8 +11,12 @@ export const makeStore = () => {
     reducer: {
       user: UserSlice,
       link: LinkSlice,
-      token: TokenSlice
-    }
+      token: TokenSlice,
+      launch: LaunchSlice
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+      serializableCheck: false,
+    }),
   })
 }
 

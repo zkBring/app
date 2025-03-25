@@ -1,38 +1,22 @@
 'use client'
-import {
-  LinkdropSDK,
-  NotFoundError,
-  ForbiddenError,
-  ValidationError,
-  ConflictError,
-  ClaimLink
-} from 'linkdrop-sdk'
-import randomBytes from 'randombytes'
-import { sdkApiKey } from '@/app/configs/index'
-import {
-  getTokenERC20Data,
-  getTokenERC721Data,
-  getTokenERC1155Data,
-  generateMetadataUtil
-} from '@/utils'
 
 import {
-  Container
+  Container,
+  Controls
 } from '../styled-components'
 
 import Search from './search'
 import DropsList from './drops-list'
-
-import type { Metadata } from 'next'
-import { ThemeProvider } from 'styled-components'
-import { dark } from '@/themes'
 import {
-  Header,
-  Footer
+  Page
 } from '@/components/common'
 import { useEffect, FC } from 'react'
 import TProps from './types'
 import { drops as dropsApi } from '@/app/api'
+import { useAppSelector } from '@/lib/hooks'
+import {
+  Button
+} from '@/components/common'
 
 const getData = async (
   query: string
@@ -49,7 +33,6 @@ const getData = async (
   }
 }
 
-
 const Content: FC<TProps> = ({
   drops
 }) => {
@@ -58,22 +41,35 @@ const Content: FC<TProps> = ({
 
   }, [])
 
-  return <ThemeProvider theme={dark}>
-    <Header />
+  const {
+    user: {
+      address
+    }
+  } = useAppSelector(state => ({
+    launch: state.launch,
+    user: state.user
+  }))
+
+  return <Page>
     <Container>
-      <Search
-        onChange={async (value) => {
-          getData(value)
-        }}
-      />
+      <Controls>
+        <Search
+          onChange={async (value) => {
+            getData(value)
+          }}
+        />
+        {address && <Button to='/launch/audience' appearance='action'>
+          Launch
+        </Button>}
+      </Controls>
+      
 
       <DropsList
         drops={drops}
       />
 
     </Container>
-    <Footer />
-  </ThemeProvider>
+  </Page>
 }
 
 
