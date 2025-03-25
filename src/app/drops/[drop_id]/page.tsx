@@ -1,14 +1,15 @@
 'use server'
+import { getERC721TokenData } from '@/app/api'
 import {
   generateMetadataUtil,
   createSDK,
-  defineJSONRPC
+  defineJSONRPC,
+  getTokenERC20Data
 } from '@/utils'
 import { ethers } from 'ethers'
 import type { Metadata } from 'next'
 import { cache } from 'react'
 import Content from './content'
-import { drops as dropsApi } from '@/app/api'
 
 
 type tParams = Promise<{ drop_id: string }>
@@ -31,8 +32,14 @@ const getInitialData = cache(async (drop_id: string) => {
 
     const sdk = createSDK(provider)
     const drop = await sdk.getDrop(drop_id)
-
-    return drop
+    const tokenData = await getTokenERC20Data(
+      drop.token,
+      BASE_SEPOLIA_CHAIN_ID
+    )
+    return {
+      drop,
+      tokenData
+    }
   } catch (err: unknown) {
     console.log({
       err
@@ -48,10 +55,15 @@ export default async function Drop({
 
   const paramsData = await params
   const data = await getInitialData(paramsData.drop_id)
-  console.log({ data })
+
   if (!data) {
     return <h1>Not found</h1>
   }
+
+  const {
+    drop,
+    tokenData
+  } = data
 
   const {
     title,
@@ -63,7 +75,9 @@ export default async function Drop({
     maxClaims,
     zkPassAppId,
     zkPassSchemaId
-  } = data
+  } = drop
+
+
 
   return <Content
     drop={{
@@ -77,6 +91,8 @@ export default async function Drop({
       zkPassAppId,
       zkPassSchemaId
     }}
+
+    tokenData={tokenData}
   />
 }
 

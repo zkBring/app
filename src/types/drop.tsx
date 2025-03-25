@@ -8,6 +8,7 @@ type TDrop = {
   maxClaims: bigint
   zkPassAppId: string
   zkPassSchemaId: string
+  
 }
 
 
