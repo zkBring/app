@@ -24,7 +24,8 @@ import {
 } from '@/types'
 import {
   setZKTLSOptions,
-  setLoading
+  setLoading,
+  clearLaunch
 } from '@/lib/slices'
 import { useDispatch } from 'react-redux'
 import {
@@ -67,6 +68,10 @@ const proofProvidersOptions = [
 const LaunchAudience: FC = () => {
   const [ zkPassSchemaId, setZkPassSchemaId ] = useState<string>('')
   const [ zkPassAppId, setZkPassAppId ] = useState<string>('')
+
+  useEffect(() => {
+    dispatch(clearLaunch())
+  }, [])
 
   const [
     proofProvider,
