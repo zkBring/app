@@ -41,7 +41,6 @@ const PageHeader: FC = () => {
     }
   }))
 
-
   return <Header>
     <LogoIcon />
     <Menu />

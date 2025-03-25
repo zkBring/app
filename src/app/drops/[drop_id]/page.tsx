@@ -1,8 +1,10 @@
 'use server'
 import {
-  generateMetadataUtil
+  generateMetadataUtil,
+  createSDK,
+  defineJSONRPC
 } from '@/utils'
-
+import { ethers } from 'ethers'
 import type { Metadata } from 'next'
 import { cache } from 'react'
 import Content from './content'
@@ -13,14 +15,24 @@ type tParams = Promise<{ drop_id: string }>
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataUtil({
-    description: `All drops`
+    description: `Drops`
   })
 }
 
 const getInitialData = cache(async (drop_id: string) => {
   try {
-    const drops = await dropsApi.getOne(drop_id)
-    return drops.data.campaign
+
+    const BASE_SEPOLIA_CHAIN_ID = 84532
+    const jsonRpcUrl = defineJSONRPC(BASE_SEPOLIA_CHAIN_ID)
+
+    const provider = new ethers.JsonRpcProvider(jsonRpcUrl, BASE_SEPOLIA_CHAIN_ID, {
+      staticNetwork: true
+    })
+
+    const sdk = createSDK(provider)
+    const drop = await sdk.getDrop(drop_id)
+
+    return drop
   } catch (err: unknown) {
     console.log({
       err
@@ -41,6 +53,30 @@ export default async function Drop({
     return <h1>Not found</h1>
   }
 
-  return <Content drop={data} />
+  const {
+    title,
+    address,
+    expiration,
+    amount,
+    token,
+    description,
+    maxClaims,
+    zkPassAppId,
+    zkPassSchemaId
+  } = data
+
+  return <Content
+    drop={{
+      title,
+      address,
+      expiration,
+      amount,
+      token,
+      description,
+      maxClaims,
+      zkPassAppId,
+      zkPassSchemaId
+    }}
+  />
 }
 

@@ -1,7 +1,7 @@
 'use client'
 import { OnchainKitProvider } from '@coinbase/onchainkit';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { base } from 'wagmi/chains'; // add baseSepolia for testing
+import { baseSepolia } from 'wagmi/chains'; // add baseSepolia for testing
 import { type ReactNode } from 'react';
 import { type State, WagmiProvider } from 'wagmi';
 import '@coinbase/onchainkit/styles.css'
@@ -22,7 +22,7 @@ function Provider (props: {
       <QueryClientProvider client={queryClient}>
         <OnchainKitProvider
           apiKey={onchainApiKey} 
-          chain={base as any} // add baseSepolia for testing 
+          chain={baseSepolia as any} // add baseSepolia for testing 
           config={{
             appearance: {
               name: 'Your App Name',        // Displayed in modal header

@@ -1,6 +1,7 @@
 'use client'
 import {
   FC,
+  useEffect,
   useState
 } from 'react'
 import {
@@ -14,17 +15,18 @@ import {
 import {
   ButtonStyled,
   AudienceStyled,
-  InputStyled
+  InputStyled,
+  TextStyled
 } from './styled-components'
 import {
   TProofProvider,
   TZKTLSService
 } from '@/types'
 import {
-  setZKTLSOptions
+  setZKTLSOptions,
+  setLoading
 } from '@/lib/slices'
 import { useDispatch } from 'react-redux'
-
 import {
   DropAudienceIcon,
   XAudienceIcon,
@@ -33,6 +35,7 @@ import {
   AmazonIcon
 } from '@/components/icons'
 import { useRouter } from 'next/navigation'
+import { useAppSelector } from '@/lib/hooks'
 
 const proofProvidersOptions = [
   {
@@ -61,16 +64,40 @@ const proofProvidersOptions = [
   }
 ]
 
-
 const LaunchAudience: FC = () => {
-  const [ handleKey, setHandleKey ] = useState<string>('')
-  const [ providerID, setProviderID ] = useState<string>('')
-  const [ secret, setSecret ] = useState<string>('')
-  const [ appID, setAppID ] = useState<string>('')
-  const [ proofProvider, setProofProvider ] = useState<TProofProvider>('x')
-  const [ zkTLSService, setZkTLSService ] = useState<TZKTLSService>('reclaim')
+  const [ zkPassSchemaId, setZkPassSchemaId ] = useState<string>('')
+  const [ zkPassAppId, setZkPassAppId ] = useState<string>('')
+
+  const [
+    proofProvider,
+    setProofProvider
+  ] = useState<TProofProvider>('x')
+  const [
+    zkTLSService,
+    setZkTLSService
+  ] = useState<TZKTLSService>('reclaim')
   const router = useRouter()
   const dispatch = useDispatch()
+
+  const {
+    launch: {
+      loading
+    },
+    user: {
+      address
+    }
+  } = useAppSelector(state => ({
+    launch: state.launch,
+    user: state.user
+  }))
+
+  useEffect(() => {
+    if (!address) {
+      return router.push('/auth')
+    }
+  }, [])
+
+
 
   return <Page>
     <LaunchContainer
@@ -88,19 +115,16 @@ const LaunchAudience: FC = () => {
       ]}
     >
       <LaunchWidget title='Choose your audience'>
-        <Text>
+        <TextStyled>
           ✨ Need custom Web Proof?  <Link href="#">Contact one</Link>
-        </Text>
+        </TextStyled>
         <AudienceStyled
           onChange={(value) => {
             if (value === 'custom') {
-              setHandleKey('')
-              setProviderID('')
-              setAppID('')
-              setSecret('')
+              setZkPassSchemaId('')
+              setZkPassAppId('')
             }
 
-            console.log({ value })
             setProofProvider(value)
           }}
           value={proofProvider}
@@ -109,41 +133,21 @@ const LaunchAudience: FC = () => {
         {
           proofProvider === 'custom' && <>
             <InputStyled
-              title='Handle ID'
-              value={handleKey}
+              title='ZKPass App ID'
+              value={zkPassAppId}
               placeholder='e.g. 123456'
               onChange={(value: string) => {
-                setHandleKey(value)
+                setZkPassAppId(value)
                 return value
               }}
             />
 
             <InputStyled
-              title='Provider ID'
-              value={providerID}
+              title='ZKPass Schema ID'
+              value={zkPassSchemaId}
               placeholder='e.g. 123456'
               onChange={(value: string) => {
-                setProviderID(value)
-                return value
-              }}
-            />
-
-            <InputStyled
-              title='App ID'
-              value={appID}
-              placeholder='e.g. 123456'
-              onChange={(value: string) => {
-                setAppID(value)
-                return value
-              }}
-            />
-
-            <InputStyled
-              title='Secret'
-              value={secret}
-              placeholder='e.g. 123456'
-              onChange={(value: string) => {
-                setSecret(value)
+                setZkPassSchemaId(value)
                 return value
               }}
             />
@@ -154,15 +158,19 @@ const LaunchAudience: FC = () => {
         <ButtonsContainer>
           <ButtonStyled
             appearance='action'
+            loading={loading}
             onClick={() => {
+              dispatch(
+                setLoading(
+                  true
+                )
+              )
               dispatch(
                 setZKTLSOptions({
                   zkTLSService,
                   proofProvider,
-                  appID,
-                  secret,
-                  providerID,
-                  handleKey
+                  zkPassAppId,
+                  zkPassSchemaId
                 })
               )
               router.push(`/launch/token-data`)

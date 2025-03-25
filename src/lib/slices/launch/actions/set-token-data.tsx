@@ -23,7 +23,7 @@ const setTokenData = (state: TInitialState, action: PayloadAction<TArgs>) => {
 
    return {
     ...state,
-    address: tokenData.address,
+    tokenAddress: tokenData.address,
     symbol: tokenData.symbol,
     decimals: tokenData.decimals,
     tokensPerClaim,

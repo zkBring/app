@@ -58,7 +58,8 @@ const LaunchTokenData: FC = () => {
   const {
     user: {
       address,
-      chainId
+      chainId,
+      signer
     }
   } = useAppSelector(state => ({
     user: state.user
@@ -69,7 +70,6 @@ const LaunchTokenData: FC = () => {
   // define
   const loading = false
   const userLoading = false
-  const signer = {}
 
   const [
     currentType,
@@ -102,6 +102,10 @@ const LaunchTokenData: FC = () => {
   ] = useState<TTokenData | null>(null)
 
   useEffect(() => {
+    console.log({
+      address,
+      chainId
+    })
     if (!address || !chainId) { return }
     const init = async () => {
 
@@ -162,9 +166,9 @@ const LaunchTokenData: FC = () => {
       breadcrumbs={[
         {
           title: 'Audience',
-          status: 'current'
         }, {
           title: 'Token',
+          status: 'current'
         }, {
           title: 'Drop'
         }, {
@@ -172,7 +176,7 @@ const LaunchTokenData: FC = () => {
         }
       ]}
     >
-      <LaunchWidget title='Choose your audience'>
+      <LaunchWidget title='What are you dropping?'>
         <SwitcherStyled
           active={currentSwitcherValue}
           options={[
@@ -216,13 +220,15 @@ const LaunchTokenData: FC = () => {
                 const tokenBalance = await getERC20TokenBalance(
                   value,
                   address as string,
-                  chainId as number
+                  signer
                 )
 
                 const tokenDataResult = {
                   ...tokenData,
-                  balance: tokenBalance
+                  amount: tokenBalance?.tokenAmount
                 }
+
+                setToken(tokenDataResult)
                 
               } else {
                 alertError('No chainId provided')
@@ -290,7 +296,7 @@ const LaunchTokenData: FC = () => {
           </Button>
 
           <Button
-            to={`/launch/audience`}
+            to='/launch/audience'
           >
             Back
           </Button>

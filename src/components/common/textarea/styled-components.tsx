@@ -37,12 +37,12 @@ export const TextAreaField = styled.textarea<TextareaFieldProps>`
   font-family: inherit;
   padding: 11px 16px;
   border: 1px solid;
-  border-color: ${(props) => (props.theme && props.theme.primaryBorderColor)};
+  border-color: ${(props) => (props.theme && props.theme.secondaryBorderColor)};
   border-radius: 8px;
-  background: transparent;
   transition: border-color 0.3s;
   outline: none;
   margin: 0;
+  background-color: ${props => props.theme.widgetBackgroundColor};
 
   ::placeholder {
     color: ${(props) => (props.theme && props.theme.placeholderTextColor)};

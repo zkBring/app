@@ -14,7 +14,9 @@ const defineIfUserOwnsContractERC20: TDefineIfUserOwnsContractERC20 = async (
 ) => {
   try {
     const contractInstance = new ethers.Contract(tokenAddress, ERC20Contract, signer)
+    console.log({ contractInstance })
     const tokenAmount: bigint = await contractInstance.balanceOf(userAddress)
+    console.log({ tokenAmount })
     // const decimals = await contractInstance.decimals()
     return tokenAmount > BigInt(0)
   } catch (err) {

@@ -7,9 +7,12 @@ const getERC20TokenBalance = async (
   signer: any
 ) => {
   try {
+
     const contractInstance = new ethers.Contract(tokenAddress, ERC20Contract, signer)
     const tokenAmount = await contractInstance.balanceOf(userAddress)
     const tokenDecimals = await contractInstance.decimals()
+
+    console.log({ tokenAmount })
     return {
       tokenAmount,
       tokenDecimals

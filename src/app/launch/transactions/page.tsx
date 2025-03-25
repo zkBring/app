@@ -1,18 +1,24 @@
 'use client'
-import { FC } from 'react'
+import {
+  FC,
+  useEffect,
+  useState
+} from 'react'
+import { ethers } from 'ethers'
 import {
   Page,
-  LaunchWidget,
   Button
 } from '@/components/common'
 import {
-  countLaunchAmounts
+  countLaunchAmounts,
+  createSDK
 } from '@/utils'
 import {
   TransactionsData
 } from './components'
 import {
-  StagesStyled
+  StagesStyled,
+  LaunchWidgetStyled
 } from './styled-components'
 import {
   InputDocumentIcon,
@@ -21,28 +27,38 @@ import {
 import {
   TLaunchTransactionStage,
   TTransactionStage,
-  TLaunchAsset
+  TFees
 } from '@/types'
 import { useRouter } from 'next/navigation'
 import {
-  approve
+  approve,
+  createDrop
 } from '@/lib/slices'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from '@/lib/hooks'
+import { BrowserProvider, JsonRpcSigner } from 'ethers'
+import { BringSDK } from 'zkbring-sdk'
 
 const defineButton = (
-  totalAmount: string,
+  fees: TFees | null,
   stage: TLaunchTransactionStage,
   loading: boolean,
-  approve: (totalAmount: string) => void,
-  secure: () => void,
-  launch: () => void
+  approve: () => void,
+  launch: () => void,
+  goToDrop: () => void
 ) => {
+
+  if (!fees) {
+    return null
+  }
   switch (stage) {
+    case 'initial':
     case 'approve':
-      return <Button onClick={() => {
-        approve(totalAmount)
-      }} appearance='action' loading={loading}>
+      return <Button
+        onClick={approve}
+        appearance='action'
+        loading={loading}
+      >
         Approve
       </Button>
 
@@ -50,12 +66,17 @@ const defineButton = (
       return <Button onClick={launch} appearance='action' loading={loading}>
         Launch
       </Button>
-    case 'initial':
-    case 'secure':
-      return <Button onClick={secure} appearance='action' loading={loading}>
-        Deploy contract
+
+    case 'created':
+      return <Button
+        onClick={goToDrop}
+        appearance='action'
+        loading={loading}
+      >
+        Go to Drop
       </Button>
-      }
+  }
+
 }
 
 const defineStages = (
@@ -64,10 +85,6 @@ const defineStages = (
 
   const stages: TTransactionStage[] = [
     {
-      title: 'Create drop contract',
-      icon: <InputDocumentIcon />,
-      status: 'next'
-    }, {
       title: 'Approve tokens',
       icon: '✓',
       status: 'next'
@@ -80,19 +97,18 @@ const defineStages = (
 
   switch (stage) {
     case 'initial':
-    case 'secure':
-      stages[0].status = 'current'
-      return stages
-
     case 'approve':
-      stages[0].status = 'done'
-      stages[1].status = 'current'
+      stages[0].status = 'current'
       return stages
 
     case 'launch':
       stages[0].status = 'done'
+      stages[1].status = 'current'
+      return stages
+
+    case 'created':
+      stages[0].status = 'done'
       stages[1].status = 'done'
-      stages[2].status = 'current'
       return stages
 
     default:
@@ -100,73 +116,125 @@ const defineStages = (
   }
 }
 
+const countFees = async (
+  sdk: BringSDK,
+  tokensPerClaim: bigint,
+  totalClaims: bigint
+) => {
+  try {
+
+    const fees = await sdk.calculateFee({
+      amount: tokensPerClaim,
+      maxClaims: totalClaims
+    })
+
+    return fees
+  } catch (err) {
+    console.log({
+      err
+    })
+  }
+  
+}
+
 const LaunchTransaction: FC = () => {
   const router = useRouter()
-  const transactionStage = 'initial'
   const loading = false
-  const secure = () => {}
-  const stages = defineStages(transactionStage)
-  const assets: TLaunchAsset[] = []
-  const symbol = 'XZX'
   const dispatch = useDispatch()
+
+  const [ fees, setFees ] = useState<TFees | null>(null)
+  const [ sdk, setSDK ] = useState<BringSDK | null>(null)
+
   const {
     launch: {
       decimals,
       tokensPerClaim,
-      totalClaims
+      totalClaims,
+      symbol,
+      transactionStage,
+      createdDropId
+    },
+    user: {
+      signer,
+      address
     }
   } = useAppSelector(state => ({
-    launch: state.launch
+    launch: state.launch,
+    user: state.user
   }))
 
+  console.log({ transactionStage })
+
+  const stages = defineStages(transactionStage as TLaunchTransactionStage)
+
+  useEffect(() => {
+    if (!signer) { return }
+    if (sdk) { return }
+    const sdkInit = createSDK(signer)
+    setSDK(sdkInit)
+  }, [
+    signer,
+    sdk
+  ])
 
 
-  
+  useEffect(() => {
+    const init = async () => {
+      if (!sdk) { return }
+      const fees = await countFees(
+        sdk,
+        ethers.parseUnits(tokensPerClaim as string, decimals as number),
+        BigInt(totalClaims as string)
+      )
 
-  const {
-    comission,
-    amount,
-    totalAmount
-  } = countLaunchAmounts(
-    tokensPerClaim as string,
-    totalClaims as string,
-    decimals as number
-  )
+      if (fees) {
+        setFees(fees)
+      }
+    }
 
-  console.log({
-    comission,
-    amount,
-    totalAmount
-  })
+    init()
+  }, [
+    sdk
+  ])
+
 
   const button = defineButton(
-    String(totalAmount),
-    transactionStage,
+    fees,
+    transactionStage as TLaunchTransactionStage,
     loading,
     () => {
-      dispatch(approve(String(totalAmount)))
-      // approve(totalAmount)
+      if (fees) {
+        dispatch(approve({
+          address: address as string,
+          totalAmount: String(fees.totalAmount),
+          signer: signer as JsonRpcSigner
+        }))
+      }
+      
     },
-    secure,
     () => {
-      router.push(`/launch/start`)
+      dispatch(createDrop({
+        sdk: sdk as BringSDK
+      }))
+    },
+    () => {
+      router.push(`/drops/${createdDropId}`)
     }
   )
 
   return <Page>
-    <LaunchWidget title='Transactions'>
+    <LaunchWidgetStyled title='Transactions'>
       <StagesStyled
         stages={stages}
       />
 
       <TransactionsData
-        comission={String(comission)}
-        amount={String(amount)}
-        totalAmount={String(totalAmount)}
+        fees={fees}
         symbol={symbol as string}
+        decimals={decimals as number}
       />
       {button}
-    </LaunchWidget>
+    </LaunchWidgetStyled>
   </Page>
 }
 

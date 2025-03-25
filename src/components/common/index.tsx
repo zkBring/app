@@ -11,7 +11,6 @@ import TokenPreview from './token-preview'
 import Popup from './popup'
 import ExplorerButton from './explorer-button'
 import CustomRedirectButton from './custom-redirect-button'
-import LinkButton from './link-button'
 import Input from './input'
 import NetworkIndicator from './network-indicator'
 import Drop from './drop'
@@ -60,7 +59,6 @@ export {
   Link,
   CustomRedirectButton,
   NetworkIndicator,
-  LinkButton,
   Footer,
   Loader,
   Button,

@@ -7,7 +7,9 @@ import LaunchSlice, {
   setZKTLSOptions,
   setTokenData,
   setDropData,
-  approve
+  approve,
+  createDrop,
+  setLoading
 } from './launch'
 
 
@@ -72,6 +74,7 @@ export {
   setLinkPreferredWallet,
   setLinkWeiAmount,
   setLinkLoading,
+
   TokenSlice,
   setTokenAmount,
   setTokenAddress,
@@ -89,5 +92,7 @@ export {
   setZKTLSOptions,
   setTokenData,
   setDropData,
-  approve
+  approve,
+  setLoading,
+  createDrop
 }

@@ -1,13 +1,20 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {
+  createSlice,
+  PayloadAction
+} from '@reduxjs/toolkit'
 import { TInitialState } from './types'
 import { authorize } from './async-actions'
-import { JsonRpcSigner } from 'ethers'
+import {
+  JsonRpcSigner,
+  BrowserProvider
+} from 'ethers'
 
 const initialState: TInitialState = {
   address: null,
   chainId: null,
   signer: null,
-  authorizationStep: 'initial'
+  authorizationStep: 'initial',
+  provider: null
 }
 
 const userSlice = createSlice({
@@ -26,33 +33,33 @@ const userSlice = createSlice({
     ) {
       return {...state, chainId: action.payload }
     },
+
     setSigner(
       state,
       action: PayloadAction<JsonRpcSigner | null>
     ) {
       return {...state, signer: action.payload }
     },
+
     setConnectedUserData (state, action: PayloadAction<{
       address: string
       chainId: number
       signer: JsonRpcSigner | null
+      provider: BrowserProvider | null
     }>) {
       const {
         address,
         chainId,
-        signer
+        signer,
+        provider
       } = action.payload
 
-      console.log('setConnectedUserData', {
-        address,
-        chainId,
-        signer
-      })
       return {
         ...state,
         address,
         chainId,
         signer,
+        provider,
         authorizationStep: 'login'
       }
     }

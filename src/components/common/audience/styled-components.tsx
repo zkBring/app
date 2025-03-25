@@ -16,7 +16,7 @@ export const AudienceItem = styled.div<{
   align-items: center;
   flex: 1;
   border-radius: 10px;
-  background-color: ${props => props.theme.audienceBackgroundColor};
+  background-color: ${props => props.theme.widgetBackgroundColor};
   border: 1px solid ${props => props.theme.audienceBorderColor};
   color: ${props => props.theme.audienceTextColor};
   gap: 14px;

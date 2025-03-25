@@ -8,27 +8,21 @@ import { PayloadAction } from '@reduxjs/toolkit'
 const setZKTLSOptionsAction = (state: TInitialState, action: PayloadAction<{
   zkTLSService: TZKTLSService,
   proofProvider: TProofProvider,
-  appID: string,
-  secret: string,
-  providerID: string,
-  handleKey: string,
+  zkPassAppId: string,
+  zkPassSchemaId: string
 }>) => {
   const {
     zkTLSService,
     proofProvider,
-    appID,
-    providerID,
-    secret,
-    handleKey
+    zkPassAppId,
+    zkPassSchemaId
   } = action.payload
 
   let result: {
     zkTLSService: TZKTLSService,
     proofProvider: TProofProvider,
-    appID?: string,
-    secret?: string,
-    providerID?: string,
-    handleKey?: string,
+    zkPassAppId?: string,
+    zkPassSchemaId?: string
   } = {
     zkTLSService,
     proofProvider
@@ -37,19 +31,15 @@ const setZKTLSOptionsAction = (state: TInitialState, action: PayloadAction<{
   if (proofProvider === 'custom') {
     result = {
       ...result,
-      appID,
-      providerID,
-      secret,
-      handleKey
+      zkPassAppId,
+      zkPassSchemaId
     }
   }
 
-  console.log({
-    result
-  })
 
    return {
     ...state,
+    loading: false,
     ...result
    }
 }

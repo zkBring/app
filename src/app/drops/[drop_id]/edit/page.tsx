@@ -58,175 +58,168 @@ const getInitialData = async (drop_id: string) => {
 }
 
 const Edit: FC = () => {
-  const [ status, setStatus ] = useState<TDropStatus>('initial')
-  const [
-    currentDrop,
-    setCurrentDrop
-  ] = useState<TDrop | null>(null)
+  // const [ status, setStatus ] = useState<TDropStatus>('initial')
+  // const [
+  //   currentDrop,
+  //   setCurrentDrop
+  // ] = useState<TDrop | null>(null)
 
-  const {
-    user: {
-      address,
-      chainId,
-      signer
-    }
-  } = useAppSelector(state => ({
-    user: state.user
-  }))
+  // const {
+  //   user: {
+  //     address,
+  //     chainId,
+  //     signer
+  //   }
+  // } = useAppSelector(state => ({
+  //   user: state.user
+  // }))
 
-  const params = useParams<{ drop_id: string }>()
+  // const params = useParams<{ drop_id: string }>()
 
-  useEffect(() => {
-    const init = async () => {
-      const drop = await getInitialData(params.drop_id)
-      setCurrentDrop(drop)
-    }
+  // useEffect(() => {
+  //   const init = async () => {
+  //     const drop = await getInitialData(params.drop_id)
+  //     setCurrentDrop(drop)
+  //   }
 
-    init()
-  }, [])
+  //   init()
+  // }, [])
 
-  const [ editPopup, setEditPopup ] = useState<boolean>(false)
-  const loading = false
+  // const [ editPopup, setEditPopup ] = useState<boolean>(false)
+  // const loading = false
 
 
-  if (!currentDrop) {
-    return null
-  }
+  // if (!currentDrop) {
+  //   return null
+  // }
 
-  const {
-    description = '',
-    claims_count,
-    symbol,
-    is_public,
-    created_at,
-    creator_address,
-    campaign_id,
-    token_standard,
-    proxy_contract_address,
-    token_address
-  } = currentDrop
+  // const {
+  //   description = '',
+
+  // } = currentDrop
   
-  return <Page>
-    <Container>
-      {editPopup && <EditPopup
-        initialValue={description || ''}
-        loading={loading}
-        onUpdate={(value) => {
-          // 
-          alert('Update')
-        }}
-        onClose={() => {
-          setEditPopup(false)
-        }}
-      />}
-      <Content>
-        <StatsStyled
-          stats={[
-            {
-              title: 'Drop amount',
-              value: `${claims_count || '0'} ${symbol}`,
-              icon: <SmallCoinIcon />
-            },
-            {
-              title: 'Drop claims',
-              value: claims_count || '0',
-              limit: '1000',
-              icon: <ProfileIcon />
-            }
-          ]}
-        />
+  // return <Page>
+  //   <Container>
+  //     {editPopup && <EditPopup
+  //       initialValue={description || ''}
+  //       loading={loading}
+  //       onUpdate={(value) => {
+  //         // 
+  //         alert('Update')
+  //       }}
+  //       onClose={() => {
+  //         setEditPopup(false)
+  //       }}
+  //     />}
+  //     <Content>
+  //       <StatsStyled
+  //         stats={[
+  //           {
+  //             title: 'Drop amount',
+  //             value: `${claims_count || '0'} ${symbol}`,
+  //             icon: <SmallCoinIcon />
+  //           },
+  //           {
+  //             title: 'Drop claims',
+  //             value: claims_count || '0',
+  //             limit: '1000',
+  //             icon: <ProfileIcon />
+  //           }
+  //         ]}
+  //       />
 
-        <BringAmount
-          isPublic={is_public}
-          signer={signer as JsonRpcSigner}
-          address={address as string}
-          action={(value) => {
-            // 
-            alert('ACTION')
-          }}
-        />
+  //       <BringAmount
+  //         isPublic={is_public}
+  //         signer={signer as JsonRpcSigner}
+  //         address={address as string}
+  //         action={(value) => {
+  //           // 
+  //           alert('ACTION')
+  //         }}
+  //       />
         
-        <Verification
-          dropId={campaign_id}
-        />
+  //       <Verification
+  //         dropId={campaign_id}
+  //       />
 
-      </Content>
+  //     </Content>
 
-      <Aside>
-        <Status
-          status={status}
-          setStatus={setStatus}
-          drop={currentDrop}
-        />
-        <WidgetStyled
-          title="Campaign"
-        >
-          {created_at && <TableRow>
-            <TableText>Created at</TableText>
-            <TableValue>
-              {formatDate(created_at as string)}, {formatTime(created_at as string)}
-            </TableValue>
-          </TableRow>}
+  //     <Aside>
+  //       <Status
+  //         status={status}
+  //         setStatus={setStatus}
+  //         drop={currentDrop}
+  //       />
+  //       <WidgetStyled
+  //         title="Campaign"
+  //       >
+  //         {created_at && <TableRow>
+  //           <TableText>Created at</TableText>
+  //           <TableValue>
+  //             {formatDate(created_at as string)}, {formatTime(created_at as string)}
+  //           </TableValue>
+  //         </TableRow>}
         
-          <TableRow>
-            <TableText>Creator</TableText>
-            <TableValue>
-              {shortenString(creator_address)}
-            </TableValue>
-          </TableRow>
+  //         <TableRow>
+  //           <TableText>Creator</TableText>
+  //           <TableValue>
+  //             {shortenString(creator_address)}
+  //           </TableValue>
+  //         </TableRow>
 
-          <TableRow>
-            <TableText>{symbol} address</TableText>
-            <TableValue>
-              {shortenString(token_address)}
-            </TableValue>
-          </TableRow>
+  //         <TableRow>
+  //           <TableText>{symbol} address</TableText>
+  //           <TableValue>
+  //             {shortenString(token_address)}
+  //           </TableValue>
+  //         </TableRow>
 
-          <TableRow>
-            <TableText>Drop contract</TableText>
-            <TableValue>
-              {shortenString(proxy_contract_address)}
-            </TableValue>
-          </TableRow>
+  //         <TableRow>
+  //           <TableText>Drop contract</TableText>
+  //           <TableValue>
+  //             {shortenString(proxy_contract_address)}
+  //           </TableValue>
+  //         </TableRow>
 
-          <TableRow>
-            <TableText>Token standard</TableText>
-            <TableValue>{token_standard}</TableValue>
-          </TableRow>
+  //         <TableRow>
+  //           <TableText>Token standard</TableText>
+  //           <TableValue>{token_standard}</TableValue>
+  //         </TableRow>
 
-          <AsideButtonsContainer>
-            <ButtonStyled
-              size='extra-small'
-              appearance='additional'
-              onClick={() => {
-                alert('DOWNLOAD')
-              }}
-            >
-              Download full report
-            </ButtonStyled>
+  //         <AsideButtonsContainer>
+  //           <ButtonStyled
+  //             size='extra-small'
+  //             appearance='additional'
+  //             onClick={() => {
+  //               alert('DOWNLOAD')
+  //             }}
+  //           >
+  //             Download full report
+  //           </ButtonStyled>
 
-            <ButtonStyled
-              size='extra-small'
-              target='_blank'
-              appearance='additional'
-              href={`/drops/${campaign_id}`}
-            >
-              Public page
-            </ButtonStyled>
-          </AsideButtonsContainer>
+  //           <ButtonStyled
+  //             size='extra-small'
+  //             target='_blank'
+  //             appearance='additional'
+  //             href={`/drops/${campaign_id}`}
+  //           >
+  //             Public page
+  //           </ButtonStyled>
+  //         </AsideButtonsContainer>
 
-        </WidgetStyled>
+  //       </WidgetStyled>
 
-        <EditableWidget
-          value={description}
-          title="Description"
-          action={() => {
-            setEditPopup(true)
-          }}
-        />
-      </Aside>
-    </Container>
-  </Page>
+  //       <EditableWidget
+  //         value={description}
+  //         title="Description"
+  //         action={() => {
+  //           setEditPopup(true)
+  //         }}
+  //       />
+  //     </Aside>
+  //   </Container>
+  // </Page>
+  return null
 }
 
 export default Edit

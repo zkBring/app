@@ -15,16 +15,16 @@ import {
   Footer
 } from '@/components/common'
 import {
-  defineEthersSigner
+  defineEthersSigner,
+  createSDK
 } from '@/utils'
 import {
   useAppDispatch
 } from '@/lib/hooks'
-
 import {
-  setUserAddress,
-  setUserChainId,
-  setSigner,
+  BringSDK
+} from 'zkbring-sdk'
+import {
   setConnectedUserData
 } from '@/lib/slices'
 import { useAppKit } from '@reown/appkit/react'
@@ -48,16 +48,26 @@ const Page: FC<TProps> = ({
     userSigner,
     setUserSigner
   ] = useState<any>(null)
+  const [
+    userProvider,
+    setUserProvider
+  ] = useState<any>(null)
 
   const dispatch = useAppDispatch()
+
+
 
   useEffect(() => {
     if (!walletClient) {
       return
     }
     const init = async () => {
-      const userSigner = await defineEthersSigner(walletClient)
-      setUserSigner(userSigner)
+      const {
+        signer,
+        provider
+      } = await defineEthersSigner(walletClient)
+      setUserSigner(signer)
+      setUserProvider(provider)
     }
 
     init()
@@ -65,28 +75,22 @@ const Page: FC<TProps> = ({
   }, [walletClient])
 
   useEffect(() => {
-
-    console.log({
-      address,
-      chain,
-      userSigner
-    })
-    if (!address || !chain || !userSigner) {
+    if (!address || !chain || !userSigner || !userProvider) {
       return
     }
-
 
     dispatch(setConnectedUserData({
       address,
       chainId: chain.id,
-      signer: userSigner
+      signer: userSigner,
+      provider: userProvider
     }))
-
 
   }, [
     address,
     chain,
-    userSigner
+    userSigner,
+    userProvider
   ])
 
   return <ThemeProvider theme={dark}>

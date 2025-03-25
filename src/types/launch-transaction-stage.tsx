@@ -1,6 +1,6 @@
 type TLaunchTransactionStage = 'initial' |
-                               'secure' |
                                'approve' |
-                               'launch'
+                               'launch' |
+                               'created'
 
 export default TLaunchTransactionStage

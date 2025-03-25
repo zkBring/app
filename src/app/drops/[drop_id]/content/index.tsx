@@ -34,8 +34,6 @@ import {
 const Content: FC<TProps> = ({
   drop
 }) => {
-
-
   const [
     verificationStart,
     setVerificationStart
@@ -46,27 +44,24 @@ const Content: FC<TProps> = ({
   }, [])
   const {
     title,
-    campaign_id,
-    expiration_time,
-    symbol,
-    token_amount,
-    token_standard,
-    creator_address,
-    token_address,
-    encrypted_multiscan_qr_enc_code,
-    encrypted_multiscan_qr_secret,
+    address,
+    expiration,
+    amount,
+    token,
     description,
-    claims_count,
-    tokens_per_claim
+    maxClaims,
+    zkPassAppId,
+    zkPassSchemaId
   } = drop
   console.log({ drop })
   
 // encrypted_multiscan_qr_enc_code: "GMqe7zrdsrNp"
 // encrypted_multiscan_qr_secret: "3rf9bbAuiHyF"
 
-  const link = `/verify/${encrypted_multiscan_qr_secret}/${encrypted_multiscan_qr_enc_code}`
-  return <Page>
+  // const link = `/verify/${encrypted_multiscan_qr_secret}/${encrypted_multiscan_qr_enc_code}`
 
+
+  return <Page>
     {verificationStart && <DialogVerification onClose={() => {
       setVerificationStart(false)
     }} />}
@@ -76,7 +71,7 @@ const Content: FC<TProps> = ({
         description={description}
       />
 
-      <StatsStyled
+      {/* <StatsStyled
         stats={[
           {
             title: 'Drop amount',
@@ -114,8 +109,8 @@ const Content: FC<TProps> = ({
         symbol={symbol as string}
       />
 
-    
-    Go to check verification <LinkStyled href={link}>here</LinkStyled>
+     */}
+    {/* Go to check verification <LinkStyled href={link}>here</LinkStyled> */}
     </Container>
   </Page>
 }

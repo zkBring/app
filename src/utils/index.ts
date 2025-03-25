@@ -8,8 +8,6 @@ import checkRedeemStatus from './check-redeem-status'
 import ipfsRedefineURL from './ipfs-redefine-url'
 import getValidImage from './get-valid-image'
 import getAlchemyTokenImage from './get-alchemy-token-image'
-import getTokenERC721Data from './get-erc721-token-data'
-import getTokenERC1155Data from './get-erc1155-token-data'
 import shortenString from './shorten-string'
 import defineInitialClaimScreen from './define-initial-claim-screen'
 import defineQRScreen from './define-qr-screen'
@@ -19,7 +17,6 @@ import generateMetadataUtil from './generate-metadata'
 import metadataUrlResolve from './metadata-resolve-url'
 import createQueryString from './create-query-string'
 import defineApiHeaders from "./define-api-headers"
-import getDispenserData from './get-dispenser-data'
 import getDispenserClaimLink from './get-dispenser-claim-link'
 import alertError from './alert-error'
 import defineIfUserOwnsContractERC20 from './define-if-user-owns-erc20-contract'
@@ -30,6 +27,7 @@ import defineEthersSigner from './define-ethers-signer'
 import copyToClipboard from './copy-to-clipboard'
 import formatDate from './format-date'
 import formatTime from './format-time'
+import createSDK from './create-sdk'
 
 export {
   alertError,
@@ -39,7 +37,6 @@ export {
   defineEthersSigner,
   getTokenERC20Data,
   getDispenserClaimLink,
-  getDispenserData,
   defineApiHeaders,
   metadataUrlResolve,
   createQueryString,
@@ -48,8 +45,6 @@ export {
   resolveAddress,
   defineQRScreen,
   defineInitialClaimScreen,
-  getTokenERC721Data,
-  getTokenERC1155Data,
   getAlchemyTokenImage,
   checkRedeemStatus,
   shortenString,
@@ -63,5 +58,6 @@ export {
   defineIfUserOwnsContractERC20,
   countLaunchAmounts,
   getTokenERC20TokenList,
-  getERC20TokenBalance
+  getERC20TokenBalance,
+  createSDK
 }

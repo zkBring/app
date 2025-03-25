@@ -3,7 +3,8 @@ import {
   Account,
   Address,
   Profile,
-  Logout
+  Logout,
+  ConnectWalletStyled
 } from './styled-components'
 import { NetworkIndicator } from '../..'
 import {
@@ -21,15 +22,13 @@ import {
 import {
   setUserAddress
 } from '@/lib/slices'
-import {
-  ConnectWallet
-  // @ts-ignore
-} from '@coinbase/onchainkit/wallet'
+
 
 const AccountComponent = () => {
   
   const { disconnect } = useDisconnect()
   const dispatch = useAppDispatch()
+
   const {
     user: {
       address,
@@ -50,7 +49,7 @@ const AccountComponent = () => {
 
   if (!address) {  
     return <Profile>
-      <ConnectWallet />
+      <ConnectWalletStyled/>
     </Profile>
   }
 

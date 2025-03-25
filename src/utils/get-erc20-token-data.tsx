@@ -10,7 +10,10 @@ type TGetTokenERC20Data = (
   TTokenData
 >
 
-const getTokenERC20Data: TGetTokenERC20Data = async (tokenAddress, chainId) => {
+const getTokenERC20Data: TGetTokenERC20Data = async (
+  tokenAddress,
+  chainId
+) => {
   try {
     const alchemy = createAlchemyInstance(chainId)
     if (!alchemy) {
@@ -34,15 +37,20 @@ const getTokenERC20Data: TGetTokenERC20Data = async (tokenAddress, chainId) => {
   } catch (err) {
     try {
       const jsonRpcUrl = defineJSONRPC(chainId as number)
+
       const provider = new ethers.JsonRpcProvider(jsonRpcUrl, chainId as number, {
         staticNetwork: true
       })
+
+      console.log({ provider })
     
       const contractInstance = new ethers.Contract(tokenAddress, ERC20Contract, provider)
-
+// 
       const symbol = await contractInstance.symbol()
+      // const symbol = 'BRING'
 
       const decimals = await contractInstance.decimals()
+      // const decimals = 18
 
       return {
         symbol,

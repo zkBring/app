@@ -6,15 +6,21 @@ import {
   TTableItemTitle,
   TTableItemValue
 } from './styled-components'
-
-const COMISSION_VALUE = 0.003  // 0.3%
+import { ethers } from 'ethers'
 
 const TransactionsData: FC<TProps> = ({
-  comission,
-  amount,
-  totalAmount,
-  symbol
+  fees,
+  symbol,
+  decimals
 }) => {
+
+  if (!fees) {
+    return null
+  }
+
+  const amountFormatted = ethers.formatUnits(fees.amount, decimals)
+  const totalAmountFormatted = ethers.formatUnits(fees.totalAmount, decimals)
+  const comissionFormatted = ethers.formatUnits(fees.feeAmount, decimals)
 
   return <TTable>
     <TTableItem>
@@ -22,17 +28,17 @@ const TransactionsData: FC<TProps> = ({
         Tokens required for drop
       </TTableItemTitle>
       <TTableItemValue>
-        {amount} {symbol}
+        {amountFormatted} {symbol}
       </TTableItemValue>
     </TTableItem>
 
 
     <TTableItem>
       <TTableItemTitle>
-        Fee {COMISSION_VALUE}
+        Fee {fees.fee}
       </TTableItemTitle>
       <TTableItemValue>
-      {comission} {symbol}
+      {comissionFormatted} {symbol}
       </TTableItemValue>
     </TTableItem>
 
@@ -42,7 +48,7 @@ const TransactionsData: FC<TProps> = ({
         Total
       </TTableItemTitle>
       <TTableItemValue>
-        {totalAmount} {symbol}
+        {totalAmountFormatted} {symbol}
       </TTableItemValue>
     </TTableItem>
   </TTable>

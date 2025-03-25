@@ -1,7 +1,8 @@
 'use client'
 
 import {
-  Container
+  Container,
+  Controls
 } from '../styled-components'
 
 import Search from './search'
@@ -12,6 +13,10 @@ import {
 import { useEffect, FC } from 'react'
 import TProps from './types'
 import { drops as dropsApi } from '@/app/api'
+import { useAppSelector } from '@/lib/hooks'
+import {
+  Button
+} from '@/components/common'
 
 const getData = async (
   query: string
@@ -36,13 +41,28 @@ const Content: FC<TProps> = ({
 
   }, [])
 
+  const {
+    user: {
+      address
+    }
+  } = useAppSelector(state => ({
+    launch: state.launch,
+    user: state.user
+  }))
+
   return <Page>
     <Container>
-      <Search
-        onChange={async (value) => {
-          getData(value)
-        }}
-      />
+      <Controls>
+        <Search
+          onChange={async (value) => {
+            getData(value)
+          }}
+        />
+        {address && <Button to='/launch/audience' appearance='action'>
+          Launch
+        </Button>}
+      </Controls>
+      
 
       <DropsList
         drops={drops}

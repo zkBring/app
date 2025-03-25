@@ -9,36 +9,27 @@ import {
   setTokenDataAction,
   setDropDataAction
 } from './actions'
-import { approve } from './async-actions'
+import {
+  approve,
+  createDrop
+} from './async-actions'
 
 const initialState: TInitialState = {
   title: null,
   description: null,
   tokenAddress: null,
-  campaignAddress: null,
   tokenStandard: 'ERC20',
   loading: false,
   decimals: null,
   symbol: null,
-  wallet: null,
-  proxyContractAddress: null,
   approved: false,
-  id: null,
-  secured: false,
-  signerKey: null,
-  signerAddress: null,
-  claimPattern: null,
-  expirationDate: null,
-  preferredWalletOn: false,
-  additionalWalletsOn: false,
-  launchStage: 'initial',
+  expiration: null,
   transactionStage: 'initial',
   zkTLSService: null,
   proofProvider: null,
-  appID: null,
-  secret: null,
-  providerID: null,
-  handleKey: null,
+  zkPassAppId: null,
+  zkPassSchemaId: null,
+  createdDropId: null,
   totalClaims: null,
   tokensPerClaim: null
 }
@@ -49,6 +40,10 @@ const launchSlice = createSlice({
   reducers: {
     setLaunchTitle: (state, action: PayloadAction<string>) => ({
       ...state, title: action.payload
+    }),
+
+    setLoading: (state, action: PayloadAction<boolean>) => ({
+      ...state, loading: action.payload
     }),
 
     setLaunchDescription: (state, action: PayloadAction<string>) => ({
@@ -73,13 +68,76 @@ const launchSlice = createSlice({
    
   },
   extraReducers: (builder) => {
-    // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(approve.fulfilled, (state, action) => {
-      // Add user to the state array
-      console.log({
-        action,
-        state
-      }) 
+      alert('DONE APPROVE')
+      state = {
+        ...state,
+        approved: true,
+        transactionStage: 'launch',
+        loading: false
+      }
+
+      console.log({ state })
+
+      return state
+    }),
+
+    builder.addCase(approve.pending, (state, action) => {
+      alert('PENDING APPROVE')
+      state = {
+        ...state,
+        loading: true
+      }
+      return state
+
+    })
+
+    builder.addCase(approve.rejected, (state, action) => {
+      alert('ERROR OCCURED APPROVE')
+      state = {
+        ...state,
+        loading: false
+      }
+      return state
+
+    })
+
+    builder.addCase(createDrop.pending, (state, action) => {
+      alert('PENDING CREATE_DROP')
+
+      state = {
+        ...state,
+        loading: true
+      }
+      return state
+
+    })
+  
+    builder.addCase(createDrop.fulfilled, (state, action) => {
+      alert('DONE CREATE_DROP')
+      const {
+        payload: {
+          drop
+        }
+      } = action
+      state = {
+        ...state,
+        createdDropId: drop.address,
+        transactionStage: 'created',
+        loading: false
+      }
+      return state
+
+    })
+
+    builder.addCase(createDrop.rejected, (state, action) => {
+      alert('ERROR OCCURED CREATE_DROP')
+      state = {
+        ...state,
+        loading: false
+      }
+      return state
+
     })
   },
 })
@@ -96,6 +154,7 @@ const {
   setZKTLSOptions,
   setTokenData,
   setDropData,
+  setLoading
 } = actions
 
 export {
@@ -107,7 +166,9 @@ export {
   setZKTLSOptions,
   setTokenData,
   setDropData,
-  approve
+  approve,
+  createDrop,
+  setLoading
 }
 
 // Export the reducer, either as a default or named export

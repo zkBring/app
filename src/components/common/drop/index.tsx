@@ -13,9 +13,9 @@ import { TDrop } from './types'
 
 const Drop: FC<TDrop> = ({
   title,
-  campaignId
+  address
 }) => {
-  return <LinkStyled href={`/drops/${campaignId}`}>
+  return <LinkStyled href={`/drops/${address}`}>
     <Container>
       <Title>
         {title}

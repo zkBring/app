@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const Container = styled.div`
   border: 1px solid ${props => props.theme.primaryBorderColor};
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 10px;
   background: ${props => props.theme.secondaryBackgroundColor};
 `

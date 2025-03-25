@@ -1,8 +1,9 @@
+import { TFees } from "@/types"
+
 type TProps = {
   symbol: string
-  amount: string
-  totalAmount: string
-  comission: string
+  fees: TFees | null
+  decimals: number
 }
 
 export default TProps

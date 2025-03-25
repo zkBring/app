@@ -3,10 +3,10 @@
 import React, { FC } from 'react'
 import {
   Button,
-  // ButtonLoader
+  ExternalLink,
+  InternalLink
 } from './styled-components'
 import { TProps } from './types'
-import { Anchor } from './styled-components'
 
 const ButtonOriginalComponent: FC<TProps> = ({
   title,
@@ -41,19 +41,27 @@ const ButtonOriginalComponent: FC<TProps> = ({
 
 
 const ButtonComponent: FC<TProps> = (props) => {
-  const { href, to, target, className, size } = props
+  const {
+    href,
+    to,
+    target,
+    className,
+    size
+  } = props
   if (href) {
     return (
-      <Anchor href={href} target={target}>
+      <ExternalLink href={href} target={target}>
         <ButtonOriginalComponent {...props} size={size} className={className} />
-      </Anchor>
+      </ExternalLink>
     )
   }
+
   if (to) {
-    return (
+    return <InternalLink to={to}>
       <ButtonOriginalComponent {...props} size={size} />
-    )
+    </InternalLink>
   }
+
   return <ButtonOriginalComponent {...props} size={size} className={className} />
 }
 

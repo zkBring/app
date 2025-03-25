@@ -17,6 +17,7 @@ const theme = {
 
 
   primaryBorderColor: '#1E1E1E',
+  secondaryBorderColor: '#2C2C2F',
 
   buttonActionBackgroundColor: '#0C5EFF',
   buttonActionBackgroundHoverColor: '#357AFF',
@@ -52,7 +53,41 @@ const theme = {
 
 
   menuItemActiveBackgroundColor: '#212124',
-  menuItemHoverBackgroundColor: '#212124'
+  menuItemHoverBackgroundColor: '#212124',
+
+
+
+
+
+  audienceTextColor: '#545454',
+  audienceBorderColor: '#1E1E1F',
+
+  audienceDisabedBackgroundColor: '#161618',
+  audienceDisabledTextColor: '#545454',
+  audienceDisabledBorderColor: '#1E1E1F',
+
+  audienceActiveBackgroundColor: '#1E1E1F',
+  audienceActiveTextColor: '#8D8D8D',
+  audienceActiveBorderColor: '#2C2C2F',
+
+
+
+  stageDoneBackgroundColor: 'rgb(255, 216, 98, .15)',
+  stageDoneBorderColor: 'transparent',
+  stageDoneIconColor: '#FFD862',
+  stageDoneTextColor: 'rgba(188, 188, 188, .4)',
+
+  stageCurrentBackgroundColor: 'transparent',
+  stageCurrentBorderColor: 'rgb(255, 216, 98, .15)',
+  stageCurrentIconColor: '#BCBCBC',
+  stageCurrentTextColor: '#BCBCBC',
+
+
+  stageNextBackgroundColor: 'transparent',
+  stageNextBorderColor: '#202022',
+  stageNextIconColor: 'rgba(188, 188, 188, .4)',
+  stageNextTextColor: 'rgba(188, 188, 188, .4)',
+
 
 }
 

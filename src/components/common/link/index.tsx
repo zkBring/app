@@ -3,22 +3,33 @@
 import { FC } from 'react'
 import TProps from './types'
 import { 
-  LinkComponent
+  LinkExternal,
+  LinkInternal
 } from './styled-components'
 
-const Link: FC<TProps> = ({
+const LinkComponent: FC<TProps> = ({
   children,
   className,
   href,
-  target
+  target,
+  to
 }) => {
-  return <LinkComponent
+  if (to) {
+    return <LinkInternal
+      className={className}
+      target={target}
+      href={to}
+    >
+      {children}
+    </LinkInternal>
+  }
+  return <LinkExternal
     className={className}
     target={target}
     href={href}
   >
     {children}
-  </LinkComponent>
+  </LinkExternal>
 }
 
-export default Link
+export default LinkComponent
