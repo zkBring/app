@@ -139,7 +139,6 @@ const countFees = async (
 
 const LaunchTransaction: FC = () => {
   const router = useRouter()
-  const loading = false
   const dispatch = useDispatch()
 
   const [ fees, setFees ] = useState<TFees | null>(null)
@@ -152,7 +151,8 @@ const LaunchTransaction: FC = () => {
       totalClaims,
       symbol,
       transactionStage,
-      createdDropId
+      createdDropId,
+      loading
     },
     user: {
       signer,

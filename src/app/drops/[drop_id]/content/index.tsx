@@ -7,6 +7,7 @@ import {
 } from './styled-components'
 import { ThemeProvider } from 'styled-components'
 import { dark } from '@/themes'
+import { ethers } from 'ethers'
 import {
   Page
 } from '@/components/common'
@@ -32,7 +33,8 @@ import {
 } from '@/utils'
 
 const Content: FC<TProps> = ({
-  drop
+  drop,
+  tokenData
 }) => {
   const [
     verificationStart,
@@ -53,14 +55,17 @@ const Content: FC<TProps> = ({
     zkPassAppId,
     zkPassSchemaId
   } = drop
-  console.log({ drop })
+  const {
+    decimals,
+    symbol
+  } = tokenData
   
 // encrypted_multiscan_qr_enc_code: "GMqe7zrdsrNp"
 // encrypted_multiscan_qr_secret: "3rf9bbAuiHyF"
 
   // const link = `/verify/${encrypted_multiscan_qr_secret}/${encrypted_multiscan_qr_enc_code}`
 
-
+  const amountFormatted = ethers.formatUnits(amount, decimals)
   return <Page>
     {verificationStart && <DialogVerification onClose={() => {
       setVerificationStart(false)
@@ -71,29 +76,30 @@ const Content: FC<TProps> = ({
         description={description}
       />
 
-      {/* <StatsStyled
+      <StatsStyled
         stats={[
           {
             title: 'Drop amount',
-            value: `${tokens_per_claim || '0'} ${symbol}`,
+            value: `${amountFormatted || '0'} ${symbol}`,
             icon: <SmallCoinIcon />
           },
           {
             title: 'Drop claims',
-            value: claims_count || '0',
-            limit: '1000',
+            value: '0',
+            limit: String(maxClaims),
             icon: <ProfileIcon />
           },
           {
             title: 'Created by',
-            value: shortenString(creator_address as string),
+            // value: shortenString(creator_address as string),
+            value: 'CREATOR_ADDRESS'
           }
         ]}
       />
 
       <ClaimsCounter
-        value='7250000'
-        limit='10000000'
+        value='0'
+        limit={String(maxClaims)}
         symbol={symbol}
       />
 
@@ -105,11 +111,10 @@ const Content: FC<TProps> = ({
 
       <Claim
         disabled={true}
-        amount={tokens_per_claim || '0'}
-        symbol={symbol as string}
+        amount={String(amountFormatted) || '0'}
+        symbol={symbol}
       />
 
-     */}
     {/* Go to check verification <LinkStyled href={link}>here</LinkStyled> */}
     </Container>
   </Page>
