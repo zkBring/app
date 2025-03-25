@@ -27,10 +27,7 @@ const getInitialData = cache(async () => {
 
 export default async function OwnDrops() {
   const data = await getInitialData()
-  if (!data) {
-    return <h1>No data to show</h1>
-  }
 
-  return <Content drops={data} />
+  return <Content drops={data || []} />
 }
 
