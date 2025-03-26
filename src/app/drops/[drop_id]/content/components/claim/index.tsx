@@ -12,11 +12,48 @@ import {
   StepTitle
 } from '../../styled-components'
 import TProps from './types'
+import { Drop } from 'zkbring-sdk'
+
+const claim = async (
+  dropInstance: Drop | null,
+  webproof: any,
+  ephemeralKey?: string | null,
+  recipient?: string | null
+) => {
+
+  if (!dropInstance) {
+    alert('Drop is not ready')
+  }
+
+  if (!webproof) {
+    alert('webproof is not ready')
+  }
+
+  if (!ephemeralKey) {
+    alert('ephemeralKey is not ready')
+  }
+
+  if (!recipient) {
+    return alert('Please connect wallet')
+  }
+
+  const { txHash } = await (dropInstance as Drop).claim({
+    webproof,
+    recipient,
+    ephemeralKey: ephemeralKey as string
+  })
+
+  alert(`CLAIMED: ${txHash}`)
+}
 
 const Claim: FC<TProps> = ({
   symbol,
   amount,
-  disabled
+  disabled,
+  dropInstance,
+  webproof,
+  ephemeralKey,
+  recipient
 }) => {
   return <Container disabled={disabled}>
     <StepTitle>
@@ -32,6 +69,14 @@ const Claim: FC<TProps> = ({
         appearance='additional'
         size='extra-small'
         disabled={disabled}
+        onClick={() => {
+          claim(
+            dropInstance,
+            webproof,
+            ephemeralKey,
+            recipient
+          )
+        }}
       >
         Claim
       </ButtonStyled>

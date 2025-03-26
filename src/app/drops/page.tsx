@@ -20,20 +20,9 @@ export async function generateMetadata(): Promise<Metadata> {
 const getInitialData = cache(async () => {
   try {
 
-    const BASE_SEPOLIA_CHAIN_ID = 84532
-    const jsonRpcUrl = defineJSONRPC(BASE_SEPOLIA_CHAIN_ID)
-
-    const provider = new ethers.JsonRpcProvider(jsonRpcUrl, BASE_SEPOLIA_CHAIN_ID, {
-      staticNetwork: true
-    })
-
-    const sdk = createSDK(provider)
+    const sdk = createSDK({})
     const drops = await sdk.getDrops({
       creator: ''
-    })
-
-    console.log({
-      drops
     })
 
     return drops

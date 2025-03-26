@@ -2,16 +2,6 @@
 import {
   FC, useEffect
 } from 'react'
-import {
-  Container,
-  ButtonStyled
-} from './styled-components'
-import {
-  useAppDispatch
-} from '@/lib/hooks'
-
-import { useAppKit } from '@reown/appkit/react'
-import { useAccount, useDisconnect } from "wagmi"
 import { TProps } from './types'
 import { useRouter } from 'next/navigation'
 
@@ -20,8 +10,7 @@ import {
 } from '@/components/common'
 import { TAuthorizationStep } from '@/types'
 import {
-  Connect,
-  Authorize
+  Connect
 } from './components'
 import { useAppSelector } from '@/lib/hooks'
 
@@ -34,8 +23,6 @@ const defineContent = (
     case 'initial':
     case 'connect':
       return <Connect />
-    case 'login':
-      return <Authorize />
   }
 }
 
@@ -53,9 +40,8 @@ const AuthContent: FC<TProps> = () => {
 
   const content = defineContent(authorizationStep)
 
-  console.log({ authorizationStep })
   useEffect(() => {
-    if (authorizationStep === 'authorized') {
+    if (authorizationStep === 'connected') {
       router.push(`/launch/audience`)
     }
   }, [authorizationStep])

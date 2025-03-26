@@ -18,7 +18,6 @@ import LaunchSlice, {
 import UserSlice, {
   setUserChainId,
   setUserAddress,
-  authorize,
   setSigner,
   setConnectedUserData
 } from './user'
@@ -56,7 +55,6 @@ export {
   UserSlice,
   setUserChainId,
   setUserAddress,
-  authorize,
   setSigner,
   setConnectedUserData,
 

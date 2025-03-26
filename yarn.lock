@@ -7828,8 +7828,12 @@ yocto-queue@^1.0.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.1.1.tgz#fef65ce3ac9f8a32ceac5a634f74e17e5b232110"
   integrity sha512-b4JR1PFR10y1mKjhHY9LaGo6tmrgjit7hxVIeAmyMw3jegXR4dhYqLaQF5zMXZxY7tLpMyJeLjr1C4rLmkVe8g==
 
-"zkbring-sdk@file:../zkbring-sdk/dist":
-  version "0.0.0"
+zkbring-sdk@0.0.1-alpha-rc.4:
+  version "0.0.1-alpha-rc.4"
+  resolved "https://registry.yarnpkg.com/zkbring-sdk/-/zkbring-sdk-0.0.1-alpha-rc.4.tgz#1714deb7533a312068a50852a9d6ae8ea26c3f0e"
+  integrity sha512-45ozkvkeF9jI29Z8BLj0CfMxIuknX/8Ws+wPIlk9vBfMNO87oMkSD/GL6eX16I+7C1KF8Zmgy1H55EWff8X7pQ==
+  dependencies:
+    typescript "^4.8.2"
 
 zod@3.22.4:
   version "3.22.4"

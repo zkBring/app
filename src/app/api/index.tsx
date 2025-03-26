@@ -5,7 +5,6 @@ import drops from './drops'
 import dispenser from './dispenser'
 import zerion from './zerion'
 import nonce from './nonce'
-import authorization from './authorization'
 
 export {
   getQRData,
@@ -14,6 +13,5 @@ export {
   drops,
   dispenser,
   zerion,
-  nonce,
-  authorization
+  nonce
 }

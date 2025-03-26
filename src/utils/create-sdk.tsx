@@ -1,24 +1,49 @@
 import { dashboardApiKey } from '@/app/configs'
-import { JsonRpcProvider, JsonRpcSigner } from 'ethers'
+import { JsonRpcProvider, JsonRpcSigner, ethers } from 'ethers'
 import {
   BringSDK
 } from 'zkbring-sdk'
+import {
+  defineJSONRPC
+} from '@/utils'
+import TransgateConnect from "@zkpass/transgate-js-sdk"
 
-let sdk: null | BringSDK = null
 
-type TCreateSDK = (
-  signer: JsonRpcSigner | JsonRpcProvider
-) => BringSDK
+type TCreateSDKArgs = {
+  signer?: JsonRpcSigner,
+  transgateModule?: typeof TransgateConnect
+}
+type TCreateSDK = (args: TCreateSDKArgs) => BringSDK
 
-const createSDK: TCreateSDK = (
-  provider
-) => {
-  if (sdk) { return sdk }
-  sdk = new BringSDK({
-    walletOrProvider: provider
+const createSDK: TCreateSDK = ({
+  signer,
+  transgateModule
+}) => {
+  if (signer) {
+    if (transgateModule) {
+      return new BringSDK({
+        walletOrProvider: signer,
+        transgateModule: transgateModule
+      })
+    }
+  }
+  const BASE_SEPOLIA_CHAIN_ID = 84532
+  const jsonRpcUrl = defineJSONRPC(BASE_SEPOLIA_CHAIN_ID)
+
+  const provider = new ethers.JsonRpcProvider(jsonRpcUrl, BASE_SEPOLIA_CHAIN_ID, {
+    staticNetwork: true
   })
 
-  return sdk
+  if (!transgateModule) {
+    return new BringSDK({
+      walletOrProvider: provider
+    })
+  }
+
+  return new BringSDK({
+    walletOrProvider: provider,
+    transgateModule: transgateModule
+  })
 }
 
 export default createSDK

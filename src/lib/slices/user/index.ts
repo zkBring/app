@@ -3,7 +3,6 @@ import {
   PayloadAction
 } from '@reduxjs/toolkit'
 import { TInitialState } from './types'
-import { authorize } from './async-actions'
 import {
   JsonRpcSigner,
   BrowserProvider
@@ -60,19 +59,11 @@ const userSlice = createSlice({
         chainId,
         signer,
         provider,
-        authorizationStep: 'login'
+        authorizationStep: 'connected'
       }
     }
   },
-  extraReducers: (builder) => {
-    builder.addCase(authorize.fulfilled, (state, action) => {
-      // Add user to the state array
-      state.authorizationStep = 'authorized'
-
-      console.log({ state })
-      return state
-    })
-  },
+  extraReducers: (builder) => {},
 })
 
 // Extract the action creators object and the reducer
@@ -88,7 +79,6 @@ const {
 export {
   setUserChainId,
   setUserAddress,
-  authorize,
   setSigner,
   setConnectedUserData
 }

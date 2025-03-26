@@ -5,7 +5,7 @@ export const Container = styled.ol`
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
 `
 
 export const ListItem = styled.li`

@@ -2,9 +2,6 @@ import { JsonRpcSigner, BrowserProvider } from 'ethers'
 import {
   TAuthorizationStep
 } from '@/types'
-import {
-  BringSDK
-} from 'zkbring-sdk'
 
 export type TInitialState = {
   address: string | null

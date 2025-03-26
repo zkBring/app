@@ -13,10 +13,6 @@ import {
 import { useAppKit } from '@reown/appkit/react'
 import { useAccount, useDisconnect } from "wagmi"
 
-import {
-  ConnectWallet,
-  // @ts-ignore
-} from '@coinbase/onchainkit/wallet'
 
 const Connect: FC = () => {
   const dispatch = useAppDispatch()

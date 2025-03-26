@@ -1,4 +1,8 @@
-import { FC } from 'react'
+import {
+  FC,
+  useEffect,
+  useState
+} from 'react'
 import {
   DialogStyled,
   Content,
@@ -13,10 +17,13 @@ import {
   VerificationCheckIcon,
   VerificationClickIcon,
   VerificationLockIcon,
-  VerificationProfileIcon
+  VerificationProfileIcon,
+  VerificationCoinIcon
 } from '@/components/icons'
-import TProps from './types'
 
+
+import TProps from './types'
+import { Drop } from 'zkbring-sdk'
 
 const verificationSteps = [
   {
@@ -33,12 +40,55 @@ const verificationSteps = [
     icon: <VerificationProfileIcon />
   }, {
     title: '5. Claim tokens right after the proof is ready',
-    icon: <VerificationProfileIcon />
+    icon: <VerificationCoinIcon />
   }
 ]
 
+const checkIfTransgateAvailable = async (
+  drop: Drop
+) => {
+  try {
+    const isTransgateAvailable = await drop.isTransgateAvailable()
+    return isTransgateAvailable
+  } catch (err) {
+    return false
+  }
+}
+
+const startVerification = async (
+  drop: Drop
+) => {
+  try {
+    const result = await drop.generateWebproof()
+    const { webproof, ephemeralKey } = result
+    
+    return {
+      webproof, ephemeralKey
+    }
+  } catch (err) {
+    alert("Verification failed")
+    return null
+  }
+}
+
+const checkIfClaimedBefore = async (
+  drop: Drop,
+  uHash: string
+) => {
+  try {
+    const isClaimed = await drop.hasUserClaimed({ uHash: uHash })
+    return isClaimed
+  } catch (err) {
+    alert("Check failed")
+    return null
+  }
+}
+
 const DialogVerification: FC<TProps> = ({
-  onClose
+  onClose,
+  dropInstance,
+  setClaimIsReady,
+  showTransgateDialog
 }) => {
   return <DialogStyled
     onClose={onClose}
@@ -49,7 +99,45 @@ const DialogVerification: FC<TProps> = ({
       Your device generates a mathematical proof locally using zkTLS webproof, ensuring complete privacy.
       </TextStyled>
 
-      <ButtonStyled appearance='action'>
+      <ButtonStyled
+        size='small'
+        appearance='action'
+
+        disabled={!dropInstance}
+        onClick={async () => {
+          if (!dropInstance) {
+            return alert('Drop is not ready')
+          }
+          const transgateAvailable = await checkIfTransgateAvailable(dropInstance)
+          if (!transgateAvailable) {
+            return showTransgateDialog()
+          }
+
+          const verificationResult = await startVerification(dropInstance)
+          if (!verificationResult) {
+            return 
+          }
+
+          const {
+            webproof,
+            ephemeralKey
+          } = verificationResult
+
+          const claimedBefore = await checkIfClaimedBefore(
+            dropInstance,
+            webproof.uHash
+          )
+
+          if (claimedBefore) {
+            return alert('Already claimed by user')
+          }
+
+          setClaimIsReady(
+            webproof,
+            ephemeralKey
+          )
+        }}
+      >
         Start verification
       </ButtonStyled>
 

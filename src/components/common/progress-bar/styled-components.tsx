@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const ProgressBarContainer = styled.div`
-  height: 3px;
+  height: 6px;
   border-radius: 2px;
   position: relative;
   background: ${props => props.theme.blankColor};

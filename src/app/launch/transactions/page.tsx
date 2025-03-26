@@ -170,7 +170,9 @@ const LaunchTransaction: FC = () => {
   useEffect(() => {
     if (!signer) { return }
     if (sdk) { return }
-    const sdkInit = createSDK(signer)
+    const sdkInit = createSDK({
+      signer
+    })
     setSDK(sdkInit)
   }, [
     signer,
