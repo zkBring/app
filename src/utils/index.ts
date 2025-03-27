@@ -4,7 +4,6 @@ import getTokenERC20Data from './get-erc20-token-data'
 import defineJSONRPC from './define-json-rpc'
 import defineNetworkName from './define-network-name'
 import defineExplorerURL from "./define-explorer-url"
-import checkRedeemStatus from './check-redeem-status'
 import ipfsRedefineURL from './ipfs-redefine-url'
 import getValidImage from './get-valid-image'
 import getAlchemyTokenImage from './get-alchemy-token-image'
@@ -46,7 +45,6 @@ export {
   defineQRScreen,
   defineInitialClaimScreen,
   getAlchemyTokenImage,
-  checkRedeemStatus,
   shortenString,
   getValidImage,
   createAlchemyInstance,

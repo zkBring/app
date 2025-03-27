@@ -3,9 +3,11 @@ import {
   FC
 } from 'react'
 import {
-  Container,
-  ConnectWalletStyled
+  Container
 } from './styled-components'
+import {
+  ConnectButton
+} from '@/components/common'
 import {
   useAppDispatch
 } from '@/lib/hooks'
@@ -13,10 +15,6 @@ import {
 import { useAppKit } from '@reown/appkit/react'
 import { useAccount, useDisconnect } from "wagmi"
 
-import {
-  ConnectWallet,
-  // @ts-ignore
-} from '@coinbase/onchainkit/wallet'
 
 const Connect: FC = () => {
   const dispatch = useAppDispatch()
@@ -25,7 +23,7 @@ const Connect: FC = () => {
   const { disconnect } = useDisconnect()
 
   return <Container>
-    <ConnectWalletStyled />
+    <ConnectButton />
   </Container>
 }
 

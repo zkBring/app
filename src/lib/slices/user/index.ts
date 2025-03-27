@@ -3,11 +3,13 @@ import {
   PayloadAction
 } from '@reduxjs/toolkit'
 import { TInitialState } from './types'
-import { authorize } from './async-actions'
 import {
   JsonRpcSigner,
   BrowserProvider
 } from 'ethers'
+import {
+  TAuthorizationStep
+} from '@/types'
 
 const initialState: TInitialState = {
   address: null,
@@ -26,6 +28,12 @@ const userSlice = createSlice({
       action: PayloadAction<string | null>
     ) {
       return {...state, address: action.payload }
+    },
+    setAuthorizationStep(
+      state,
+      action: PayloadAction<TAuthorizationStep>
+    ) {
+      return {...state, authorizationStep: action.payload }
     },
     setUserChainId(
       state,
@@ -60,19 +68,11 @@ const userSlice = createSlice({
         chainId,
         signer,
         provider,
-        authorizationStep: 'login'
+        authorizationStep: 'connected'
       }
     }
   },
-  extraReducers: (builder) => {
-    builder.addCase(authorize.fulfilled, (state, action) => {
-      // Add user to the state array
-      state.authorizationStep = 'authorized'
-
-      console.log({ state })
-      return state
-    })
-  },
+  extraReducers: (builder) => {},
 })
 
 // Extract the action creators object and the reducer
@@ -82,15 +82,16 @@ const {
   setUserChainId,
   setUserAddress,
   setSigner,
-  setConnectedUserData
+  setConnectedUserData,
+  setAuthorizationStep
 } = actions
 
 export {
   setUserChainId,
   setUserAddress,
-  authorize,
   setSigner,
-  setConnectedUserData
+  setConnectedUserData,
+  setAuthorizationStep
 }
 
 // Export the reducer, either as a default or named export

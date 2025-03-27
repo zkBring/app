@@ -1,5 +1,4 @@
 'use server'
-import { getERC721TokenData } from '@/app/api'
 import {
   generateMetadataUtil,
   createSDK,
@@ -12,7 +11,7 @@ import { cache } from 'react'
 import Content from './content'
 
 
-type tParams = Promise<{ drop_id: string }>
+type TParams = Promise<{ drop_id: string }>
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataUtil({
@@ -24,13 +23,9 @@ const getInitialData = cache(async (drop_id: string) => {
   try {
 
     const BASE_SEPOLIA_CHAIN_ID = 84532
-    const jsonRpcUrl = defineJSONRPC(BASE_SEPOLIA_CHAIN_ID)
 
-    const provider = new ethers.JsonRpcProvider(jsonRpcUrl, BASE_SEPOLIA_CHAIN_ID, {
-      staticNetwork: true
-    })
 
-    const sdk = createSDK(provider)
+    const sdk = createSDK({})
     const drop = await sdk.getDrop(drop_id)
     const tokenData = await getTokenERC20Data(
       drop.token,
@@ -50,7 +45,7 @@ const getInitialData = cache(async (drop_id: string) => {
 export default async function Drop({
   params
 }: {
-  params: tParams
+  params: TParams
 }) {
 
   const paramsData = await params

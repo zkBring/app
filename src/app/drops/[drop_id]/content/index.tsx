@@ -3,7 +3,8 @@
 import {
   LinkStyled,
   StatsStyled,
-  Container
+  Container,
+  IconedButton
 } from './styled-components'
 import { ThemeProvider } from 'styled-components'
 import { dark } from '@/themes'
@@ -16,8 +17,12 @@ import {
   DropDescription,
   Verify,
   Claim,
-  DialogVerification
+  DialogVerification,
+  DialogTransgateNotAvailable
 } from './components'
+import {
+  InputPenIcon
+} from '@/components/icons'
 import {
   useEffect,
   FC,
@@ -31,29 +36,60 @@ import {
 import {
   shortenString
 } from '@/utils'
+import { Drop } from 'zkbring-sdk'
+import TransgateConnect from "@zkpass/transgate-js-sdk"
+import {
+  createSDK,
+  defineJSONRPC
+} from '@/utils'
+import { useAppSelector } from '@/lib/hooks'
 
 const Content: FC<TProps> = ({
   drop,
   tokenData
 }) => {
+
+  const [ dropInstance, setDropInstance ] = useState<Drop | null>(null)
+
+  useEffect(() => {
+    const init = async () => {
+      const sdk = createSDK({
+        transgateModule: TransgateConnect
+      })
+  
+      const dropInstance = await sdk.getDrop(drop.address)
+      setDropInstance(dropInstance)
+    }
+
+    init()
+  }, [])
+
+
   const [
     verificationStart,
     setVerificationStart
   ] = useState<boolean>(false)
 
-  useEffect(() => {
+  const [
+    installTransgateDialog,
+    setInstallTransgateDialog
+  ] = useState<boolean>(false)
 
-  }, [])
+  const {
+    user: {
+      address: userAddress,
+      signer
+    }
+  } = useAppSelector(state => ({
+    user: state.user
+  }))
+
   const {
     title,
     address,
-    expiration,
     amount,
-    token,
     description,
-    maxClaims,
-    zkPassAppId,
-    zkPassSchemaId
+    maxClaims
   } = drop
   const {
     decimals,
@@ -67,14 +103,38 @@ const Content: FC<TProps> = ({
 
   const amountFormatted = ethers.formatUnits(amount, decimals)
   return <Page>
-    {verificationStart && <DialogVerification onClose={() => {
-      setVerificationStart(false)
-    }} />}
+    {verificationStart &&
+      <DialogVerification
+        dropInstance={dropInstance}
+        onClose={() => {
+          setVerificationStart(false)
+        }}
+        setClaimIsReady={() => {
+          setVerificationStart(false);
+          (dropInstance as Drop).updateWalletOrProvider(signer)
+        }}
+
+        showTransgateDialog={() => {
+          setVerificationStart(false)
+          setInstallTransgateDialog(true)
+        }}
+      />
+    }
+    {installTransgateDialog && <DialogTransgateNotAvailable
+       onClose={() => {
+        setInstallTransgateDialog(false)
+      }}
+    />}
     <Container>
       <DropDescription
         title={title}
         description={description}
       />
+
+      <IconedButton size='extra-small' to={`/drops/${address}/edit`}>
+        <InputPenIcon />Edit drop
+      </IconedButton>
+
 
       <StatsStyled
         stats={[
@@ -110,9 +170,10 @@ const Content: FC<TProps> = ({
       />
 
       <Claim
-        disabled={true}
+        dropInstance={dropInstance}
         amount={String(amountFormatted) || '0'}
         symbol={symbol}
+        recipient={userAddress}
       />
 
     {/* Go to check verification <LinkStyled href={link}>here</LinkStyled> */}

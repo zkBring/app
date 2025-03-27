@@ -30,6 +30,7 @@ import VerificationLockIcon from './verification-lock-icon'
 import VerificationClickIcon from './verification-click-icon'
 import VerificationProfileIcon from './verification-profile-icon'
 import SatelliteIcon from './satellite-icon'
+import VerificationCoinIcon from './verification-coin-icon'
 
 export {
   VerificationCheckIcon,
@@ -63,5 +64,6 @@ export {
   ProfileIcon,
   BringTokenIcon,
   DropAudienceIcon,
-  SatelliteIcon
+  SatelliteIcon,
+  VerificationCoinIcon
 }

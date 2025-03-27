@@ -38,6 +38,7 @@ import SmallSubtitle from './small-subtitle'
 import SmallText from './small-text'
 import IconedList from './iconed-list'
 import EditableWidget from './editable-widget'
+import ConnectButton from './connect-button'
 
 import {
   TableRow,
@@ -88,5 +89,6 @@ export {
   Stats,
   Menu,
   Dialog,
-  EditableWidget
+  EditableWidget,
+  ConnectButton
 }

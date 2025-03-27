@@ -18,17 +18,15 @@
     "@tanstack/react-query": "^5.62.11",
     "@wagmi/cli": "latest",
     "@walletconnect/utils": "2.0.0-beta.100",
+    "@zkpass/transgate-js-sdk": "^0.4.0",
     "alchemy-sdk": "^3.5.0",
     "axios": "^1.7.7",
     "ethers": "^6.8.0",
     "is-mobile": "^5.0.0",
-    "linkdrop-sdk": "3.15.1-alpha-rc.5",
     "next": "15.0.3",
-    "qr-code-styling": "^1.6.0-rc.1",
     "randombytes": "^2.1.0",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
-    "@zkpass/transgate-js-sdk": "^0.4.0",
     "react-redux": "^9.1.2",
     "react-select": "^5.10.1",
     "redux": "^4.1.1",
@@ -37,7 +35,7 @@
     "styled-components": "^6.1.13",
     "viem": "^2.21.59",
     "wagmi": "^2.14.6",
-    "zkbring-sdk": "0.0.1-alpha-rc.3"
+    "zkbring-sdk": "0.0.1-alpha-rc.4"
   },
   "devDependencies": {
     "@types/node": "^20",

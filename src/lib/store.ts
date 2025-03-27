@@ -3,7 +3,8 @@ import {
   LinkSlice,
   UserSlice,
   TokenSlice,
-  LaunchSlice
+  LaunchSlice,
+  VerifySlice
 } from './slices'
 
 export const makeStore = () => {
@@ -12,7 +13,8 @@ export const makeStore = () => {
       user: UserSlice,
       link: LinkSlice,
       token: TokenSlice,
-      launch: LaunchSlice
+      launch: LaunchSlice,
+      verify: VerifySlice
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       serializableCheck: false,

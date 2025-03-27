@@ -1,7 +1,7 @@
 'use client';
  
 import type { ReactNode } from 'react';
-import { OnchainKitProvider } from '@coinbase/onchainkit';
+import { OnchainKitProvider } from '@coinbase/onchainkit'
 import { baseSepolia } from 'wagmi/chains'; // add baseSepolia for testing 
 import {
   onchainApiKey

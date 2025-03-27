@@ -22,10 +22,18 @@ import {
 } from './styled-components'
 import {
   TDropStatus,
-  TDrop
+  TDrop,
+  TTokenData
 } from '@/types'
 import { drops as dropsApi } from '@/app/api'
 import { useParams } from 'next/navigation'
+import {
+  generateMetadataUtil,
+  createSDK,
+  defineJSONRPC,
+  getTokenERC20Data
+} from '@/utils'
+import { ethers } from 'ethers'
 import {
   EditableWidget,
   TableRow,
@@ -47,179 +55,248 @@ import { JsonRpcSigner } from 'ethers'
 
 const getInitialData = async (drop_id: string) => {
   try {
-    const drops = await dropsApi.getOne(drop_id)
-    return drops.data.campaign
+
+    const BASE_SEPOLIA_CHAIN_ID = 84532
+
+    const sdk = createSDK({})
+    const drop = await sdk.getDrop(drop_id)
+    const tokenData = await getTokenERC20Data(
+      drop.token,
+      BASE_SEPOLIA_CHAIN_ID
+    )
+    return {
+      drop,
+      tokenData
+    }
   } catch (err: unknown) {
     console.log({
       err
     })
-    return null
   }
 }
 
+
 const Edit: FC = () => {
   // const [ status, setStatus ] = useState<TDropStatus>('initial')
-  // const [
-  //   currentDrop,
-  //   setCurrentDrop
-  // ] = useState<TDrop | null>(null)
+  const params = useParams<{ drop_id: string }>()
 
-  // const {
-  //   user: {
-  //     address,
-  //     chainId,
-  //     signer
-  //   }
-  // } = useAppSelector(state => ({
-  //   user: state.user
-  // }))
+  const [
+    currentDrop,
+    setCurrentDrop
+  ] = useState<TDrop | null>(null)
 
-  // const params = useParams<{ drop_id: string }>()
+  const [
+    tokenData,
+    setTokenData
+  ] = useState<TTokenData | null>(null)
 
-  // useEffect(() => {
-  //   const init = async () => {
-  //     const drop = await getInitialData(params.drop_id)
-  //     setCurrentDrop(drop)
-  //   }
+  const [
+    loading,
+    setLoading
+  ] = useState<boolean>(true)
 
-  //   init()
-  // }, [])
+  useEffect(() => {
+    const init = async () => {
 
-  // const [ editPopup, setEditPopup ] = useState<boolean>(false)
+      const result = await getInitialData(params.drop_id)
+
+      if (result) {
+        const {
+          drop,
+          tokenData
+        } = result
+      
+        const {
+          title,
+          address,
+          expiration,
+          amount,
+          token,
+          description,
+          maxClaims,
+          zkPassAppId,
+          zkPassSchemaId
+        } = drop
+
+        setCurrentDrop({
+          title,
+          address,
+          expiration,
+          amount,
+          token,
+          description,
+          maxClaims,
+          zkPassAppId,
+          zkPassSchemaId
+        })
+
+        setTokenData(tokenData)
+
+      }
+      setLoading(false)
+    }
+
+    init()
+  }, [])
+
+  const {
+    user: {
+      address,
+      chainId,
+      signer
+    }
+  } = useAppSelector(state => ({
+    user: state.user
+  }))
+
+
+  const [ editPopup, setEditPopup ] = useState<boolean>(false)
   // const loading = false
 
 
-  // if (!currentDrop) {
-  //   return null
-  // }
+  if (!currentDrop || !tokenData) {
+    return null
+  }
 
-  // const {
-  //   description = '',
+  const {
+    title,
+    address: dropAddress,
+    expiration,
+    amount,
+    token,
+    description,
+    maxClaims,
+    zkPassAppId,
+    zkPassSchemaId
+  } = currentDrop
 
-  // } = currentDrop
-  
-  // return <Page>
-  //   <Container>
-  //     {editPopup && <EditPopup
-  //       initialValue={description || ''}
-  //       loading={loading}
-  //       onUpdate={(value) => {
-  //         // 
-  //         alert('Update')
-  //       }}
-  //       onClose={() => {
-  //         setEditPopup(false)
-  //       }}
-  //     />}
-  //     <Content>
-  //       <StatsStyled
-  //         stats={[
-  //           {
-  //             title: 'Drop amount',
-  //             value: `${claims_count || '0'} ${symbol}`,
-  //             icon: <SmallCoinIcon />
-  //           },
-  //           {
-  //             title: 'Drop claims',
-  //             value: claims_count || '0',
-  //             limit: '1000',
-  //             icon: <ProfileIcon />
-  //           }
-  //         ]}
-  //       />
+  const {
+    symbol,
+    decimals
+  } = tokenData
+  const amountFormatted = ethers.formatUnits(amount, decimals)
 
-  //       <BringAmount
-  //         isPublic={is_public}
-  //         signer={signer as JsonRpcSigner}
-  //         address={address as string}
-  //         action={(value) => {
-  //           // 
-  //           alert('ACTION')
-  //         }}
-  //       />
+  return <Page>
+    <Container>
+      {editPopup && <EditPopup
+        initialValue={description || ''}
+        loading={loading}
+        onUpdate={(value) => {
+          // 
+          alert('Update')
+        }}
+        onClose={() => {
+          setEditPopup(false)
+        }}
+      />}
+      <Content>
+        <StatsStyled
+          stats={[
+            {
+              title: 'Drop amount',
+              value: `${amountFormatted || '0'}  ${symbol}`,
+              icon: <SmallCoinIcon />
+            },
+            {
+              title: 'Drop claims',
+              value: '0',
+              limit: `${maxClaims.toString() || '0'}`,
+              icon: <ProfileIcon />
+            }
+          ]}
+        />
+
+        <BringAmount
+          isPublic={false}
+          signer={signer as JsonRpcSigner}
+          address={address as string}
+          action={(value) => {
+            // 
+            alert('ACTION')
+          }}
+        />
         
-  //       <Verification
-  //         dropId={campaign_id}
-  //       />
+        <Verification
+          dropId={dropAddress}
+        />
 
-  //     </Content>
+      </Content>
 
-  //     <Aside>
-  //       <Status
-  //         status={status}
-  //         setStatus={setStatus}
-  //         drop={currentDrop}
-  //       />
-  //       <WidgetStyled
-  //         title="Campaign"
-  //       >
-  //         {created_at && <TableRow>
-  //           <TableText>Created at</TableText>
-  //           <TableValue>
-  //             {formatDate(created_at as string)}, {formatTime(created_at as string)}
-  //           </TableValue>
-  //         </TableRow>}
+      <Aside>
+        {/* <Status
+          status={status}
+          setStatus={setStatus}
+          drop={currentDrop}
+        /> */}
+        <WidgetStyled
+          title="Campaign"
+        >
+          <TableRow>
+            <TableText>Created at</TableText>
+            <TableValue>
+              NO_DATA
+            </TableValue>
+          </TableRow>
         
-  //         <TableRow>
-  //           <TableText>Creator</TableText>
-  //           <TableValue>
-  //             {shortenString(creator_address)}
-  //           </TableValue>
-  //         </TableRow>
+          <TableRow>
+            <TableText>Creator</TableText>
+            <TableValue>
+              NO_DATA
+            </TableValue>
+          </TableRow>
 
-  //         <TableRow>
-  //           <TableText>{symbol} address</TableText>
-  //           <TableValue>
-  //             {shortenString(token_address)}
-  //           </TableValue>
-  //         </TableRow>
+          <TableRow>
+            <TableText>{symbol} address</TableText>
+            <TableValue>
+              {shortenString(token)}
+            </TableValue>
+          </TableRow>
 
-  //         <TableRow>
-  //           <TableText>Drop contract</TableText>
-  //           <TableValue>
-  //             {shortenString(proxy_contract_address)}
-  //           </TableValue>
-  //         </TableRow>
+          <TableRow>
+            <TableText>Drop contract</TableText>
+            <TableValue>
+              {shortenString(dropAddress)}
+            </TableValue>
+          </TableRow>
 
-  //         <TableRow>
-  //           <TableText>Token standard</TableText>
-  //           <TableValue>{token_standard}</TableValue>
-  //         </TableRow>
+          <TableRow>
+            <TableText>Token standard</TableText>
+            <TableValue>ERC 20</TableValue>
+          </TableRow>
 
-  //         <AsideButtonsContainer>
-  //           <ButtonStyled
-  //             size='extra-small'
-  //             appearance='additional'
-  //             onClick={() => {
-  //               alert('DOWNLOAD')
-  //             }}
-  //           >
-  //             Download full report
-  //           </ButtonStyled>
+          <AsideButtonsContainer>
+            <ButtonStyled
+              size='extra-small'
+              appearance='additional'
+              onClick={() => {
+                alert('DOWNLOAD')
+              }}
+            >
+              Download full report
+            </ButtonStyled>
 
-  //           <ButtonStyled
-  //             size='extra-small'
-  //             target='_blank'
-  //             appearance='additional'
-  //             href={`/drops/${campaign_id}`}
-  //           >
-  //             Public page
-  //           </ButtonStyled>
-  //         </AsideButtonsContainer>
+            <ButtonStyled
+              size='extra-small'
+              target='_blank'
+              appearance='additional'
+              href={`/drops/${dropAddress}`}
+            >
+              Public page
+            </ButtonStyled>
+          </AsideButtonsContainer>
 
-  //       </WidgetStyled>
+        </WidgetStyled>
 
-  //       <EditableWidget
-  //         value={description}
-  //         title="Description"
-  //         action={() => {
-  //           setEditPopup(true)
-  //         }}
-  //       />
-  //     </Aside>
-  //   </Container>
-  // </Page>
-  return null
+        <EditableWidget
+          value={description}
+          title="Description"
+          action={() => {
+            setEditPopup(true)
+          }}
+        />
+      </Aside>
+    </Container>
+  </Page>
 }
 
 export default Edit
