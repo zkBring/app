@@ -10,7 +10,7 @@
     "clean": "npx rimraf .next"
   },
   "dependencies": {
-    "@coinbase/onchainkit": "https://github.com/zkBring/onchainkit",
+    "@coinbase/onchainkit": "^0.37.8",
     "@linkdrop/contracts": "^1.2.6",
     "@reduxjs/toolkit": "^2.3.0",
     "@reown/appkit": "^1.6.2",
