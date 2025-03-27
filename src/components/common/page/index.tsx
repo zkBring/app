@@ -27,7 +27,6 @@ import {
 import {
   setConnectedUserData
 } from '@/lib/slices'
-import { useAppKit } from '@reown/appkit/react'
 import {
   useAccount,
   useDisconnect

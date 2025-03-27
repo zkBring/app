@@ -32,11 +32,12 @@ import {
 import { useRouter } from 'next/navigation'
 import {
   approve,
-  createDrop
+  createDrop,
+  setLoading
 } from '@/lib/slices'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from '@/lib/hooks'
-import { BrowserProvider, JsonRpcSigner } from 'ethers'
+import { JsonRpcSigner } from 'ethers'
 import { BringSDK } from 'zkbring-sdk'
 
 const defineButton = (
@@ -144,6 +145,15 @@ const LaunchTransaction: FC = () => {
   const [ fees, setFees ] = useState<TFees | null>(null)
   const [ sdk, setSDK ] = useState<BringSDK | null>(null)
 
+
+  useEffect(() => {
+    dispatch(
+      setLoading(
+        false
+      )
+    )
+  }, [])
+
   const {
     launch: {
       decimals,
@@ -163,7 +173,6 @@ const LaunchTransaction: FC = () => {
     user: state.user
   }))
 
-  console.log({ transactionStage })
 
   const stages = defineStages(transactionStage as TLaunchTransactionStage)
 

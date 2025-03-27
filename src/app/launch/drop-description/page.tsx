@@ -1,7 +1,8 @@
 'use client'
 import {
   FC,
-  useState
+  useState,
+  useEffect
 } from 'react'
 import {
   Page,
@@ -19,13 +20,30 @@ import {
 } from '@/components/icons'
 import { useRouter } from 'next/navigation'
 import {
-  setDropData
+  setDropData,
+  setLoading
 } from '@/lib/slices'
 import { useDispatch } from 'react-redux'
+import { useAppSelector } from '@/lib/hooks'
 
 const LaunchDropDescription: FC = () => {
 
-  const loading = false
+  const {
+    launch: {
+      loading
+    }
+  } = useAppSelector(state => ({
+    launch: state.launch
+  }))
+
+  useEffect(() => {
+    dispatch(
+      setLoading(
+        false
+      )
+    )
+  }, [])
+
   const [
     title,
     setTitle
@@ -85,6 +103,7 @@ const LaunchDropDescription: FC = () => {
         <ButtonsContainer>
           <Button
             appearance='action'
+            loading={loading}
             disabled={defineIfNextDisabled()}
             onClick={() => {
 
@@ -92,6 +111,11 @@ const LaunchDropDescription: FC = () => {
                 title,
                 description
               }))
+              dispatch(
+                setLoading(
+                  true
+                )
+              )
 
               router.push(`/launch/transactions`)
             }}

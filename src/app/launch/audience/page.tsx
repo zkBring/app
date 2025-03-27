@@ -102,8 +102,6 @@ const LaunchAudience: FC = () => {
     }
   }, [])
 
-
-
   return <Page>
     <LaunchContainer
       breadcrumbs={[
@@ -165,11 +163,7 @@ const LaunchAudience: FC = () => {
             appearance='action'
             loading={loading}
             onClick={() => {
-              dispatch(
-                setLoading(
-                  true
-                )
-              )
+
               dispatch(
                 setZKTLSOptions({
                   zkTLSService,
@@ -177,6 +171,11 @@ const LaunchAudience: FC = () => {
                   zkPassAppId,
                   zkPassSchemaId
                 })
+              )
+              dispatch(
+                setLoading(
+                  true
+                )
               )
               router.push(`/launch/token-data`)
             }}

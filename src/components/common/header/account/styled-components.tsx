@@ -49,24 +49,3 @@ export const Logout = styled.div`
     }};
   }
 `
-
-export const ConnectWalletStyled = styled(ConnectWallet)`
-  cursor: pointer;
-  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  font-weight: 400;
-  justify-content: center;
-  transition: color 0.3s, background-color 0.3s, border-color 0.3s;
-  border: none;
-  background-color: ${(props) =>
-    props.theme && props.theme.buttonActionBackgroundColor};
-  color: ${(props) => props.theme && props.theme.additionalTextColor};
-  box-sizing: border-box;
-
-  padding: 12px 24px;
-  height: 40px;
-  font-size: 12px;
-  border-radius: 12px;
-`

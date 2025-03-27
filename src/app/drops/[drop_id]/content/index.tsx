@@ -75,20 +75,7 @@ const Content: FC<TProps> = ({
     setInstallTransgateDialog
   ] = useState<boolean>(false)
 
-
-  const [
-    webproof,
-    setWebproof
-  ] = useState<any>(null)
-
-  const [
-    ephemeralKey,
-    setEphemeralKey
-  ] = useState<string | null>(null)
-
-
   const {
-
     user: {
       address: userAddress,
       signer
@@ -100,13 +87,9 @@ const Content: FC<TProps> = ({
   const {
     title,
     address,
-    expiration,
     amount,
-    token,
     description,
-    maxClaims,
-    zkPassAppId,
-    zkPassSchemaId
+    maxClaims
   } = drop
   const {
     decimals,
@@ -126,14 +109,8 @@ const Content: FC<TProps> = ({
         onClose={() => {
           setVerificationStart(false)
         }}
-        setClaimIsReady={(
-          webproof,
-          ephemeralKey
-        ) => {
-          setVerificationStart(false)
-          setEphemeralKey(ephemeralKey)
-          setWebproof(webproof);
-
+        setClaimIsReady={() => {
+          setVerificationStart(false);
           (dropInstance as Drop).updateWalletOrProvider(signer)
         }}
 
@@ -193,13 +170,10 @@ const Content: FC<TProps> = ({
       />
 
       <Claim
-        disabled={!webproof || !ephemeralKey}
         dropInstance={dropInstance}
         amount={String(amountFormatted) || '0'}
         symbol={symbol}
-        webproof={webproof}
         recipient={userAddress}
-        ephemeralKey={ephemeralKey}
       />
 
     {/* Go to check verification <LinkStyled href={link}>here</LinkStyled> */}

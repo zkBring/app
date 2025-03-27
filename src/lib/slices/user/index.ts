@@ -7,6 +7,9 @@ import {
   JsonRpcSigner,
   BrowserProvider
 } from 'ethers'
+import {
+  TAuthorizationStep
+} from '@/types'
 
 const initialState: TInitialState = {
   address: null,
@@ -25,6 +28,12 @@ const userSlice = createSlice({
       action: PayloadAction<string | null>
     ) {
       return {...state, address: action.payload }
+    },
+    setAuthorizationStep(
+      state,
+      action: PayloadAction<TAuthorizationStep>
+    ) {
+      return {...state, authorizationStep: action.payload }
     },
     setUserChainId(
       state,
@@ -73,14 +82,16 @@ const {
   setUserChainId,
   setUserAddress,
   setSigner,
-  setConnectedUserData
+  setConnectedUserData,
+  setAuthorizationStep
 } = actions
 
 export {
   setUserChainId,
   setUserAddress,
   setSigner,
-  setConnectedUserData
+  setConnectedUserData,
+  setAuthorizationStep
 }
 
 // Export the reducer, either as a default or named export

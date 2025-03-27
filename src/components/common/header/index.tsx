@@ -3,10 +3,6 @@ import { FC } from 'react'
 import {
   Header
 } from './styled-components'
-import { NetworkIndicator } from '..'
-import {
-  shortenString
-} from '@/utils'
 import {
   LogoutIcon,
   LogoIcon

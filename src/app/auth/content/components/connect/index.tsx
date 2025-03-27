@@ -3,9 +3,11 @@ import {
   FC
 } from 'react'
 import {
-  Container,
-  ConnectWalletStyled
+  Container
 } from './styled-components'
+import {
+  ConnectButton
+} from '@/components/common'
 import {
   useAppDispatch
 } from '@/lib/hooks'
@@ -21,7 +23,7 @@ const Connect: FC = () => {
   const { disconnect } = useDisconnect()
 
   return <Container>
-    <ConnectWalletStyled />
+    <ConnectButton />
   </Container>
 }
 

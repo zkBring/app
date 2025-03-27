@@ -26,6 +26,9 @@ const createSDK: TCreateSDK = ({
         transgateModule: transgateModule
       })
     }
+    return new BringSDK({
+      walletOrProvider: signer
+    })
   }
   const BASE_SEPOLIA_CHAIN_ID = 84532
   const jsonRpcUrl = defineJSONRPC(BASE_SEPOLIA_CHAIN_ID)

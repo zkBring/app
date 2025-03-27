@@ -3,11 +3,7 @@ import { Drop } from "zkbring-sdk"
 type TProps = {
   onClose: () => void
   dropInstance: Drop | null
-  setClaimIsReady: (
-    webproof: any,
-    ephemeralKey: string
-  ) => void
-
+  setClaimIsReady: () => void
   showTransgateDialog: () => void
 }
 

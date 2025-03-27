@@ -1,4 +1,7 @@
-import { JsonRpcSigner, BrowserProvider } from 'ethers'
+import {
+  JsonRpcSigner,
+  BrowserProvider
+} from 'ethers'
 import {
   TAuthorizationStep
 } from '@/types'

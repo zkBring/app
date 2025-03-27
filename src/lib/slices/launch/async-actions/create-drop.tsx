@@ -34,6 +34,8 @@ const createDrop = createAsyncThunk(
       }
     } = state
 
+    console.log('sssss')
+
     const { txHash, waitForDrop } = await sdk.createDrop({
       token: tokenAddress as string,
       expiration: 1742477528995,
@@ -44,6 +46,8 @@ const createDrop = createAsyncThunk(
       title: title as string,
       description: description as string
     })
+
+    console.log('sssss111')
 
 
     console.log({

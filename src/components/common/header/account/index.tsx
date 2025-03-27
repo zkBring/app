@@ -3,8 +3,7 @@ import {
   Account,
   Address,
   Profile,
-  Logout,
-  ConnectWalletStyled
+  Logout
 } from './styled-components'
 import { NetworkIndicator } from '../..'
 import {
@@ -14,6 +13,9 @@ import {
   LogoutIcon,
   LogoIcon
 } from '@/components/icons'
+import {
+  ConnectButton
+} from '@/components/common'
 import { useDisconnect } from "wagmi"
 import {
   useAppDispatch,
@@ -49,7 +51,7 @@ const AccountComponent = () => {
 
   if (!address) {  
     return <Profile>
-      <ConnectWalletStyled/>
+      <ConnectButton size='small'/>
     </Profile>
   }
 

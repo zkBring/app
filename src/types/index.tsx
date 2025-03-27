@@ -31,6 +31,7 @@ import type {
 import type TAuthorizationStep from "./authorization-step"
 import type TDropStatus from './drop-status'
 import type TFees from './fees'
+import type TWebproof from "./webproof"
 
 export {
   TDropStatus,
@@ -62,5 +63,6 @@ export {
   TZerionERC20Item,
   TZerionNetworkItem,
   TTransactionStage,
-  TTransactionStageStatus
+  TTransactionStageStatus,
+  TWebproof
 }

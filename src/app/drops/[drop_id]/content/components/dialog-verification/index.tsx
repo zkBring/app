@@ -20,7 +20,12 @@ import {
   VerificationProfileIcon,
   VerificationCoinIcon
 } from '@/components/icons'
-
+import { useDispatch } from 'react-redux'
+import {
+  setEphemeralKey,
+  setVerified,
+  setWebproof
+} from '@/lib/slices'
 
 import TProps from './types'
 import { Drop } from 'zkbring-sdk'
@@ -90,6 +95,9 @@ const DialogVerification: FC<TProps> = ({
   setClaimIsReady,
   showTransgateDialog
 }) => {
+
+  const dispatch = useDispatch()
+
   return <DialogStyled
     onClose={onClose}
     title="Generate webproof"
@@ -132,10 +140,11 @@ const DialogVerification: FC<TProps> = ({
             return alert('Already claimed by user')
           }
 
-          setClaimIsReady(
-            webproof,
-            ephemeralKey
-          )
+          dispatch(setEphemeralKey(ephemeralKey))
+          dispatch(setWebproof(webproof))
+          dispatch(setVerified(true))
+
+          setClaimIsReady()
         }}
       >
         Start verification

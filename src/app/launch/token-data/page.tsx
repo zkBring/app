@@ -40,7 +40,8 @@ import { useRouter } from 'next/navigation'
 import { useAppSelector } from '@/lib/hooks'
 import { ethers } from "ethers"
 import {
-  setTokenData
+  setTokenData,
+  setLoading
 } from '@/lib/slices'
 import { useDispatch } from 'react-redux'
 
@@ -60,16 +61,24 @@ const LaunchTokenData: FC = () => {
       address,
       chainId,
       signer
+    },
+    launch: {
+      loading
     }
   } = useAppSelector(state => ({
-    user: state.user
+    user: state.user,
+    launch: state.launch
   }))
 
   const dispatch = useDispatch()
 
-  // define
-  const loading = false
-  const userLoading = false
+  useEffect(() => {
+    dispatch(
+      setLoading(
+        false
+      )
+    )
+  }, [])
 
   const [
     currentType,
@@ -102,10 +111,7 @@ const LaunchTokenData: FC = () => {
   ] = useState<TTokenData | null>(null)
 
   useEffect(() => {
-    console.log({
-      address,
-      chainId
-    })
+
     if (!address || !chainId) { return }
     const init = async () => {
 
@@ -191,7 +197,7 @@ const LaunchTokenData: FC = () => {
               additionalTag: 'MAYBE SOON'
             }
           ]}
-          disabled={loading || userLoading}
+          disabled={true}
           onChange={(id) => {
             
           }}
@@ -203,7 +209,7 @@ const LaunchTokenData: FC = () => {
           </TokenBalance>
         </InputSubtitle>
         <SelectStyled
-          disabled={loading || userLoading}
+          disabled={loading}
           onChange={async ({ value }: { value: TTokenData | string}) => {
             if (typeof value === 'string') {
               if (currentType === 'ERC20' && chainId && address) {
@@ -278,6 +284,7 @@ const LaunchTokenData: FC = () => {
         <ButtonsContainer>
           <Button
             appearance='action'
+            loading={loading}
             disabled={defineIfNextDisabled()}
             onClick={() => {
               if (defineIfNextDisabled()) {
@@ -289,6 +296,13 @@ const LaunchTokenData: FC = () => {
                 totalClaims,
                 tokensPerClaim
               }))
+
+              dispatch(
+                setLoading(
+                  true
+                )
+              )
+
               router.push(`/launch/drop-description`)
             }}
           >

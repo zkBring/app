@@ -35,7 +35,7 @@ const initialState: TInitialState = {
 }
 
 const launchSlice = createSlice({
-  name: 'link',
+  name: 'launch',
   initialState,
   reducers: {
     setLaunchTitle: (state, action: PayloadAction<string>) => ({

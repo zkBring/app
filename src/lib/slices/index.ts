@@ -13,14 +13,20 @@ import LaunchSlice, {
   clearLaunch
 } from './launch'
 
-
-
 import UserSlice, {
   setUserChainId,
   setUserAddress,
   setSigner,
-  setConnectedUserData
+  setConnectedUserData,
+  setAuthorizationStep
 } from './user'
+
+import VerifySlice, {
+  setEphemeralKey,
+  setVerifyLoading,
+  setVerified,
+  setWebproof
+} from './verify'
 
 import TokenSlice, {
   setTokenAddress,
@@ -52,11 +58,18 @@ import LinkSlice, {
 
 
 export {
+  VerifySlice,
+  setEphemeralKey,
+  setVerifyLoading,
+  setVerified,
+  setWebproof,
+
   UserSlice,
   setUserChainId,
   setUserAddress,
   setSigner,
   setConnectedUserData,
+  setAuthorizationStep,
 
   LinkSlice,
   setLinkTxHash,

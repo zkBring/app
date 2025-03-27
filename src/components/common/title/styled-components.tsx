@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const TitleComponent = styled.h1`
-
   font-family: 'FK Roman';
   font-style: normal;
   font-weight: 400;
