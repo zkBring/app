@@ -3,7 +3,7 @@ import { OnchainKitProvider } from '@coinbase/onchainkit';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { baseSepolia } from 'wagmi/chains'; // add baseSepolia for testing
 import { type ReactNode } from 'react';
-import { type State, WagmiProvider } from 'wagmi';
+import { type State, WagmiProvider } from 'wagmi'
 import '@coinbase/onchainkit/styles.css'
 
 import { config } from '@/app/configs/wagmi'
