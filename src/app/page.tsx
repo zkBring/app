@@ -1,13 +1,13 @@
 'use client'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function Page() {
   const router = useRouter()
+  useEffect(() => {
+    router.push('/drops')
+  }, [])
   return (
-    <div>
-      <button type="button" onClick={() => router.push('/drops')}>
-        Check drops
-      </button>
-    </div>
+    null
   )
 }
