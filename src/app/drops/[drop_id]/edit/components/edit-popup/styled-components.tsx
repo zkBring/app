@@ -2,11 +2,11 @@ import styled from "styled-components"
 import {
   Textarea,
   Button,
-  Popup
+  Dialog
 } from 'components/common'
 
 
-export const PopupStyled = styled(Popup)`
+export const DialogStyled = styled(Dialog)`
 
 `
 

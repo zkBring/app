@@ -34,7 +34,3 @@ export const TextStyled = styled(Text)`
   font-size: 16px;
   color : ${props => props.theme.secondaryTextColor};
 `
-
-export const ButtonStyled = styled(Button)`
-  margin-bottom: 2px;
-`

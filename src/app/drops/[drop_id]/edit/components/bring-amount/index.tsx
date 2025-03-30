@@ -10,25 +10,33 @@ import {
 import TProps from './types'
 
 
-
 const BringAmount: FC<TProps> = ({
   address,
   signer,
   isPublic,
   action
 }) => {
+  
+  console.log(
+    address,
+    signer
+  )
   const [
     bringAmount,
     setBringAmount
   ] = useState<null | string>(null)
 
   useEffect(() => {
+    if (!signer || !address) {
+      return 
+    }
     const init = async () => {
       const bringAmount = await getERC20TokenBalance(
-        '0x02E739740B007bd5E4600b9736A143b6E794D223',
+        '0xAEBd651C93Cd4EaE21DD2049204380075548aDd5',
         address,
         signer
       )
+
       if (bringAmount) {
         const amoutFormatted = ethers.formatUnits(
           bringAmount.tokenAmount,
@@ -41,7 +49,10 @@ const BringAmount: FC<TProps> = ({
     }
 
     init()
-  }, [])
+  }, [
+    signer,
+    address
+  ])
 
   return <WidgetStyled title="Get featured on Bring platform">
 

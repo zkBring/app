@@ -89,6 +89,10 @@ const theme = {
   stageNextTextColor: 'rgba(188, 188, 188, .4)',
 
 
+  tokenCounterBackgroundFilledColor: 'rgba(56, 150, 106, .05)',
+  tokenCounterBackgroundColor: '#1A1A1C',
+
+
 }
 
 export default theme

@@ -40,4 +40,8 @@ export const ConnectWalletStyled = styled(ConnectWallet)<TProps>`
     background-color: ${(props) =>
       props.theme && props.theme.buttonActionBackgroundHoverColor};
   }
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `

@@ -7,9 +7,12 @@ import {
   Container,
   Title,
   Description,
-  ShowMore
+  ShowMore,
+  ImageStyled
 } from './styled-components'
 import TProps from './types'
+import ZKBringLogo from '@/images/zkbring-logo.png'
+
 const VALUE_LENGTH = 240
 
 const defineDescription = (
@@ -42,6 +45,12 @@ const DropDescription: FC<TProps> = ({
   )
 
   return <Container>
+    <ImageStyled
+      width={108}
+      height={108}
+      alt='ZKBring Logo'
+      src={ZKBringLogo}
+    />
     <Title>{title}</Title>
     {description && <Description>
       {descriptionFormatted}

@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 import {
-  PopupStyled,
+  DialogStyled,
   TextAreaStyled,
   ButtonStyled
 } from './styled-components'
@@ -18,7 +18,7 @@ const EditPopup: FC<TProps> = ({
     setValue
   ] = useState<string>(initialValue)
 
-  return <PopupStyled
+  return <DialogStyled
     onClose={onClose}
     title='Update description'
   >
@@ -46,7 +46,7 @@ const EditPopup: FC<TProps> = ({
     </ButtonStyled>
 
 
-  </PopupStyled>
+  </DialogStyled>
 }
 
 export default EditPopup

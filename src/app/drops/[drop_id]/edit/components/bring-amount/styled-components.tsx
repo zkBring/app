@@ -15,4 +15,5 @@ export const WidgetStyled = styled(Widget)`
 `
 
 export const TextStyled = styled(Text)`
+  margin-bottom: 20px;
 `

@@ -59,23 +59,22 @@ const defineButton = (
         onClick={approve}
         appearance='action'
         loading={loading}
+        disabled={loading}
       >
         Approve
       </Button>
 
     case 'launch':
-      return <Button onClick={launch} appearance='action' loading={loading}>
+    case 'created':
+      return <Button
+        onClick={launch}
+        appearance='action'
+        loading={loading}
+        disabled={loading}
+      >
         Launch
       </Button>
 
-    case 'created':
-      return <Button
-        onClick={goToDrop}
-        appearance='action'
-        loading={loading}
-      >
-        Go to Drop
-      </Button>
   }
 
 }
@@ -186,6 +185,14 @@ const LaunchTransaction: FC = () => {
   }, [
     signer,
     sdk
+  ])
+
+  useEffect(() => {
+    if (transactionStage === 'created') {
+      router.push(`/drops/${createdDropId}`)
+    }
+  }, [
+    transactionStage
   ])
 
 
