@@ -3,26 +3,27 @@ import {
   FC
 } from 'react'
 import {
-  Container
-} from './styled-components'
-import {
   ConnectButton
 } from '@/components/common'
 import {
-  useAppDispatch
-} from '@/lib/hooks'
-
-import { useAppKit } from '@reown/appkit/react'
-import { useAccount, useDisconnect } from "wagmi"
+  TitleStyled,
+  TextStyled,
+  ImageStyled,
+  Container
+} from '../../styled-components'
+import Image from '@/images/connect-image.png'
 
 
 const Connect: FC = () => {
-  const dispatch = useAppDispatch()
-  // const { open } = useAppKit()
-  const { address, isConnected, chain } = useAccount()
-  const { disconnect } = useDisconnect()
-
   return <Container>
+    <ImageStyled
+      src={Image}
+      width={153}
+      height={117}
+      alt='Connection image'
+    />
+    <TitleStyled>Connect wallet</TitleStyled>
+    <TextStyled>Enable zkBring to view your address and suggest transactions for approval</TextStyled>
     <ConnectButton />
   </Container>
 }

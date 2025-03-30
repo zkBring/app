@@ -4,6 +4,7 @@ import Verify from './verify'
 import Claim from './claim'
 import DialogVerification from './dialog-verification'
 import DialogTransgateNotAvailable from './dialog-transgate-not-available'
+import Share from './share'
 
 export {
   ClaimsCounter,
@@ -11,5 +12,6 @@ export {
   Verify,
   Claim,
   DialogVerification,
-  DialogTransgateNotAvailable
+  DialogTransgateNotAvailable,
+  Share
 }

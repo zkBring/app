@@ -3,6 +3,11 @@ import Link from 'next/link'
 
 export const Container = styled.nav`
   display: flex;
+
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `
 
 export const LinkStyledActiveClassName = 'LinkStyledActive'

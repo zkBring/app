@@ -18,7 +18,8 @@ import {
   Verify,
   Claim,
   DialogVerification,
-  DialogTransgateNotAvailable
+  DialogTransgateNotAvailable,
+  Share
 } from './components'
 import {
   InputPenIcon
@@ -130,6 +131,8 @@ const Content: FC<TProps> = ({
         title={title}
         description={description}
       />
+
+      <Share />
 
       <IconedButton size='extra-small' to={`/drops/${address}/edit`}>
         <InputPenIcon />Edit drop

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useRef } from 'react'
 import Select from 'react-select'
 import { IProps } from './types'
 import {
@@ -20,11 +20,13 @@ const SelectComponent: FC<IProps> = ({
   note,
   notFoundActiveCondition,
 }) => {
+  const ref = useRef(null)
   return (
     <Container>
       {title && <SelectTitle>{title}</SelectTitle>}
       <Select
         options={options}
+        ref={ref}
         className={`${className || ''} ${SelectStyledClass}`}
         isDisabled={disabled}
         noOptionsMessage={({ inputValue }) => {

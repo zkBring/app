@@ -9,9 +9,10 @@ export const Container = styled.div`
   .${SelectStyledClass} {
     & > div {
       min-height: 44px;
+      background: ${props => props.theme.widgetBackgroundColor};
       border-radius: 8px;
       border: 1px solid
-        ${(props) => (props.theme && props.theme.primaryBorderColor)};
+        ${(props) => (props.theme && props.theme.secondaryBorderColor)};
 
       & > div {
         & > div {

@@ -17,8 +17,6 @@ import {
 import Account from './account'
 
 const PageHeader: FC = () => {
-
-
   const {
     user: {
       address,
