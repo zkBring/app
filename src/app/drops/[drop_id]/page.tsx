@@ -27,13 +27,8 @@ const getInitialData = cache(async (drop_id: string) => {
 
     const sdk = createSDK({})
     const drop = await sdk.getDrop(drop_id)
-    const tokenData = await getTokenERC20Data(
-      drop.token,
-      BASE_SEPOLIA_CHAIN_ID
-    )
     return {
-      drop,
-      tokenData
+      drop
     }
   } catch (err: unknown) {
     console.log({
@@ -56,8 +51,7 @@ export default async function Drop({
   }
 
   const {
-    drop,
-    tokenData
+    drop
   } = data
 
   const {
@@ -84,10 +78,11 @@ export default async function Drop({
       description,
       maxClaims,
       zkPassAppId,
-      zkPassSchemaId
+      zkPassSchemaId,
+      decimals: 18,
+      symbol: 'BRING'
     }}
 
-    tokenData={tokenData}
   />
 }
 

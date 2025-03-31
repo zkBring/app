@@ -29,10 +29,10 @@ export const ConnectWalletStyled = styled(ConnectWallet)<TProps>`
   `}
 
   ${props => props.size === 'small' && css`
-    padding: 12px 24px;
-    height: 40px;
-    font-size: 12px;
-    border-radius: 12px;
+    padding: 4px 8px;
+    height: 28px;
+    font-size: 14px;
+    border-radius: 8px;
   `}
 
 

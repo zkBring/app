@@ -6,20 +6,63 @@ import {
 import {
   Container,
   Title,
-  LinkStyled
-} from './styled-components'
+  LinkStyled,
+  Content,
+  ImageStyled,
+  ImageContainer,
+  AudienceUsers,
+  TitleContainer
+} from './styled-components'  
+import { TProps } from './types'
+import { ethers } from 'ethers'
+import {
+  shortenString
+} from '@/utils'
+import {
+  AudienceBlock,
+  DropData
+} from './components'
+import ZKBringLogo from '@/images/zkbring-logo.png'
 
-import { TDrop } from './types'
-
-const Drop: FC<TDrop> = ({
-  title,
-  address
+const Drop: FC<TProps> = ({
+  drop
 }) => {
-  return <LinkStyled href={`/drops/${address}`}>
+  const {
+    title,
+    address,
+    maxClaims,
+    amount,
+    symbol,
+    decimals
+  } = drop
+
+  const amountFormatted = ethers.formatUnits(amount, decimals)
+
+  return <LinkStyled href={`/drops/0x70e968304ddCf560Cc40826e02E4562FB86A8F92`}>
     <Container>
-      <Title>
-        {title}
-      </Title>
+      <AudienceBlock drop={drop} />
+      <Content>
+        <AudienceUsers>
+          For X users
+        </AudienceUsers>
+
+        <TitleContainer>
+          <Title>
+            {shortenString(amountFormatted)} {symbol}
+          </Title>
+
+          <ImageContainer>
+            <ImageStyled
+              src={ZKBringLogo}
+              width={18}
+              height={18}
+              alt="Token"
+            />
+          </ImageContainer>
+        </TitleContainer>
+        <DropData drop={drop}/>
+      </Content>
+      
     </Container>
   </LinkStyled>
 }

@@ -1,15 +1,11 @@
 'use server'
-
 import {
   generateMetadataUtil,
   createSDK,
-  defineJSONRPC
 } from '@/utils'
 import type { Metadata } from 'next'
 import { cache } from 'react'
 import Content from './content'
-import { drops as dropsApi } from '../api'
-import { ethers } from 'ethers'
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataUtil({
@@ -35,6 +31,7 @@ const getInitialData = cache(async () => {
 
 export default async function Drops() {
   const data = await getInitialData()
+
   if (!data) {
     return <h1>Not found</h1>
   }
@@ -48,10 +45,11 @@ export default async function Drops() {
     description: '',
     maxClaims: drop.maxClaims,
     zkPassAppId: '',
-    zkPassSchemaId: ''
+    zkPassSchemaId: '',
+    decimals: 18,
+    symbol: 'BRING'
   }))
 
-  console.log({ drops })
 
   return <Content drops={drops || []} />
 }

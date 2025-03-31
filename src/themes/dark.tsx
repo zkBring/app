@@ -93,6 +93,14 @@ const theme = {
   tokenCounterBackgroundColor: '#1A1A1C',
 
 
+
+  dropItemBackgroundColor: '#101010',
+  dropItemBorderColor: '#272727',
+  
+
+  dashedProgressBarEmpty: '#2D2D30',
+  dashedProgressBarFilled: '#1A7771'
+
 }
 
 export default theme

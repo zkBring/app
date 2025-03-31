@@ -1,3 +1,5 @@
+import DashedProgressBar from './dashed-progress-bar'
+
 import Loader from './loader'
 import Button from "./button"
 import Title from './title'
@@ -47,6 +49,7 @@ import {
 } from './table/styled-components'
 
 export {
+  DashedProgressBar,
   TableRow,
   TableText,
   TableValue,
