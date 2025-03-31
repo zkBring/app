@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import {
   ConnectWallet
   // @ts-ignore
-} from '@coinbase/onchainkit/wallet'
+} from 'zkbring-onchainkit/wallet'
 import TProps from './types'
 
 export const ConnectWalletStyled = styled(ConnectWallet)<TProps>`

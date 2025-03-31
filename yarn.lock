@@ -94,23 +94,6 @@
     "@babel/helper-string-parser" "^7.25.9"
     "@babel/helper-validator-identifier" "^7.25.9"
 
-"@coinbase/onchainkit@^0.37.8":
-  version "0.37.8"
-  resolved "https://registry.yarnpkg.com/@coinbase/onchainkit/-/onchainkit-0.37.8.tgz#2c69233878e5b17664fb7cacc78abd48c2f97038"
-  integrity sha512-XuY364nz9GZY++l0Zqd8KcmL2xeRzmYRxHBhf2xyi1QoXm0n2bM6xz3rIZFFCdw0Hr0qpPak/lAp5GhE2siwKA==
-  dependencies:
-    "@farcaster/frame-sdk" "^0.0.28"
-    "@farcaster/frame-wagmi-connector" "^0.0.16"
-    "@tanstack/react-query" "^5"
-    clsx "^2.1.1"
-    graphql "^14 || ^15 || ^16"
-    graphql-request "^6.1.0"
-    qrcode "^1.5.4"
-    tailwind-merge "^2.3.0"
-    tailwindcss-animate "^1.0.7"
-    viem "^2.23.0"
-    wagmi "^2.14.11"
-
 "@coinbase/wallet-sdk@4.3.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@coinbase/wallet-sdk/-/wallet-sdk-4.3.0.tgz#03b8fce92ac2b3b7cf132f64d6008ac081569b4e"
@@ -6871,6 +6854,23 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+zkbring-onchainkit@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/zkbring-onchainkit/-/zkbring-onchainkit-0.0.1.tgz#3977f55fb37e07f334e23027602b27d7cda3eabd"
+  integrity sha512-FJA295qSuepTImG8EU17RvM2wVCGvvUrQksuMUyDdLORqaOSasX1V7vL67DOG/dxKw5XC4wbDqjr8Jmpcf13Rg==
+  dependencies:
+    "@farcaster/frame-sdk" "^0.0.28"
+    "@farcaster/frame-wagmi-connector" "^0.0.16"
+    "@tanstack/react-query" "^5"
+    clsx "^2.1.1"
+    graphql "^14 || ^15 || ^16"
+    graphql-request "^6.1.0"
+    qrcode "^1.5.4"
+    tailwind-merge "^2.3.0"
+    tailwindcss-animate "^1.0.7"
+    viem "^2.23.0"
+    wagmi "^2.14.11"
 
 zkbring-sdk@0.0.1-alpha-rc.4:
   version "0.0.1-alpha-rc.4"

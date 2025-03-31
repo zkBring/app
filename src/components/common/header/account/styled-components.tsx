@@ -3,10 +3,6 @@ import styled, { css } from 'styled-components'
 import {
   TAccount
 } from '../types'
-import {
-  ConnectWallet
-  // @ts-ignore
-} from '@coinbase/onchainkit/wallet'
 
 export const Account = styled.div`
   position: relative;
