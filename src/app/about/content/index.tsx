@@ -9,7 +9,6 @@ import {
   Page
 } from '@/components/common'
 import { useEffect, FC } from 'react'
-import { drops as dropsApi } from '@/app/api'
 
 const Content: FC = () => {
 

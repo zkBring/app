@@ -25,7 +25,6 @@ import {
   TDrop,
   TTokenData
 } from '@/types'
-import { drops as dropsApi } from '@/app/api'
 import { useParams } from 'next/navigation'
 import {
   generateMetadataUtil,
@@ -127,7 +126,9 @@ const Edit: FC = () => {
           description,
           maxClaims,
           zkPassAppId,
-          zkPassSchemaId
+          zkPassSchemaId,
+          decimals: 18,
+          symbol: 'BRING'
         })
 
         setTokenData(tokenData)

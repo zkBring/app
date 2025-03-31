@@ -8,7 +8,7 @@ import {
   LinkStyledActiveClassName
 } from './styled-components'
 import {
-  BookIcon,
+  AlienIcon,
   DropIcon,
   SatelliteIcon
 } from '@/components/icons'
@@ -36,17 +36,17 @@ const Menu: FC = () => {
           Explore
         </LinkStyled>
       </MenuItem>
-      <MenuItem>
-        <LinkStyled href='/about' className={pathname === "/about" ? LinkStyledActiveClassName : undefined}>
-          <BookIcon /> About
-        </LinkStyled>
-      </MenuItem>
       {address && <MenuItem>
         <LinkStyled href='/drops/own' className={pathname === "/drops/own" ? LinkStyledActiveClassName : undefined}>
           <SatelliteIcon />
           My Drops
         </LinkStyled>
       </MenuItem>}
+      <MenuItem>
+        <LinkStyled href='/about' className={pathname === "/about" ? LinkStyledActiveClassName : undefined}>
+          <AlienIcon /> About
+        </LinkStyled>
+      </MenuItem>
     </MenuList>
   </Container>
 }

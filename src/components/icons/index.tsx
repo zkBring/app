@@ -32,9 +32,14 @@ import VerificationProfileIcon from './verification-profile-icon'
 import SatelliteIcon from './satellite-icon'
 import VerificationCoinIcon from './verification-coin-icon'
 import WarpcastIcon from './warpcast-icon'
+import AudienceXIcon from './audience-x-icon'
+import AudienceTwitchIcon from './audience-twitch-icon'
+import AlienIcon from './alien-icon'
 
 export {
   VerificationCheckIcon,
+  AudienceXIcon,
+  AudienceTwitchIcon,
   VerificationLockIcon,
   VerificationClickIcon,
   VerificationProfileIcon,
@@ -67,5 +72,6 @@ export {
   DropAudienceIcon,
   SatelliteIcon,
   VerificationCoinIcon,
-  WarpcastIcon
+  WarpcastIcon,
+  AlienIcon
 }

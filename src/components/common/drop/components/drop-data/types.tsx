@@ -1,5 +1,7 @@
 import { TDrop } from "@/types"
 
-export type TProps = {
+type TProps = {
   drop: TDrop
 }
+
+export default TProps

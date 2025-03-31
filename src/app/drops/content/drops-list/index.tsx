@@ -11,14 +11,11 @@ import { TProps } from './types'
 const DropsList: FC<TProps> = ({
   drops
 }) => {
-  console.log({
-    drops
-  })
+
   return <Drops>
     {drops.map(drop => {
       return <Drop
-        title={drop.title}
-        address={drop.address}
+        drop={drop}
       />
     })}
   </Drops>

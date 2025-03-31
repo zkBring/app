@@ -46,8 +46,7 @@ import {
 import { useAppSelector } from '@/lib/hooks'
 
 const Content: FC<TProps> = ({
-  drop,
-  tokenData
+  drop
 }) => {
 
   const [ dropInstance, setDropInstance ] = useState<Drop | null>(null)
@@ -90,12 +89,10 @@ const Content: FC<TProps> = ({
     address,
     amount,
     description,
-    maxClaims
-  } = drop
-  const {
+    maxClaims,
     decimals,
     symbol
-  } = tokenData
+  } = drop
   
 // encrypted_multiscan_qr_enc_code: "GMqe7zrdsrNp"
 // encrypted_multiscan_qr_secret: "3rf9bbAuiHyF"

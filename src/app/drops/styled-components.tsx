@@ -6,7 +6,8 @@ export const Container = styled.div`
 `
 
 export const Controls = styled.div`
-  display: grid;
-  grid-template-columns: 1fr min-content;
-  gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 `
