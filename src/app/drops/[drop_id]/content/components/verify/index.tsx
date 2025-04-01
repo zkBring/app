@@ -12,11 +12,21 @@ import {
   StepTitle
 } from '../../styled-components'
 import TProps from './types'
+import { useAppSelector } from '@/lib/hooks'
 
 const Verify: FC<TProps> = ({
   onStart
 }) => {
-  return <Container>
+
+  const {
+    verify: {
+      verified
+    }
+  } = useAppSelector(state => ({
+    verify: state.verify
+  }))
+
+  return <Container disabled={verified}>
     <StepTitle>
       1. Verify Eligibility
     </StepTitle>
@@ -27,6 +37,7 @@ const Verify: FC<TProps> = ({
         We use zkPass with zkTLS Webproof technology to verify your eligibility without accessing your credentials or personal data.
       </TextStyled>
       <ButtonStyled
+        disabled={verified}
         appearance='action'
         size='extra-small'
         onClick={onStart}

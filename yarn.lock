@@ -962,11 +962,6 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@linkdrop/contracts@^1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@linkdrop/contracts/-/contracts-1.2.6.tgz#7dae84ee39517410a95fbc08bddc0e3ee3186e4e"
-  integrity sha512-YHuqr/+657cFMys10WPgiWg1Xsdryp9hrt+CwS8Lxa4V9mhk+3gZdiTOK0doH4/DZ5U7SIF5FW4iFx3c2FXTAg==
-
 "@lit-labs/ssr-dom-shim@^1.0.0", "@lit-labs/ssr-dom-shim@^1.1.0", "@lit-labs/ssr-dom-shim@^1.2.0":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@lit-labs/ssr-dom-shim/-/ssr-dom-shim-1.3.0.tgz#a28799c463177d1a0b0e5cefdc173da5ac859eb4"
@@ -1341,7 +1336,7 @@
   resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.7.0.tgz#5d9e33af2c7d04fee35de1519b80c958b2e35e39"
   integrity sha512-HXydb0DgzTpDPwbVeDGCG1gIu7X6+AuU6Zl6av/E/KG8LMsvPntvq+w17CHRpKBmN6Ybdrt1eP3k4cj8DJa78w==
 
-"@noble/hashes@1.7.1", "@noble/hashes@^1.1.2", "@noble/hashes@^1.3.1", "@noble/hashes@^1.4.0", "@noble/hashes@^1.5.0", "@noble/hashes@~1.7.1":
+"@noble/hashes@1.7.1", "@noble/hashes@^1.3.1", "@noble/hashes@^1.4.0", "@noble/hashes@^1.5.0", "@noble/hashes@~1.7.1":
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.7.1.tgz#5738f6d765710921e7a751e00c20ae091ed8db0f"
   integrity sha512-B8XBPsn4vT/KJAGqDzbwztd+6Yte3P4V7iafm24bxgDe/mlRuK6xmWPuCNrKt2vDafZ8MfJLlchDG/vYafQEjQ==
@@ -1575,16 +1570,6 @@
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.1.2.tgz#821f8442f4175d8f0467b9daf26e3a18e2d02af2"
   integrity sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==
-
-"@spruceid/siwe-parser@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@spruceid/siwe-parser/-/siwe-parser-2.1.2.tgz#3e13e7d3ac0bfdaf109a07342590eb21daee2fc3"
-  integrity sha512-d/r3S1LwJyMaRAKQ0awmo9whfXeE88Qt00vRj91q5uv5ATtWIQEGJ67Yr5eSZw5zp1/fZCXZYuEckt8lSkereQ==
-  dependencies:
-    "@noble/hashes" "^1.1.2"
-    apg-js "^4.3.0"
-    uri-js "^4.4.1"
-    valid-url "^1.0.9"
 
 "@stablelib/aead@^1.0.1":
   version "1.0.1"
@@ -2480,11 +2465,6 @@ anymatch@^3.1.3:
   dependencies:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
-
-apg-js@^4.3.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/apg-js/-/apg-js-4.4.0.tgz#09dcecab0731fbde233b9f2352fdd2d07e56b2cf"
-  integrity sha512-fefmXFknJmtgtNEXfPwZKYkMFX4Fyeyz+fNF6JWp87biGOPslJbCBVU158zvKRZfHBKnJDy8CMM40oLFGkXT8Q==
 
 argparse@^2.0.1:
   version "2.0.1"
@@ -5804,16 +5784,6 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-siwe@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/siwe/-/siwe-2.3.2.tgz#0794ae25f734f3068de0ab093ddd2f7867bc2d67"
-  integrity sha512-aSf+6+Latyttbj5nMu6GF3doMfv2UYj83hhwZgUF20ky6fTS83uVhkQABdIVnEuS8y1bBdk7p6ltb9SmlhTTlA==
-  dependencies:
-    "@spruceid/siwe-parser" "^2.1.2"
-    "@stablelib/random" "^1.0.1"
-    uri-js "^4.4.1"
-    valid-url "^1.0.9"
-
 socket.io-client@^4.5.1:
   version "4.8.1"
   resolved "https://registry.yarnpkg.com/socket.io-client/-/socket.io-client-4.8.1.tgz#1941eca135a5490b94281d0323fe2a35f6f291cb"
@@ -6320,7 +6290,7 @@ unstorage@^1.9.0:
     ofetch "^1.4.1"
     ufo "^1.5.4"
 
-uri-js@^4.2.2, uri-js@^4.4.1:
+uri-js@^4.2.2:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/uri-js/-/uri-js-4.4.1.tgz#9b1a52595225859e55f669d928f88c6c57f2a77e"
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
@@ -6374,11 +6344,6 @@ uuid@^9.0.1:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.1.tgz#e188d4c8853cc722220392c424cd637f32293f30"
   integrity sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==
-
-valid-url@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/valid-url/-/valid-url-1.0.9.tgz#1c14479b40f1397a75782f115e4086447433a200"
-  integrity sha512-QQDsV8OnSf5Uc30CKSwG9lnhMPe6exHtTXLRYX8uMwKENy640pU+2BgBL0LRbDh/eYRahNCS7aewCx0wf3NYVA==
 
 valtio@1.11.2:
   version "1.11.2"
@@ -6872,10 +6837,10 @@ zkbring-onchainkit@^0.0.1:
     viem "^2.23.0"
     wagmi "^2.14.11"
 
-zkbring-sdk@0.0.1-alpha-rc.4:
-  version "0.0.1-alpha-rc.4"
-  resolved "https://registry.yarnpkg.com/zkbring-sdk/-/zkbring-sdk-0.0.1-alpha-rc.4.tgz#1714deb7533a312068a50852a9d6ae8ea26c3f0e"
-  integrity sha512-45ozkvkeF9jI29Z8BLj0CfMxIuknX/8Ws+wPIlk9vBfMNO87oMkSD/GL6eX16I+7C1KF8Zmgy1H55EWff8X7pQ==
+zkbring-sdk@0.0.1-alpha-rc.5:
+  version "0.0.1-alpha-rc.5"
+  resolved "https://registry.yarnpkg.com/zkbring-sdk/-/zkbring-sdk-0.0.1-alpha-rc.5.tgz#8ed0d0b49082dc743e35f7d4189e536443bd7e2f"
+  integrity sha512-W2vstiG0ZRFpO8IvUd+ccIpPXUb/Im23NP3diiRI/FsI4haN7b/ry5qJ895qm59Q2NwjKYXfYT+7mLzYACDSVQ==
   dependencies:
     typescript "^4.8.2"
 

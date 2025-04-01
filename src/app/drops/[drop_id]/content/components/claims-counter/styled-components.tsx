@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {
   Widget,
-  ProgressBar
+  DashedProgressBar
 } from '@/components/common'
 
 export const WidgetStyled = styled(Widget)`
@@ -23,4 +23,4 @@ export const LabelValue = styled.span`
   color: ${props => props.theme.secondaryTextColor};
 `
 
-export const ProgressBarStyled = styled(ProgressBar)``
+export const DashedProgressBarStyled = styled(DashedProgressBar)``
