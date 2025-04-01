@@ -130,11 +130,10 @@ const Content: FC<TProps> = ({
       />
 
       <Share />
-{/* 
-      <IconedButton size='extra-small' to={`/drops/${address}/edit`}>
-        <InputPenIcon />Edit drop
-      </IconedButton> */}
 
+      {userAddress && <IconedButton size='extra-small' to={`/drops/${address}/edit`}>
+        <InputPenIcon />Edit drop
+      </IconedButton>}
 
       <StatsStyled
         stats={[
@@ -176,7 +175,6 @@ const Content: FC<TProps> = ({
         recipient={userAddress}
       />
 
-    {/* Go to check verification <LinkStyled href={link}>here</LinkStyled> */}
     </Container>
   </Page>
 }

@@ -15,11 +15,17 @@ export const ConnectWalletStyled = styled(ConnectWallet)<TProps>`
   justify-content: center;
   transition: color 0.3s, background-color 0.3s, border-color 0.3s;
   border: none;
+  width: fit-content;
   background-color: ${(props) =>
     props.theme && props.theme.buttonActionBackgroundColor};
   color: ${(props) => props.theme && props.theme.additionalTextColor};
   box-sizing: border-box;
+  min-width: auto;
 
+  &:hover {
+    background-color: ${(props) =>
+      props.theme && props.theme.buttonActionBackgroundHoverColor};
+  }
 
   ${props => props.size === 'default' && css`
     padding: 14px 30px;
@@ -35,11 +41,22 @@ export const ConnectWalletStyled = styled(ConnectWallet)<TProps>`
     border-radius: 8px;
   `}
 
+  ${props => props.appearance === 'default' && css`
+    background-color: ${(props) => props.theme && props.theme.buttonDefaultBackgroundColor};
+    border: 1px solid ${(props) => props.theme && props.theme.buttonDefaultBorderColor};
 
-  &:hover {
-    background-color: ${(props) =>
-      props.theme && props.theme.buttonActionBackgroundHoverColor};
-  }
+    span {
+      color: ${(props) => props.theme && props.theme.secondaryTextColor};
+    }
+
+    &:hover {
+      background-color: ${(props) =>
+        props.theme && props.theme.buttonDefaultBackgroundHoverColor};
+    }
+  `}
+
+
+
 
   @media (max-width: 600px) {
     display: none;

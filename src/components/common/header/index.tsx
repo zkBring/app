@@ -1,7 +1,8 @@
 'use client'
 import { FC } from 'react'
 import {
-  Header
+  Header,
+  LogoLink
 } from './styled-components'
 import {
   LogoutIcon,
@@ -36,7 +37,9 @@ const PageHeader: FC = () => {
   }))
 
   return <Header>
-    <LogoIcon />
+    <LogoLink to='/drops'>
+      <LogoIcon />
+    </LogoLink>
     <Menu />
     <Account />
   </Header>

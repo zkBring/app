@@ -31,7 +31,7 @@ export const Button = styled.button.attrs((props) => ({
   transition: color 0.3s, background-color 0.3s, border-color 0.3s;
   background-color: ${(props) =>
     props.theme && props.theme.buttonDefaultBackgroundColor};
-  color: ${(props) => props.theme && props.theme.primaryTextColor};
+  color: ${(props) => props.theme && props.theme.secondaryTextColor};
   border: 1px solid;
   border-color: ${(props) => props.theme && props.theme.primaryBorderColor};
   box-sizing: border-box;

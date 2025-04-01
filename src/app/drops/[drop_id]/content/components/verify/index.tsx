@@ -6,8 +6,13 @@ import {
   WidgetStyled,
   TextStyled,
   ButtonStyled,
-  Container
+  Container,
+  SmallTextStyled,
+  LinkStyled,
+  LockIconStyled,
+  XIconStyled
 } from './styled-components'
+
 import {
   StepTitle
 } from '../../styled-components'
@@ -32,18 +37,26 @@ const Verify: FC<TProps> = ({
     </StepTitle>
     <WidgetStyled
       title='Users who follow @zkBring'
+      finished={verified}
+      image={<XIconStyled />}
     >
-      <TextStyled>
-        We use zkPass with zkTLS Webproof technology to verify your eligibility without accessing your credentials or personal data.
-      </TextStyled>
-      <ButtonStyled
-        disabled={verified}
-        appearance='action'
-        size='extra-small'
-        onClick={onStart}
-      >
-        Verify with zkTLS
-      </ButtonStyled>
+      {!verified && <>
+        <TextStyled>
+          We use zkPass with zkTLS Webproof technology to verify your eligibility without accessing your credentials or personal data.
+        </TextStyled>
+        <ButtonStyled
+          disabled={verified}
+          appearance='action'
+          size='extra-small'
+          onClick={onStart}
+        >
+          Verify with zkTLS
+        </ButtonStyled>
+
+        <SmallTextStyled>
+          <LockIconStyled />Your data remains private with zkTLS Webproof. <LinkStyled href="#">Learn more</LinkStyled>
+        </SmallTextStyled>
+      </>}
     </WidgetStyled>
   </Container>
 }

@@ -31,6 +31,7 @@ import type TAuthorizationStep from "./authorization-step"
 import type TDropStatus from './drop-status'
 import type TFees from './fees'
 import type TWebproof from "./webproof"
+import type TButtonAppearance from "./button-appearance"
 
 export {
   TDropStatus,
@@ -63,5 +64,6 @@ export {
   TTransactionStage,
   TTransactionStageStatus,
   TWebproof,
-  TEnvironment
+  TEnvironment,
+  TButtonAppearance
 }

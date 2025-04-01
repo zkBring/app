@@ -51,21 +51,19 @@ import {
 } from '@/components/icons'
 import { useAppSelector } from '@/lib/hooks'
 import { JsonRpcSigner } from 'ethers'
+import { Drop } from 'zkbring-sdk'
 
-const getInitialData = async (drop_id: string) => {
+const getInitialData = async (
+  drop_id: string,
+  signer: JsonRpcSigner
+) => {
   try {
-
-    const BASE_SEPOLIA_CHAIN_ID = 84532
-
-    const sdk = createSDK({})
+    const sdk = createSDK({
+      signer
+    })
     const drop = await sdk.getDrop(drop_id)
-    const tokenData = await getTokenERC20Data(
-      drop.token,
-      BASE_SEPOLIA_CHAIN_ID
-    )
     return {
-      drop,
-      tokenData
+      drop
     }
   } catch (err: unknown) {
     console.log({
@@ -85,24 +83,38 @@ const Edit: FC = () => {
   ] = useState<TDrop | null>(null)
 
   const [
-    tokenData,
-    setTokenData
-  ] = useState<TTokenData | null>(null)
+    currentDropInstance,
+    setCurrentDropInstance
+  ] = useState<Drop | null>(null)
+
 
   const [
     loading,
     setLoading
   ] = useState<boolean>(true)
 
+  const {
+    user: {
+      address,
+      chainId,
+      signer
+    }
+  } = useAppSelector(state => ({
+    user: state.user
+  }))
+
   useEffect(() => {
+    if (!signer) { return }
     const init = async () => {
 
-      const result = await getInitialData(params.drop_id)
+      const result = await getInitialData(
+        params.drop_id,
+        signer
+      )
 
       if (result) {
         const {
-          drop,
-          tokenData
+          drop
         } = result
       
         const {
@@ -131,32 +143,28 @@ const Edit: FC = () => {
           symbol: 'BRING'
         })
 
-        setTokenData(tokenData)
+        setCurrentDropInstance(drop)
 
       }
       setLoading(false)
     }
 
     init()
-  }, [])
+  }, [
+    signer
+  ])
 
-  const {
-    user: {
-      address,
-      chainId,
-      signer
-    }
-  } = useAppSelector(state => ({
-    user: state.user
-  }))
+
 
 
   const [ editPopup, setEditPopup ] = useState<boolean>(false)
   // const loading = false
 
 
-  if (!currentDrop || !tokenData) {
-    return null
+  if (!currentDrop) {
+    return <Page>
+      <Container></Container>
+    </Page>
   }
 
   const {
@@ -168,13 +176,12 @@ const Edit: FC = () => {
     description,
     maxClaims,
     zkPassAppId,
-    zkPassSchemaId
+    zkPassSchemaId,
+    decimals,
+    symbol
   } = currentDrop
 
-  const {
-    symbol,
-    decimals
-  } = tokenData
+
   const amountFormatted = ethers.formatUnits(amount, decimals)
 
   return <Page>
@@ -182,9 +189,15 @@ const Edit: FC = () => {
       {editPopup && <EditPopup
         initialValue={description || ''}
         loading={loading}
-        onUpdate={(value) => {
-          // 
-          alert('Update')
+        onUpdate={async (value) => {
+          if (!currentDropInstance) {
+            return alert('Cannot update description')
+          }
+          await currentDropInstance.updateMetadata({
+            description: value
+          })
+          setEditPopup(false)
+
         }}
         onClose={() => {
           setEditPopup(false)
