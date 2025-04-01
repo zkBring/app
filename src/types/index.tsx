@@ -15,12 +15,11 @@ import type TApiSource from './api-source'
 import type TDispenserError from './dispenser-error'
 import type TDispenserScreen from './dispenser-screen'
 import type TQROption from "./qr-option"
-
+import type TEnvironment from './environment'
 import type TLaunchStage from "./launch-stage"
 import type TLaunchTransactionStage from "./launch-transaction-stage"
 import type TClaimPattern from "./claim-pattern"
 import type TLaunchAsset from "./launch-asset"
-import type TZKTLSService from "./zktls-service"
 import type TProofProvider from "./proof-provider"
 import type TZerionERC20Item from "./zerion-erc20-item"
 import type TZerionNetworkItem from "./zerion-network-item"
@@ -43,7 +42,6 @@ export {
   TLaunchTransactionStage,
   TClaimPattern,
   TLaunchAsset,
-  TZKTLSService,
   TProofProvider,
   TDrop,
   TApiSource,
@@ -64,5 +62,6 @@ export {
   TZerionNetworkItem,
   TTransactionStage,
   TTransactionStageStatus,
-  TWebproof
+  TWebproof,
+  TEnvironment
 }

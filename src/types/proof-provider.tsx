@@ -1,3 +1,3 @@
-type TProofProvider = 'instagram' | 'x' | 'custom'
+type TProofProvider = 'custom' | 'defined'
 
 export default TProofProvider

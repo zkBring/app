@@ -1,9 +1,5 @@
 import {
   TTokenStandard,
-  TLaunchStage,
-  TClaimPattern,
-  TZKTLSService,
-  TProofProvider,
   TLaunchTransactionStage
 } from '@/types'
 
@@ -23,11 +19,8 @@ export interface TInitialState {
 
 
   // audience
-  zkTLSService: TZKTLSService | null
-  proofProvider: TProofProvider | null
   zkPassAppId: string | null
   zkPassSchemaId: string | null
-
 
   createdDropId?: string | null 
   loading: boolean

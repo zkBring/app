@@ -25,8 +25,6 @@ const initialState: TInitialState = {
   approved: false,
   expiration: null,
   transactionStage: 'initial',
-  zkTLSService: null,
-  proofProvider: null,
   zkPassAppId: null,
   zkPassSchemaId: null,
   createdDropId: null,
@@ -73,7 +71,6 @@ const launchSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(approve.fulfilled, (state, action) => {
-      alert('DONE APPROVE')
       state = {
         ...state,
         approved: true,
@@ -87,7 +84,6 @@ const launchSlice = createSlice({
     }),
 
     builder.addCase(approve.pending, (state, action) => {
-      alert('PENDING APPROVE')
       state = {
         ...state,
         loading: true
@@ -97,7 +93,6 @@ const launchSlice = createSlice({
     })
 
     builder.addCase(approve.rejected, (state, action) => {
-      alert('ERROR OCCURED APPROVE')
       state = {
         ...state,
         loading: false
@@ -107,8 +102,6 @@ const launchSlice = createSlice({
     })
 
     builder.addCase(createDrop.pending, (state, action) => {
-      alert('PENDING CREATE_DROP')
-
       state = {
         ...state,
         loading: true
@@ -118,7 +111,6 @@ const launchSlice = createSlice({
     })
   
     builder.addCase(createDrop.fulfilled, (state, action) => {
-      alert('DONE CREATE_DROP')
       const {
         payload: {
           drop
@@ -134,7 +126,6 @@ const launchSlice = createSlice({
     })
 
     builder.addCase(createDrop.rejected, (state, action) => {
-      alert('ERROR OCCURED CREATE_DROP')
       state = {
         ...state,
         loading: false

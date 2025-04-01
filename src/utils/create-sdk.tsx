@@ -1,5 +1,4 @@
-import { dashboardApiKey } from '@/app/configs'
-import { JsonRpcProvider, JsonRpcSigner, ethers } from 'ethers'
+import { JsonRpcSigner, ethers } from 'ethers'
 import {
   BringSDK
 } from 'zkbring-sdk'

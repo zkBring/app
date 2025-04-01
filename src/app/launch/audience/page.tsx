@@ -19,8 +19,8 @@ import {
   TextStyled
 } from './styled-components'
 import {
-  TProofProvider,
-  TZKTLSService
+  TEnvironment,
+  TProofProvider
 } from '@/types'
 import {
   setZKTLSOptions,
@@ -30,42 +30,43 @@ import {
 import { useDispatch } from 'react-redux'
 import {
   DropAudienceIcon,
-  XAudienceIcon,
-  TikTokIcon,
-  GithubIcon,
-  AmazonIcon
+  XAudienceIcon
 } from '@/components/icons'
 import { useRouter } from 'next/navigation'
 import { useAppSelector } from '@/lib/hooks'
+import {
+  environment
+} from '@/app/configs'
 
-const proofProvidersOptions = [
-  {
-    title: 'X (Twitter)',
-    value: 'x',
-    image: <XAudienceIcon />,
-  }, {
+import zkTLSConfig from '@/app/configs/zk-tls'
+
+const createOptions = () => {
+  const zkTLS = zkTLSConfig[environment as TEnvironment]
+
+  const {
+    schemas
+  } = zkTLS
+
+  const options = schemas.map(schema => {
+    return {
+      title: schema.description,
+      value: schema.schemaId,
+      image: <XAudienceIcon />,
+    }
+  })
+
+  options.push({
     title: 'Custom',
     value: 'custom',
     image: <DropAudienceIcon />
-  }, {
-    title: 'Tiktok',
-    value: 'tiktok',
-    image: <TikTokIcon />,
-    disabled: true
-  }, {
-    title: 'Github',
-    value: 'github',
-    image: <GithubIcon />,
-    disabled: true
-  }, {
-    title: 'Amazon',
-    value: 'amazon',
-    image: <AmazonIcon />,
-    disabled: true
-  }
-]
+  })
+
+  return options
+}
 
 const LaunchAudience: FC = () => {
+  const proofProvidersOptions = createOptions()
+
   const [ zkPassSchemaId, setZkPassSchemaId ] = useState<string>('')
   const [ zkPassAppId, setZkPassAppId ] = useState<string>('')
 
@@ -76,13 +77,11 @@ const LaunchAudience: FC = () => {
   const [
     proofProvider,
     setProofProvider
-  ] = useState<TProofProvider>('x')
-  const [
-    zkTLSService,
-    setZkTLSService
-  ] = useState<TZKTLSService>('reclaim')
+  ] = useState<TProofProvider | string>(proofProvidersOptions[0].value)
+
   const router = useRouter()
   const dispatch = useDispatch()
+
 
   const {
     launch: {
@@ -163,14 +162,17 @@ const LaunchAudience: FC = () => {
             appearance='action'
             loading={loading}
             onClick={() => {
-
+              const data = proofProvider === 'custom' ? {
+                // if custom - take values from inputs
+                zkPassAppId,
+                zkPassSchemaId
+              } : {
+                // if not custom - take values from config
+                zkPassAppId: zkTLSConfig[environment as TEnvironment].zkPassAppId,
+                zkPassSchemaId: proofProvider
+              }
               dispatch(
-                setZKTLSOptions({
-                  zkTLSService,
-                  proofProvider,
-                  zkPassAppId,
-                  zkPassSchemaId
-                })
+                setZKTLSOptions(data)
               )
               dispatch(
                 setLoading(

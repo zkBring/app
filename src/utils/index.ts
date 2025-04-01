@@ -15,8 +15,6 @@ import defineNetworkIcon from './define-network-icon'
 import generateMetadataUtil from './generate-metadata'
 import metadataUrlResolve from './metadata-resolve-url'
 import createQueryString from './create-query-string'
-import defineApiHeaders from "./define-api-headers"
-import getDispenserClaimLink from './get-dispenser-claim-link'
 import alertError from './alert-error'
 import defineIfUserOwnsContractERC20 from './define-if-user-owns-erc20-contract'
 import countLaunchAmounts from './count-launch-amounts'
@@ -38,8 +36,6 @@ export {
   copyToClipboard,
   defineEthersSigner,
   getTokenERC20Data,
-  getDispenserClaimLink,
-  defineApiHeaders,
   metadataUrlResolve,
   createQueryString,
   generateMetadataUtil,
