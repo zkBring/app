@@ -14,6 +14,7 @@ const DropsList: FC<TProps> = ({
 
   return <Drops>
     {drops.map(drop => {
+      if (!drop) { return null}
       return <Drop
         drop={drop}
       />

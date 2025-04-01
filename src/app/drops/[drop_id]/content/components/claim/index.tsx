@@ -17,6 +17,7 @@ import {
 } from 'zkbring-sdk'
 import { useAppSelector } from '@/lib/hooks'
 import { TWebproof } from '@/types'
+import ZKBringLogo from '@/images/zkbring-logo.png'
 
 const claim = async (
   dropInstance: Drop | null,
@@ -73,12 +74,13 @@ const Claim: FC<TProps> = ({
     </StepTitle>
     <WidgetStyled
       title={`${amount} ${symbol}`}
+      image={ZKBringLogo}
     >
       <TextStyled>
         You’re eligible! Claim your tokens now!
       </TextStyled>
       <ButtonStyled
-        appearance='additional'
+        appearance='action'
         size='extra-small'
         disabled={!verified}
         onClick={() => {

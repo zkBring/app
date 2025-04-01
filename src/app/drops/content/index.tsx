@@ -1,10 +1,14 @@
 'use client'
 
 import {
-  Container,
-  Controls
+  Container
 } from '../styled-components'
+import {
+  TDrop
+} from '@/types'
 import DropsList from './drops-list'
+import NoDrops from './no-drops'
+
 import {
   Page
 } from '@/components/common'
@@ -19,6 +23,27 @@ import {
   Subtitle
 } from './styled-components'
 
+const defineContent = (
+  drops: (TDrop | null)[]
+) => {
+  if (drops.length === 0) {
+    return <NoDrops />
+  }
+
+  return <Container>
+    <TitleStyled>
+      Verify your data with zkTLS and claim crypto
+    </TitleStyled>
+    <Subtitle>
+      Explore drops. Prove your activity. Claim tokens.
+    </Subtitle>
+  
+    <DropsList
+      drops={drops}
+    />
+  </Container>
+}
+
 const Content: FC<TProps> = ({
   drops
 }) => {
@@ -31,25 +56,10 @@ const Content: FC<TProps> = ({
     user: state.user
   }))
 
+  const content = defineContent(drops)
+
   return <Page>
-    <Container>
-      <TitleStyled>
-        Verify your data with zkTLS and claim crypto
-      </TitleStyled>
-      <Subtitle>
-        Explore drops. Prove your activity. Claim tokens.
-      </Subtitle>
-      <Controls>
-        {address && <Button to='/launch/audience' appearance='action'>
-          Launch
-        </Button>}
-      </Controls>
-
-      <DropsList
-        drops={drops}
-      />
-
-    </Container>
+    {content}
   </Page>
 }
 

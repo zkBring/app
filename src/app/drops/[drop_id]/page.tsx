@@ -1,9 +1,7 @@
 'use server'
 import {
   generateMetadataUtil,
-  createSDK,
-  defineJSONRPC,
-  getTokenERC20Data
+  createSDK
 } from '@/utils'
 import { ethers } from 'ethers'
 import type { Metadata } from 'next'
@@ -21,9 +19,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const getInitialData = cache(async (drop_id: string) => {
   try {
-
-    const BASE_SEPOLIA_CHAIN_ID = 84532
-
 
     const sdk = createSDK({})
     const drop = await sdk.getDrop(drop_id)

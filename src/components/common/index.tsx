@@ -19,7 +19,6 @@ import Drop from './drop'
 import List from './list'
 import Menu from './menu'
 import Header from './header'
-import Footer from './footer'
 import LaunchWidget from './launch-widget'
 import Page from './page'
 import LaunchContainer from './launch-container'
@@ -63,7 +62,6 @@ export {
   Link,
   CustomRedirectButton,
   NetworkIndicator,
-  Footer,
   Loader,
   Button,
   ExplorerButton,

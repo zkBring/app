@@ -14,7 +14,8 @@ import {
   LogoIcon
 } from '@/components/icons'
 import {
-  ConnectButton
+  ConnectButton,
+  Button
 } from '@/components/common'
 import { useDisconnect } from "wagmi"
 import {
@@ -30,6 +31,8 @@ const AccountComponent = () => {
   
   const { disconnect } = useDisconnect()
   const dispatch = useAppDispatch()
+
+
 
   const {
     user: {
@@ -49,13 +52,23 @@ const AccountComponent = () => {
     }
   }))
 
+  const launchDropButton = <Button
+    appearance='action'
+    size='extra-small'
+    to={address ? '/launch/audience' : '/auth'}
+  >
+    Launch drop
+  </Button>
+
   if (!address) {  
     return <Profile>
-      <ConnectButton size='small'/>
+      {launchDropButton}
+      <ConnectButton size='small' appearance='default'/>
     </Profile>
   }
 
   return <Profile>
+      {launchDropButton}
       <Account>
         <Address loading={loading}>
           <NetworkIndicator

@@ -29,6 +29,8 @@ const theme = {
   buttonDefaultBackgroundActiveColor: '#1B1C1E',
   buttonDefaultBorderHoverColor: '#121212',
   buttonDefaultBorderActiveColor: '#121212',
+  buttonDefaultBorderColor: '#272727',
+
   buttonDefaultDisabledBorderColor: '#E4E4E4',
   buttonDefaultDisabledTextColor: '#9D9D9D',
 
@@ -52,12 +54,8 @@ const theme = {
 
 
 
-  menuItemActiveBackgroundColor: '#212124',
-  menuItemHoverBackgroundColor: '#212124',
-
-
-
-
+  menuItemActiveBackgroundColor: 'rgba(33, 33, 36, .5)',
+  menuItemHoverBackgroundColor: 'rgba(33, 33, 36, .5)',
 
   audienceTextColor: '#545454',
   audienceBorderColor: '#1E1E1F',
@@ -99,7 +97,12 @@ const theme = {
   
 
   dashedProgressBarEmpty: '#2D2D30',
-  dashedProgressBarFilled: '#1A7771'
+  dashedProgressBarFilled: '#1A7771',
+
+
+  successBorderColor: '#112F2D',
+  successBackgroundColor: '#151B1C',
+  successTextColor: '#229B93'
 
 }
 
