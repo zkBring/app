@@ -38,7 +38,7 @@ const Drop: FC<TProps> = ({
 
   const amountFormatted = ethers.formatUnits(amount, decimals)
 
-  return <LinkStyled href={`/drops/0x70e968304ddCf560Cc40826e02E4562FB86A8F92`}>
+  return <LinkStyled href={`/drops/${address}`}>
     <Container>
       <AudienceBlock drop={drop} />
       <Content>
