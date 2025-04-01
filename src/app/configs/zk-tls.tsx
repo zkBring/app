@@ -15,7 +15,6 @@ type TZKTLSConfig = Record<
   TEnvironment, TZKTLSConfigData
 >
 
-
 const zkTLSConfig: TZKTLSConfig = { 
   dev: {
     zkPassAppId: "6543a426-2afe-4efa-9d23-2d6ce8723e23",
