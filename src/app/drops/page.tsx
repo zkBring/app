@@ -36,9 +36,10 @@ export default async function Drops() {
     return <h1>Not found</h1>
   }
 
-  const drops = data.map(drop => ({
-    title: drop.contract,
-    address: drop.contract,
+  const { drops } = data
+  const dropsData = drops.map(drop => ({
+    title: drop.title,
+    address: drop.address,
     expiration: drop.expiration,
     amount: drop.amount,
     token: drop.token,
@@ -51,6 +52,6 @@ export default async function Drops() {
   }))
 
 
-  return <Content drops={drops || []} />
+  return <Content drops={dropsData || []} />
 }
 

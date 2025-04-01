@@ -4,7 +4,7 @@ import {
   WidgetStyled,
   Label,
   LabelValue,
-  ProgressBarStyled
+  DashedProgressBarStyled
 } from './styled-components'
 import TProps from './types'
 
@@ -26,9 +26,10 @@ const ClaimsCounter: FC<TProps> = ({
       </LabelValue>
     </Label>
 
-    <ProgressBarStyled
+    <DashedProgressBarStyled
       current={Number(ratio)}
       max={100}
+      dashCount={80}
     />
 
   </WidgetStyled>

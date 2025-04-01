@@ -66,8 +66,6 @@ export default async function Drop({
     zkPassSchemaId
   } = drop
 
-
-
   return <Content
     drop={{
       title,

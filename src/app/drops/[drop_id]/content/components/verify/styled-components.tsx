@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import {
   Widget,
   Text,
@@ -17,6 +17,12 @@ export const ButtonStyled = styled(Button)`
   width: fit-content;
 `
 
-export const Container = styled.div`
+
+export const Container = styled.div<{
+  disabled: boolean
+}>`
   margin-bottom: 50px;
+  ${props => props.disabled && css`
+    opacity: 80%;
+  `}
 `

@@ -130,10 +130,10 @@ const Content: FC<TProps> = ({
       />
 
       <Share />
-
+{/* 
       <IconedButton size='extra-small' to={`/drops/${address}/edit`}>
         <InputPenIcon />Edit drop
-      </IconedButton>
+      </IconedButton> */}
 
 
       <StatsStyled
