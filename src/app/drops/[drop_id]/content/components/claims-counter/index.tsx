@@ -7,27 +7,31 @@ import {
   DashedProgressBarStyled
 } from './styled-components'
 import TProps from './types'
+import { ethers } from 'ethers'
 
 const ClaimsCounter: FC<TProps> = ({
-  value,
-  limit,
-  symbol
+  claimAmount, // per one claim
+  limit, // max claims
+  alreadyClaimed,
+  symbol,
+  decimals
 }) => {
-  const valueBN = BigInt(value)
+  const alreadyClaimedBN = BigInt(alreadyClaimed)
+  const claimAmountBN = BigInt(claimAmount)
   const limitBN = BigInt(limit)
-  const ratio = ((valueBN * BigInt(100)) / limitBN)
+  const ratioAlreadyClaimed = ((alreadyClaimedBN * BigInt(100)) / limitBN)
 
   return <WidgetStyled>
     <Label>
-      {value} tokens claimed
+      {ratioAlreadyClaimed} tokens claimed
 
       <LabelValue>
-        {limit} {symbol}
+        {ethers.formatUnits(limitBN * claimAmountBN, decimals)} {symbol}
       </LabelValue>
     </Label>
 
     <DashedProgressBarStyled
-      current={Number(ratio)}
+      current={Number(ratioAlreadyClaimed)}
       max={100}
       dashCount={80}
     />

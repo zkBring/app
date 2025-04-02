@@ -51,18 +51,34 @@ const Content: FC<TProps> = ({
 
   const [ dropInstance, setDropInstance ] = useState<Drop | null>(null)
 
+  const {
+    user: {
+      address: userAddress,
+      signer
+    }
+  } = useAppSelector(state => ({
+    user: state.user
+  }))
+
   useEffect(() => {
+    if (!signer || !userAddress) {
+      return
+    }
     const init = async () => {
       const sdk = createSDK({
-        transgateModule: TransgateConnect
+        transgateModule: TransgateConnect,
+        signer
       })
-  
+
       const dropInstance = await sdk.getDrop(drop.address)
       setDropInstance(dropInstance)
     }
 
     init()
-  }, [])
+  }, [
+    signer,
+    userAddress
+  ])
 
 
   const [
@@ -75,14 +91,7 @@ const Content: FC<TProps> = ({
     setInstallTransgateDialog
   ] = useState<boolean>(false)
 
-  const {
-    user: {
-      address: userAddress,
-      signer
-    }
-  } = useAppSelector(state => ({
-    user: state.user
-  }))
+
 
   const {
     title,
@@ -91,7 +100,8 @@ const Content: FC<TProps> = ({
     description,
     maxClaims,
     decimals,
-    symbol
+    symbol,
+    creatorAddress
   } = drop
   
 // encrypted_multiscan_qr_enc_code: "GMqe7zrdsrNp"
@@ -131,7 +141,7 @@ const Content: FC<TProps> = ({
 
       <Share />
 
-      {userAddress && <IconedButton size='extra-small' to={`/drops/${address}/edit`}>
+      {userAddress && (userAddress.toLowerCase() === drop.creatorAddress.toLowerCase()) && <IconedButton size='extra-small' to={`/drops/${address}/edit`}>
         <InputPenIcon />Edit drop
       </IconedButton>}
 
@@ -151,18 +161,21 @@ const Content: FC<TProps> = ({
           {
             title: 'Created by',
             // value: shortenString(creator_address as string),
-            value: 'CREATOR_ADDRESS'
+            value: shortenString(creatorAddress)
           }
         ]}
       />
 
       <ClaimsCounter
-        value='0'
+        claimAmount={amount.toString()}
+        alreadyClaimed='0' 
         limit={String(maxClaims)}
         symbol={symbol}
+        decimals={decimals}
       />
 
       <Verify
+        dropInstance={dropInstance}
         onStart={() => {
           setVerificationStart(true)
         }}

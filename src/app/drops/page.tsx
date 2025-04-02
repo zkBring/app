@@ -46,11 +46,11 @@ export default async function Drops() {
   }
 
   const { drops } = data
+
+  console.log({
+    drops
+  })
   const dropsData = drops.map(drop => {
-    console.log({
-      zkPassAppId,
-      dropzkPassAppId: drop.zkPassAppId
-    })
     if (drop.zkPassAppId !== zkPassAppId) {
       return null
     }
@@ -65,7 +65,8 @@ export default async function Drops() {
       zkPassAppId: drop.zkPassAppId,
       zkPassSchemaId: drop.zkPassSchemaId,
       decimals: 18,
-      symbol: 'BRING'
+      symbol: 'BRING',
+      creatorAddress: drop.creatorAddress
     }
   })
 

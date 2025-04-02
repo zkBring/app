@@ -61,7 +61,8 @@ export default async function OwnDrops() {
       zkPassAppId: drop.zkPassAppId,
       zkPassSchemaId: drop.zkPassSchemaId,
       decimals: 18,
-      symbol: 'BRING'
+      symbol: 'BRING',
+      creatorAddress: drop.creatorAddress
     }
   })
 

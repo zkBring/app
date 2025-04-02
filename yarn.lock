@@ -6837,10 +6837,10 @@ zkbring-onchainkit@^0.0.1:
     viem "^2.23.0"
     wagmi "^2.14.11"
 
-zkbring-sdk@0.0.1-alpha-rc.5:
-  version "0.0.1-alpha-rc.5"
-  resolved "https://registry.yarnpkg.com/zkbring-sdk/-/zkbring-sdk-0.0.1-alpha-rc.5.tgz#8ed0d0b49082dc743e35f7d4189e536443bd7e2f"
-  integrity sha512-W2vstiG0ZRFpO8IvUd+ccIpPXUb/Im23NP3diiRI/FsI4haN7b/ry5qJ895qm59Q2NwjKYXfYT+7mLzYACDSVQ==
+zkbring-sdk@0.0.1-alpha-rc.6:
+  version "0.0.1-alpha-rc.6"
+  resolved "https://registry.yarnpkg.com/zkbring-sdk/-/zkbring-sdk-0.0.1-alpha-rc.6.tgz#563eee3640958e61c3ed203d572f44a0149c64d8"
+  integrity sha512-DuePEL0MbqwHwt7kUmUH72rXhN7DRbJBGZ0NMGutjX6A330ZSaUrzQcVykmwnLJc+A322et8xL5dULt84IglzQ==
   dependencies:
     typescript "^4.8.2"
 
