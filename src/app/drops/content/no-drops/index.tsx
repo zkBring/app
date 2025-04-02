@@ -9,8 +9,21 @@ import {
 import {
   Container
 } from '../../styled-components'
+import TProps from './types'
 
-const NoDrops = () => {
+
+
+const NoDrops: FC<TProps> = ({
+  address
+}) => {
+
+  const launchDropButton = <ButtonStyled
+    appearance='action'
+    to={address ? '/launch/audience' : '/auth'}
+  >
+    Launch drop
+  </ButtonStyled>
+
   return <Container>
     <PixeledDropIconStyled />
     <TitleStyled>
@@ -19,9 +32,7 @@ const NoDrops = () => {
     <Text>
     Your drops will be displayed here. Launch the first one – It’s easy!
     </Text>
-    <ButtonStyled to='/launch/audience' appearance='action'>
-      Launch
-    </ButtonStyled>
+    {launchDropButton}
   </Container>
 }
 

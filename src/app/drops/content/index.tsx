@@ -24,10 +24,13 @@ import {
 } from './styled-components'
 
 const defineContent = (
-  drops: (TDrop | null)[]
+  drops: (TDrop | null)[],
+  address: null | string
 ) => {
-  if (drops.length === 0) {
-    return <NoDrops />
+
+  const dropsFiltered = drops.filter(drop => drop) // all nulls filtered, so only real drops left
+  if (dropsFiltered.length === 0) {
+    return <NoDrops address={address} />
   }
 
   return <Container>
@@ -39,7 +42,7 @@ const defineContent = (
     </Subtitle>
   
     <DropsList
-      drops={drops}
+      drops={dropsFiltered}
     />
   </Container>
 }
@@ -56,7 +59,8 @@ const Content: FC<TProps> = ({
     user: state.user
   }))
 
-  const content = defineContent(drops)
+
+  const content = defineContent(drops, address)
 
   return <Page>
     {content}
