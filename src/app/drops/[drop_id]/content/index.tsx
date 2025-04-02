@@ -101,6 +101,7 @@ const Content: FC<TProps> = ({
     maxClaims,
     decimals,
     symbol,
+    claimsCount,
     creatorAddress
   } = drop
   
@@ -154,7 +155,7 @@ const Content: FC<TProps> = ({
           },
           {
             title: 'Drop claims',
-            value: '0',
+            value: String(claimsCount),
             limit: String(maxClaims),
             icon: <ProfileIcon />
           },
@@ -168,7 +169,7 @@ const Content: FC<TProps> = ({
 
       <ClaimsCounter
         claimAmount={amount.toString()}
-        alreadyClaimed='0' 
+        alreadyClaimed={String(claimsCount)}
         limit={String(maxClaims)}
         symbol={symbol}
         decimals={decimals}

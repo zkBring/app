@@ -190,7 +190,9 @@ const LaunchTransaction: FC = () => {
 
   useEffect(() => {
     if (transactionStage === 'created') {
-      router.push(`/drops/${createdDropId}`)
+      setTimeout(() => {
+        router.push(`/drops/${createdDropId}`)
+      }, 3000)
     }
   }, [
     transactionStage

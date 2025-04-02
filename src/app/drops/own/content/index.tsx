@@ -9,9 +9,6 @@ import {
 import DropsList from './drops-list'
 import NoDrops from './no-drops'
 
-import {
-  Page
-} from '@/components/common'
 import { FC } from 'react'
 import TProps from './types'
 import { useAppSelector } from '@/lib/hooks'
@@ -58,9 +55,7 @@ const Content: FC<TProps> = ({
 
   const content = defineContent(drops, address)
 
-  return <Page>
-    {content}
-  </Page>
+  return content
 }
 
 

@@ -27,7 +27,7 @@ const getInitialData = cache(async (drop_id: string) => {
     }
   } catch (err: unknown) {
     console.log({
-      err
+      err1: err
     })
   }
 })
@@ -58,7 +58,8 @@ export default async function Drop({
     description,
     maxClaims,
     zkPassAppId,
-    zkPassSchemaId
+    zkPassSchemaId,
+    claimsCount
   } = drop
 
   return <Content
@@ -74,7 +75,8 @@ export default async function Drop({
       zkPassSchemaId,
       decimals: 18,
       symbol: 'BRING',
-      creatorAddress: drop.creatorAddress
+      creatorAddress: drop.creatorAddress,
+      claimsCount: claimsCount || BigInt(0)
     }}
 
   />
