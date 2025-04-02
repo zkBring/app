@@ -28,9 +28,11 @@ const zkTLSConfig: TZKTLSConfig = {
     ]
   },
   staging: {
-    zkPassAppId: "fceb8c8f-3fe6-4105-955f-8003bf1350da",
+    // zkPassAppId: "fceb8c8f-3fe6-4105-955f-8003bf1350da",
+    zkPassAppId: "6543a426-2afe-4efa-9d23-2d6ce8723e23",
     schemas: [{
-        schemaId: "94cde52ae2154d67befa7e0faafc223c",
+        // schemaId: "94cde52ae2154d67befa7e0faafc223c",
+        schemaId: "c38b96722bd24b64b8d349ffd6391a8c",
         description: "Verify Twitter Followers", 
         shortDescription: "For X users", 
         icon: "https://image.com/image.png", 
