@@ -121,6 +121,7 @@ const launchSlice = createSlice({
         createdDropId: drop.address.toLowerCase(),
         transactionStage: 'created'
       }
+
       return state
 
     })

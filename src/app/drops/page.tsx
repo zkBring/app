@@ -31,7 +31,7 @@ const getInitialData = cache(async () => {
     return drops
   } catch (err: unknown) {
     console.log({
-      err
+      err1: err
     })
   }
 })
@@ -39,7 +39,6 @@ const getInitialData = cache(async () => {
 export default async function Drops() {
   const data = await getInitialData()
 
-  const zkPassAppId = zkTLSConfig[environment as TEnvironment].zkPassAppId
 
   if (!data) {
     return <h1>Not found</h1>
@@ -47,13 +46,7 @@ export default async function Drops() {
 
   const { drops } = data
 
-  console.log({
-    drops
-  })
   const dropsData = drops.map(drop => {
-    if (drop.zkPassAppId !== zkPassAppId) {
-      return null
-    }
     return {
       title: drop.title,
       address: drop.address,
@@ -66,7 +59,8 @@ export default async function Drops() {
       zkPassSchemaId: drop.zkPassSchemaId,
       decimals: 18,
       symbol: 'BRING',
-      creatorAddress: drop.creatorAddress
+      creatorAddress: drop.creatorAddress,
+      claimsCount: drop.claimsCount || BigInt(0)
     }
   })
 

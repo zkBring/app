@@ -6,6 +6,7 @@ type TDrop = {
   token: string
   description: string
   maxClaims: bigint
+  claimsCount: bigint
   zkPassAppId: string
   zkPassSchemaId: string
   decimals: number

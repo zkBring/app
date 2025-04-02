@@ -1,71 +1,96 @@
-'use server'
-
+'use client'
 import {
   generateMetadataUtil,
   createSDK
 } from '@/utils'
 import type { Metadata } from 'next'
-import { cache } from 'react'
-import Content from '../content'
+import {
+  useEffect,
+  useState
+} from 'react'
+import Content from './content'
 import {
   environment
 } from '@/app/configs'
 import {
+  TDrop,
   TEnvironment
 } from '@/types'
-import zkTLSConfig from '@/app/configs/zk-tls'
+import {
+  Drop
+} from 'zkbring-sdk'
+import {
+  Page
+} from '@/components/common'
+import { useAppSelector } from '@/lib/hooks'
 
-export async function generateMetadata(): Promise<Metadata> {
-  return generateMetadataUtil({
-    description: `Own drops`
-  })
+const OwnDrops = () => {
+
+  const [
+    data,
+    setData
+  ] = useState<TDrop[]>()
+
+  const [
+    loading,
+    setLoading
+  ] = useState<boolean>(false)
+
+  const {
+    user: {
+      address
+    }
+  } = useAppSelector(state => ({
+    launch: state.launch,
+    user: state.user
+  }))
+
+  useEffect(() => {
+    if (!address) { return }
+    const init = async () => {
+      setLoading(true)
+      try {
+        const sdk = createSDK({})
+        const dropsData = await sdk.getDrops({
+          creator: address
+        })
+
+        const { drops } = dropsData
+
+        const dropsConverted = drops.map(drop => {
+          return {
+            title: drop.title,
+            address: drop.address,
+            expiration: drop.expiration,
+            amount: drop.amount,
+            token: drop.token,
+            description: drop.description,
+            maxClaims: drop.maxClaims,
+            zkPassAppId: drop.zkPassAppId,
+            zkPassSchemaId: drop.zkPassSchemaId,
+            decimals: 18,
+            symbol: 'BRING',
+            creatorAddress: drop.creatorAddress,
+            claimsCount: drop.claimsCount || BigInt(0)
+
+          }
+        })
+        setData(dropsConverted)
+        
+      } catch (err: unknown) {
+        console.log({
+          err
+        })
+      }
+      setLoading(false)
+    }
+    init()
+  }, [address])
+
+
+  return <Page>
+    {loading ? 'Loading...' : <Content drops={data || []} />}
+  </Page>
 }
 
-const getInitialData = cache(async () => {
-  try {
-
-    const sdk = createSDK({})
-    const drops = await sdk.getDrops({
-      creator: ''
-    })
-
-    return drops
-  } catch (err: unknown) {
-    console.log({
-      err
-    })
-  }
-})
-
-
-export default async function OwnDrops() {
-  const data = await getInitialData()
-  const zkPassAppId = zkTLSConfig[environment as TEnvironment].zkPassAppId
-
-  if (!data) {
-    return <h1>Not found</h1>
-  }
-  const { drops } = data
-  const dropsData = drops.map(drop => {
-    if (drop.zkPassAppId !== zkPassAppId) {
-      return null
-    }
-    return {
-      title: drop.title,
-      address: drop.address,
-      expiration: drop.expiration,
-      amount: drop.amount,
-      token: drop.token,
-      description: drop.description,
-      maxClaims: drop.maxClaims,
-      zkPassAppId: drop.zkPassAppId,
-      zkPassSchemaId: drop.zkPassSchemaId,
-      decimals: 18,
-      symbol: 'BRING',
-      creatorAddress: drop.creatorAddress
-    }
-  })
-
-  return <Content drops={dropsData || []} />
-}
-
+export default OwnDrops

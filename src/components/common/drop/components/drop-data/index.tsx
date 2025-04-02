@@ -36,7 +36,7 @@ const DropData: FC<TProps> = ({
         0% claimed
       </ClaimedText>
       <DashedProgressBarStyled
-        current={10}
+        current={Number((drop.claimsCount * BigInt(100)) / drop.maxClaims)}
         max={100}
         dashCount={5}
       />

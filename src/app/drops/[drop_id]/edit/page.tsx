@@ -127,7 +127,8 @@ const Edit: FC = () => {
           maxClaims,
           zkPassAppId,
           zkPassSchemaId,
-          creatorAddress
+          creatorAddress,
+          claimsCount
         } = drop
 
         setCurrentDrop({
@@ -142,7 +143,8 @@ const Edit: FC = () => {
           zkPassSchemaId,
           decimals: 18,
           symbol: 'BRING',
-          creatorAddress
+          creatorAddress,
+          claimsCount: claimsCount || BigInt(0)
         })
 
         setCurrentDropInstance(drop)
@@ -174,13 +176,15 @@ const Edit: FC = () => {
     address: dropAddress,
     expiration,
     amount,
+    creatorAddress,
     token,
     description,
     maxClaims,
     zkPassAppId,
     zkPassSchemaId,
     decimals,
-    symbol
+    symbol,
+    claimsCount
   } = currentDrop
 
 
@@ -215,7 +219,7 @@ const Edit: FC = () => {
             },
             {
               title: 'Drop claims',
-              value: '0',
+              value: String(claimsCount),
               limit: `${maxClaims.toString() || '0'}`,
               icon: <ProfileIcon />
             }
@@ -257,7 +261,7 @@ const Edit: FC = () => {
           <TableRow>
             <TableText>Creator</TableText>
             <TableValue>
-              NO_DATA
+              {shortenString(creatorAddress)}
             </TableValue>
           </TableRow>
 
