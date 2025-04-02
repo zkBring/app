@@ -26,7 +26,9 @@ import {
 const defineContent = (
   drops: (TDrop | null)[]
 ) => {
-  if (drops.length === 0) {
+
+  const dropsFiltered = drops.filter(drop => drop) // all nulls filtered, so only real drops left
+  if (dropsFiltered.length === 0) {
     return <NoDrops />
   }
 
@@ -39,7 +41,7 @@ const defineContent = (
     </Subtitle>
   
     <DropsList
-      drops={drops}
+      drops={dropsFiltered}
     />
   </Container>
 }
@@ -55,6 +57,7 @@ const Content: FC<TProps> = ({
     launch: state.launch,
     user: state.user
   }))
+
 
   const content = defineContent(drops)
 
