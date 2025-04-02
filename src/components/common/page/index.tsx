@@ -15,7 +15,6 @@ import {
 } from '@/components/common'
 import {
   defineEthersSigner,
-  createSDK
 } from '@/utils'
 import {
   useAppDispatch

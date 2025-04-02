@@ -20,7 +20,8 @@ import TProps from './types'
 import { useAppSelector } from '@/lib/hooks'
 
 const Verify: FC<TProps> = ({
-  onStart
+  onStart,
+  dropInstance
 }) => {
 
   const {
@@ -48,7 +49,16 @@ const Verify: FC<TProps> = ({
           disabled={verified}
           appearance='action'
           size='extra-small'
-          onClick={onStart}
+          onClick={async () => {
+            if (!dropInstance) {
+              return alert('Connect your wallet first')
+            }
+            const claimed = dropInstance.hasConnectedUserClaimed
+            if (claimed) {
+              return alert('Already claimed by current user')
+            }
+            onStart()
+          }}
         >
           Verify with zkTLS
         </ButtonStyled>

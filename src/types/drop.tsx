@@ -10,6 +10,7 @@ type TDrop = {
   zkPassSchemaId: string
   decimals: number
   symbol: string
+  creatorAddress: string
 }
 
 

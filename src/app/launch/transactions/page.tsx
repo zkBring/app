@@ -177,6 +177,7 @@ const LaunchTransaction: FC = () => {
 
   useEffect(() => {
     if (!signer) { return }
+    if (!address) { return }
     if (sdk) { return }
     const sdkInit = createSDK({
       signer

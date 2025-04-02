@@ -71,6 +71,7 @@ const startVerification = async (
       webproof, ephemeralKey
     }
   } catch (err) {
+    console.log({ err })
     alert("Verification failed")
     return null
   }

@@ -12,6 +12,7 @@ type TCreateSDKArgs = {
   signer?: JsonRpcSigner,
   transgateModule?: typeof TransgateConnect
 }
+
 type TCreateSDK = (args: TCreateSDKArgs) => BringSDK
 
 const createSDK: TCreateSDK = ({

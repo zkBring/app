@@ -8,6 +8,9 @@ import {
 } from './styled-components'
 import TProps from './types'
 import {
+  shortenString
+} from '@/utils'
+import {
   InputCoinIcon
 } from '@/components/icons'
 import CreatorImageSrc from '@/images/creator-image.png'
@@ -25,12 +28,12 @@ const DropData: FC<TProps> = ({
         height={20}
         alt='Creator image'
       />
-      06X8e...f4b47
+      {shortenString(drop.creatorAddress)}
     </Creator>
     <Claimed>
       <InputCoinIcon />
       <ClaimedText>
-        2% claimed
+        0% claimed
       </ClaimedText>
       <DashedProgressBarStyled
         current={10}

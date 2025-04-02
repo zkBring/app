@@ -73,7 +73,8 @@ export default async function Drop({
       zkPassAppId,
       zkPassSchemaId,
       decimals: 18,
-      symbol: 'BRING'
+      symbol: 'BRING',
+      creatorAddress: drop.creatorAddress
     }}
 
   />

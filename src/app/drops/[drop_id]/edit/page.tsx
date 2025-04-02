@@ -104,7 +104,7 @@ const Edit: FC = () => {
   }))
 
   useEffect(() => {
-    if (!signer) { return }
+    if (!signer || !address) { return }
     const init = async () => {
 
       const result = await getInitialData(
@@ -126,7 +126,8 @@ const Edit: FC = () => {
           description,
           maxClaims,
           zkPassAppId,
-          zkPassSchemaId
+          zkPassSchemaId,
+          creatorAddress
         } = drop
 
         setCurrentDrop({
@@ -140,7 +141,8 @@ const Edit: FC = () => {
           zkPassAppId,
           zkPassSchemaId,
           decimals: 18,
-          symbol: 'BRING'
+          symbol: 'BRING',
+          creatorAddress
         })
 
         setCurrentDropInstance(drop)
