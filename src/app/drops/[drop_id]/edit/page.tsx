@@ -87,30 +87,43 @@ const stake = async  (
   userAddress: string,
   signer: JsonRpcSigner
 ) => {
-  const contractInstance = new ethers.Contract(TOKEN_ADDRESS as string, ERC20Contract, signer)
-  let iface = new ethers.Interface(ERC20Contract)
-  let data = iface.encodeFunctionData('approve', [
-    currentDropInstance.address, String(TOKEN_STAKE_AMOUNT_ATOMIC)
-  ])
 
-  await signer.sendTransaction({
-    to: TOKEN_ADDRESS as string,
-    from: userAddress,
-    value: 0,
-    data: data
-  })
+  try {
+    const contractInstance = new ethers.Contract(TOKEN_ADDRESS as string, ERC20Contract, signer)
+    let iface = new ethers.Interface(ERC20Contract)
+    let data = iface.encodeFunctionData('approve', [
+      currentDropInstance.address, String(TOKEN_STAKE_AMOUNT_ATOMIC)
+    ])
+  
+    await signer.sendTransaction({
+      to: TOKEN_ADDRESS as string,
+      from: userAddress,
+      value: 0,
+      data: data
+    })
+  
+    const checkTransaction = checkApproveTransaction(
+      contractInstance,
+      userAddress,
+      currentDropInstance.address as string,
+      TOKEN_STAKE_AMOUNT_ATOMIC
+    )
+  
+    await checkTransaction()
+  
+    const {
+      txHash,
+      waitForStake
+    } = await currentDropInstance.stake(String(TOKEN_STAKE_AMOUNT_ATOMIC))
+  
+    await waitForStake() 
+    return true
+  } catch (err) {
+    console.log({ err })
+    return false
+  }
+  
 
-  const checkTransaction = checkApproveTransaction(
-    contractInstance,
-    userAddress,
-    currentDropInstance.address as string,
-    TOKEN_STAKE_AMOUNT_ATOMIC
-  )
-
-  await checkTransaction()
-
-  const staked = await currentDropInstance.stake(String(TOKEN_STAKE_AMOUNT_ATOMIC))
-  return staked
 }
 
 
@@ -135,6 +148,11 @@ const Edit: FC = () => {
   ] = useState<boolean>(true)
 
   const [
+    editPopupLoading,
+    setEditPopupLoading
+  ] = useState<boolean>(false)
+
+  const [
     isStaked,
     setIsStaked
   ] = useState<boolean>(false)
@@ -152,7 +170,6 @@ const Edit: FC = () => {
   useEffect(() => {
     if (!signer || !address) { return }
     const init = async () => {
-
       const result = await getInitialData(
         params.drop_id,
         signer
@@ -196,8 +213,7 @@ const Edit: FC = () => {
         })
 
         setCurrentDropInstance(drop)
-
-        setIsStaked(staked !== '0')
+        setIsStaked(String(staked) !== '0')
 
       }
       setLoading(false)
@@ -234,23 +250,35 @@ const Edit: FC = () => {
     claimsCount
   } = currentDrop
 
-
   const amountFormatted = ethers.formatUnits(amount, decimals)
 
   return <Page>
     <Container>
       {editPopup && <EditPopup
         initialValue={description || ''}
-        loading={loading}
+        loading={editPopupLoading}
         onUpdate={async (value) => {
+          setEditPopupLoading(true)
           if (!currentDropInstance) {
             return alert('Cannot update description')
           }
-          await currentDropInstance.updateMetadata({
-            description: value
-          })
+          try {
+            const {
+              txHash,
+              waitForUpdate
+            } = await currentDropInstance.updateMetadata({
+              description: value
+            })
+            await waitForUpdate()
+            setCurrentDrop({
+              ...currentDrop,
+              description: value
+            })
+          } catch (err) {
+            console.log({ err })
+          }
+          setEditPopupLoading(false)          
           setEditPopup(false)
-
         }}
         onClose={() => {
           setEditPopup(false)
@@ -287,6 +315,8 @@ const Edit: FC = () => {
               address as string,
               signer as JsonRpcSigner
             )
+
+            setIsStaked(staked)
           }}
         />
         
