@@ -88,12 +88,12 @@ const LaunchTokenData: FC = () => {
   const [
     totalClaims,
     setTotalClaims
-  ] = useState<string>('0')
+  ] = useState<string>('')
 
   const [
     tokensPerClaim,
     setTokensPerClaim
-  ] = useState<string>('0')
+  ] = useState<string>('')
 
   const [
     currentSwitcherValue,
@@ -256,7 +256,7 @@ const LaunchTokenData: FC = () => {
           <InputStyled
             value={totalClaims}
             disabled={loading}
-            placeholder='0'
+            placeholder='10000'
             onChange={(value: string) => {
               setTotalClaims(value)
               return value
@@ -270,7 +270,7 @@ const LaunchTokenData: FC = () => {
           <InputStyled
             value={tokensPerClaim}
             disabled={loading}
-            placeholder='0'
+            placeholder='100'
             onChange={(value: string) => {
               setTokensPerClaim(value)
               return value

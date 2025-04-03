@@ -6,8 +6,6 @@ import {
   Container,
   IconedButton
 } from './styled-components'
-import { ThemeProvider } from 'styled-components'
-import { dark } from '@/themes'
 import { ethers } from 'ethers'
 import {
   Page
@@ -43,14 +41,22 @@ import {
   createSDK,
   defineJSONRPC
 } from '@/utils'
-import { useAppSelector } from '@/lib/hooks'
+import {
+  useAppSelector
+} from '@/lib/hooks'
+import {
+  setTxHash,
+  setClaimed,
+  setVerified
+} from '@/lib/slices'
+import { useDispatch } from 'react-redux'
 
 const Content: FC<TProps> = ({
   drop
 }) => {
 
   const [ dropInstance, setDropInstance ] = useState<Drop | null>(null)
-
+  const dispatch = useDispatch()
   const {
     user: {
       address: userAddress,
@@ -59,6 +65,12 @@ const Content: FC<TProps> = ({
   } = useAppSelector(state => ({
     user: state.user
   }))
+
+  useEffect(() => {
+    dispatch(setClaimed(false))
+    dispatch(setVerified(false))
+    dispatch(setTxHash(null))
+  }, [])
 
   useEffect(() => {
     if (!signer || !userAddress) {
@@ -78,6 +90,27 @@ const Content: FC<TProps> = ({
   }, [
     signer,
     userAddress
+  ])
+
+  useEffect(() => {
+    if (!dropInstance) {
+      return
+    }
+    const init = async () => {
+      const isClaimed = dropInstance.hasConnectedUserClaimed
+      if (isClaimed) {
+        dispatch(setClaimed(true))
+        dispatch(setVerified(true))
+        const txHash = dropInstance.connectedUserClaimTxHash
+        if (txHash) {
+          dispatch(setTxHash(txHash))
+        }
+      }
+    }
+
+    init()
+  }, [
+    dropInstance
   ])
 
 
@@ -136,7 +169,7 @@ const Content: FC<TProps> = ({
     />}
     <Container>
       <DropDescription
-        title={title}
+        title={`Claim ${symbol}`}
         description={description}
       />
 

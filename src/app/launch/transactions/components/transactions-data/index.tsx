@@ -35,7 +35,7 @@ const TransactionsData: FC<TProps> = ({
 
     <TTableItem>
       <TTableItemTitle>
-        Fee {fees.fee}
+        Fee {fees.fee * 100}%
       </TTableItemTitle>
       <TTableItemValue>
       {comissionFormatted} {symbol}
