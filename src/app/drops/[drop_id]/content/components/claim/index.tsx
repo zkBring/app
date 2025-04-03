@@ -1,6 +1,7 @@
 'use client'
 import {
-  FC
+  FC,
+  useState
 } from 'react'
 import {
   WidgetStyled,
@@ -88,7 +89,6 @@ const claim = async (
   }
 }
 
-
 const defineContent = (
   chainId: number | null,
   claimed: boolean,
@@ -125,6 +125,11 @@ const Claim: FC<TProps> = ({
   dropInstance,
   recipient
 }) => {
+
+  const [
+    loading,
+    setLoading
+  ] = useState<boolean>(false)
 
   const {
     verify: {
@@ -163,13 +168,18 @@ const Claim: FC<TProps> = ({
       finished={claimed}
     >
       {content}
-      <ButtonStyled
+      {!claimed && <ButtonStyled
         appearance='action'
+        loading={loading}
         size='extra-small'
         disabled={!verified}
         onClick={async () => {
+          setLoading(true)
           const txHash = await claim(
-            (claimed: boolean) => dispatch(setClaimed(claimed)),
+            (claimed: boolean) => {
+              setLoading(false)
+              dispatch(setClaimed(claimed))
+            },
             dropInstance,
             webproof,
             ephemeralKey,
@@ -177,11 +187,13 @@ const Claim: FC<TProps> = ({
           )
           if (txHash) {
             dispatch(setTxHash(txHash))
+          } else {
+            dispatch(setLoading(false))
           }
         }}
       >
         Claim
-      </ButtonStyled>
+      </ButtonStyled>}
     </WidgetStyled>
   </Container>
 }

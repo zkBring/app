@@ -57,7 +57,7 @@ const approve = createAsyncThunk(
             resolve(true)
             clearInterval(checkInterval)
           }
-        }, 3000)
+        }, 1000)
       })
     }
     await checkTransaction()
