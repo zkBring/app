@@ -23,16 +23,10 @@ const PageHeader: FC = () => {
       address,
       chainId
     },
-    link: {
-      loading
-    }
   } = useAppSelector(state => ({
     user: {
       chainId: state.user.chainId,
       address: state.user.address
-    },
-    link: {
-      loading: state.link.loading
     }
   }))
 

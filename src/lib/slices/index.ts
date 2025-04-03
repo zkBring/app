@@ -38,22 +38,10 @@ import TokenSlice, {
 } from './token'
 
 
-import LinkSlice, {
-  setLinkClaimingFinishedAutoRedirect,
-  setLinkClaimingFinishedButtonHref,
-  setLinkClaimingFinishedButtonTitle,
-  setLinkClaimingFinishedDescription,
-  setLinkClaimingFinishedButtonOn,
-  setLinkCode,
-  setLinkExpirationTime,
-  setLinkChainId,
-  setLinkId,
-  setLinkPreferredWallet,
-  setLinkWeiAmount,
-  setLinkTxHash,
-  setLinkLoading,
-  setLinkOptimisticClaimUI
-} from './link'
+import ClaimSlice, {
+  setClaimed,
+  setTxHash
+} from './claim'
 
 
 
@@ -71,21 +59,9 @@ export {
   setConnectedUserData,
   setAuthorizationStep,
 
-  LinkSlice,
-  setLinkTxHash,
-  setLinkOptimisticClaimUI,
-  setLinkChainId,
-  setLinkClaimingFinishedAutoRedirect,
-  setLinkClaimingFinishedButtonHref,
-  setLinkClaimingFinishedButtonTitle,
-  setLinkClaimingFinishedDescription,
-  setLinkCode,
-  setLinkClaimingFinishedButtonOn,
-  setLinkExpirationTime,
-  setLinkId,
-  setLinkPreferredWallet,
-  setLinkWeiAmount,
-  setLinkLoading,
+  ClaimSlice,
+  setClaimed,
+  setTxHash,
 
   TokenSlice,
   setTokenAmount,
