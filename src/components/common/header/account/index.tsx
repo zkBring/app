@@ -39,17 +39,11 @@ const AccountComponent = () => {
       address,
       chainId
     },
-    link: {
-      loading
-    }
   } = useAppSelector(state => ({
     user: {
       chainId: state.user.chainId,
       address: state.user.address
     },
-    link: {
-      loading: state.link.loading
-    }
   }))
 
   const launchDropButton = <Button
@@ -70,7 +64,7 @@ const AccountComponent = () => {
   return <Profile>
       {launchDropButton}
       <Account>
-        <Address loading={loading}>
+        <Address>
           <NetworkIndicator
             chainId={chainId}
           />

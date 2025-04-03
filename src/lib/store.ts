@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import {
-  LinkSlice,
+  ClaimSlice,
   UserSlice,
   TokenSlice,
   LaunchSlice,
@@ -11,7 +11,7 @@ export const makeStore = () => {
   return configureStore({
     reducer: {
       user: UserSlice,
-      link: LinkSlice,
+      claim: ClaimSlice,
       token: TokenSlice,
       launch: LaunchSlice,
       verify: VerifySlice

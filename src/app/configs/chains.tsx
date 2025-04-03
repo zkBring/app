@@ -45,60 +45,7 @@ type TChains = {
 }
 
 const chains: TChains = {
-  137: {
-    chainName: 'Polygon',
-    displayName: 'Polygon',
-    defaultWalletApp: 'coinbase_smart_wallet',
-    testnet: false,
-    alchemySupport: true,
-    nativeCurrency: {
-      name: 'MATIC',
-      symbol: 'MATIC',
-      decimals: 18
-    },
-    rpcUrls: [
-      'https://poly-rpc.gateway.pokt.network/'
-    ],
-    blockExplorerUrls: [
-      'https://polygonscan.com'
-    ]
-  },
-  1: {
-    chainName: 'Ethereum Mainnet',
-    displayName: 'Mainnet',
-    defaultWalletApp: 'coinbase_smart_wallet',
-    testnet: false,
-    alchemySupport: true,
-    nativeCurrency: {
-      name: 'ETH',
-      symbol: 'ETH',
-      decimals: 18
-    },
-    rpcUrls: [
-      `https://mainnet.infura.io/v3/${alchemyApiKey}`
-    ],
-    blockExplorerUrls: [
-      'https://etherscan.io'
-    ]
-  },
-  13371: {
-    chainName: 'Immutable zkEVM',
-    displayName: 'Immutable zkEVM',
-    defaultWalletApp: 'coinbase_smart_wallet',
-    testnet: false,
-    alchemySupport: false,
-    nativeCurrency: {
-      name: 'IMX',
-      symbol: 'IMX',
-      decimals: 18
-    },
-    rpcUrls: [
-      'https://immutable-zkevm.drpc.org'
-    ],
-    blockExplorerUrls: [
-      'https://explorer.immutable.com'
-    ]
-  },
+  
   8453: {
     chainName: 'Base',
     defaultWalletApp: 'coinbase_smart_wallet',
@@ -115,6 +62,24 @@ const chains: TChains = {
     ],
     blockExplorerUrls: [
       'https://basescan.org'
+    ]
+  },
+  84532: {
+    chainName: 'Base Sepolia',
+    defaultWalletApp: 'coinbase_smart_wallet',
+    displayName: 'Base Sepolia',
+    testnet: true,
+    alchemySupport: false,
+    nativeCurrency: {
+      name: 'ETH',
+      symbol: 'ETH',
+      decimals: 18
+    },
+    rpcUrls: [
+      'https://base-sepolia.drpc.org'
+    ],
+    blockExplorerUrls: [
+      'https://sepolia.basescan.org'
     ]
   }
 }
