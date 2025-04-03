@@ -102,7 +102,9 @@ const theme = {
 
   successBorderColor: '#112F2D',
   successBackgroundColor: '#151B1C',
-  successTextColor: '#229B93'
+  successTextColor: '#229B93',
+
+  primaryHighlightColor: '#229B93'
 
 }
 

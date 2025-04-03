@@ -97,6 +97,8 @@ const DialogVerification: FC<TProps> = ({
   showTransgateDialog
 }) => {
 
+  const [ loading, setLoading ] = useState<boolean>(false)
+
   const dispatch = useDispatch()
 
   return <DialogStyled
@@ -111,19 +113,23 @@ const DialogVerification: FC<TProps> = ({
       <ButtonStyled
         size='small'
         appearance='action'
-
-        disabled={!dropInstance}
+        loading={loading}
+        disabled={!dropInstance || loading}
         onClick={async () => {
+          setLoading(true)
           if (!dropInstance) {
+            setLoading(false)
             return alert('Drop is not ready')
           }
           const transgateAvailable = await checkIfTransgateAvailable(dropInstance)
           if (!transgateAvailable) {
+            setLoading(false)
             return showTransgateDialog()
           }
 
           const verificationResult = await startVerification(dropInstance)
           if (!verificationResult) {
+            setLoading(false)
             return 
           }
 
@@ -138,6 +144,7 @@ const DialogVerification: FC<TProps> = ({
           )
 
           if (claimedBefore) {
+            setLoading(false)
             return alert('Already claimed by user')
           }
 
@@ -146,6 +153,8 @@ const DialogVerification: FC<TProps> = ({
           dispatch(setVerified(true))
 
           setClaimIsReady()
+          setLoading(false)
+
         }}
       >
         Start verification

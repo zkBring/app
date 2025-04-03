@@ -10,6 +10,9 @@ import {
   ToggleStyled
 } from './styled-components'
 import TProps from './types'
+import {
+  TOKEN_BUY_ADDRESS
+} from '@/app/configs/app-token'
 
 const defineTexts = (
   valueBN: bigint,
@@ -31,17 +34,18 @@ const defineTexts = (
 const defineControl = (
   ratio: bigint,
   tokenSymbol: string,
-  isPublic: boolean,
+  isStaked: boolean,
   action: (
-    isPublic: boolean,
+    isStaked: boolean,
   ) => void
 ) => {
   const buttonTitle = tokenSymbol ? `+ Get ${tokenSymbol}` : '+ Get'
 
   if (ratio >= BigInt(100)) {
     return <ToggleStyled
-      value={isPublic}
+      value={isStaked}
       size='small'
+      disabled={isStaked}
       label='Feature drop'
       onChange={(value) => {
         action(value)
@@ -52,7 +56,7 @@ const defineControl = (
   return <ButtonStyled
     size='extra-small'
     target='_blank'
-    href='https://dexscreener.com/base/0xceb9ce741dc04e87366198c7dc96d76ed74dce6c'
+    href={TOKEN_BUY_ADDRESS}
     appearance="additional"
   >
     {buttonTitle}
@@ -65,7 +69,7 @@ const TokenCounter: FC<TProps> = ({
   action,
   tokenIcon,
   tokenSymbol,
-  isPublic
+  isStaked
 }) => {
   const valueBN = BigInt(value)
   const maxBN = BigInt(max)
@@ -80,7 +84,7 @@ const TokenCounter: FC<TProps> = ({
   const control = defineControl(
     ratio,
     tokenSymbol,
-    isPublic,
+    isStaked,
     action
   )
 

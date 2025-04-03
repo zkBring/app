@@ -20,7 +20,6 @@ export const ToggleItem = styled.div<TProps>`
   transition: background-color 0.3s;
   ${(props) =>
     props.value &&
-    !props.disabled &&
     css`
       background-color: ${(props) =>
         (props.theme && props.theme.primaryHighlightColor)};
@@ -29,6 +28,7 @@ export const ToggleItem = styled.div<TProps>`
   ${(props) =>
     props.disabled &&
     css`
+      opacity: .6;
       cursor: not-allowed;
     `}
   

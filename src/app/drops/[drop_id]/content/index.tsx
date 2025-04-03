@@ -67,6 +67,8 @@ const Content: FC<TProps> = ({
   }))
 
   useEffect(() => {
+
+    console.log('HERE 0')
     dispatch(setClaimed(false))
     dispatch(setVerified(false))
     dispatch(setTxHash(null))
@@ -97,11 +99,17 @@ const Content: FC<TProps> = ({
       return
     }
     const init = async () => {
+      console.log('HERE 1')
+
       const isClaimed = dropInstance.hasConnectedUserClaimed
+
+      console.log({ isClaimed })
       if (isClaimed) {
         dispatch(setClaimed(true))
         dispatch(setVerified(true))
         const txHash = dropInstance.connectedUserClaimTxHash
+        console.log({ txHash })
+
         if (txHash) {
           dispatch(setTxHash(txHash))
         }

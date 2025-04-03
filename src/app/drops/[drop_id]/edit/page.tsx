@@ -41,6 +41,11 @@ import {
   Page
 } from '@/components/common'
 import {
+  TOKEN_STAKE_AMOUNT_ATOMIC,
+  TOKEN_ADDRESS,
+
+} from '@/app/configs/app-token'
+import {
   shortenString,
   formatTime,
   formatDate
@@ -52,6 +57,11 @@ import {
 import { useAppSelector } from '@/lib/hooks'
 import { JsonRpcSigner } from 'ethers'
 import { Drop } from 'zkbring-sdk'
+import {
+  ERC20Contract
+} from '@/abi'
+
+import { checkApproveTransaction } from '@/utils'
 
 const getInitialData = async (
   drop_id: string,
@@ -70,6 +80,37 @@ const getInitialData = async (
       err
     })
   }
+}
+
+const stake = async  (
+  currentDropInstance: Drop,
+  userAddress: string,
+  signer: JsonRpcSigner
+) => {
+  const contractInstance = new ethers.Contract(TOKEN_ADDRESS as string, ERC20Contract, signer)
+  let iface = new ethers.Interface(ERC20Contract)
+  let data = iface.encodeFunctionData('approve', [
+    currentDropInstance.address, String(TOKEN_STAKE_AMOUNT_ATOMIC)
+  ])
+
+  await signer.sendTransaction({
+    to: TOKEN_ADDRESS as string,
+    from: userAddress,
+    value: 0,
+    data: data
+  })
+
+  const checkTransaction = checkApproveTransaction(
+    contractInstance,
+    userAddress,
+    currentDropInstance.address as string,
+    TOKEN_STAKE_AMOUNT_ATOMIC
+  )
+
+  await checkTransaction()
+
+  const staked = await currentDropInstance.stake(String(TOKEN_STAKE_AMOUNT_ATOMIC))
+  return staked
 }
 
 
@@ -92,6 +133,11 @@ const Edit: FC = () => {
     loading,
     setLoading
   ] = useState<boolean>(true)
+
+  const [
+    isStaked,
+    setIsStaked
+  ] = useState<boolean>(false)
 
   const {
     user: {
@@ -131,6 +177,8 @@ const Edit: FC = () => {
           claimsCount
         } = drop
 
+        const staked = await drop.getStakedAmount()
+
         setCurrentDrop({
           title,
           address,
@@ -149,6 +197,8 @@ const Edit: FC = () => {
 
         setCurrentDropInstance(drop)
 
+        setIsStaked(staked !== '0')
+
       }
       setLoading(false)
     }
@@ -157,9 +207,6 @@ const Edit: FC = () => {
   }, [
     signer
   ])
-
-
-
 
   const [ editPopup, setEditPopup ] = useState<boolean>(false)
   // const loading = false
@@ -227,12 +274,19 @@ const Edit: FC = () => {
         />
 
         <BringAmount
-          isPublic={false}
+          isStaked={isStaked}
           signer={signer as JsonRpcSigner}
           address={address as string}
-          action={(value) => {
-            // 
-            alert('ACTION')
+          action={async (value) => {
+            if (!currentDropInstance) {
+              return alert('Cannot stake')
+            }
+
+            const staked = await stake(
+              currentDropInstance,
+              address as string,
+              signer as JsonRpcSigner
+            )
           }}
         />
         

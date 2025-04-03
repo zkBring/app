@@ -9,18 +9,18 @@ import {
 } from './styled-components'
 import TProps from './types'
 
+import {
+  TOKEN_STAKE_AMOUNT,
+  TOKEN_ADDRESS
+} from '@/app/configs/app-token'
 
 const BringAmount: FC<TProps> = ({
   address,
   signer,
-  isPublic,
+  isStaked,
   action
 }) => {
   
-  console.log(
-    address,
-    signer
-  )
   const [
     bringAmount,
     setBringAmount
@@ -32,7 +32,7 @@ const BringAmount: FC<TProps> = ({
     }
     const init = async () => {
       const bringAmount = await getERC20TokenBalance(
-        '0xAEBd651C93Cd4EaE21DD2049204380075548aDd5',
+        TOKEN_ADDRESS,
         address,
         signer
       )
@@ -57,16 +57,16 @@ const BringAmount: FC<TProps> = ({
   return <WidgetStyled title="Get featured on Bring platform">
 
     <TextStyled>
-      Hold at least 5,000,000 BRING tokens in your wallet to have your drop featured on the zkBring homepage and discovery section. You currently hold:
+      Hold at least {TOKEN_STAKE_AMOUNT} BRING tokens in your wallet to have your drop featured on the zkBring homepage and discovery section. You currently hold:
     </TextStyled>
 
     <TokenCounterStyled
       value={BigInt(bringAmount || '0')}
       tokenSymbol='BRING'
       tokenIcon={<BringTokenIcon />}
-      max={BigInt('5000000')}
+      max={BigInt(TOKEN_STAKE_AMOUNT)}
       action={action}
-      isPublic={isPublic}
+      isStaked={isStaked}
     />
 
   </WidgetStyled>

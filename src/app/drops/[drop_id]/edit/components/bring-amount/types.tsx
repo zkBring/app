@@ -1,9 +1,9 @@
 import { JsonRpcSigner } from "ethers"
 
 type TProps = {
-  isPublic: boolean
+  isStaked: boolean
   action: (
-    isPublic: boolean
+    isStaked: boolean
   ) => void
   address: string
   signer: JsonRpcSigner
