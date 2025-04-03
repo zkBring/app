@@ -3,9 +3,9 @@ type TProps = {
   value: number | bigint
   max: number | bigint
   action: (
-    isPublic: boolean 
+    isStaked: boolean 
   ) => void
-  isPublic: boolean
+  isStaked: boolean
   actionTitle?: string
   tokenSymbol: string
   tokenIcon: React.ReactNode

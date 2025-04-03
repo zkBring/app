@@ -8,6 +8,7 @@ import {
 import {
   dropFactoryBaseSepolia
 } from '@/app/configs'
+import { checkApproveTransaction } from '@/utils'
 
 type TArgs = {
   address: string,
@@ -31,7 +32,6 @@ const approve = createAsyncThunk(
       }
     } = state
 
-    
     const contractInstance = new ethers.Contract(tokenAddress as string, ERC20Contract, signer)
 
     let iface = new ethers.Interface(ERC20Contract)
@@ -46,20 +46,13 @@ const approve = createAsyncThunk(
       data: data
     })
 
-    const checkTransaction = async function (): Promise<boolean> {
-      return new Promise((resolve) => {
-        const checkInterval = setInterval(async () => {
-          const allowed = await contractInstance.allowance(address, dropFactoryBaseSepolia)
-          console.log({
-            allowed
-          })
-          if (allowed >= totalAmount) {
-            resolve(true)
-            clearInterval(checkInterval)
-          }
-        }, 1000)
-      })
-    }
+    const checkTransaction = checkApproveTransaction(
+      contractInstance,
+      address,
+      dropFactoryBaseSepolia as string,
+      BigInt(totalAmount)
+    )
+
     await checkTransaction()
 
     return true
