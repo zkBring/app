@@ -56,7 +56,6 @@ const OwnDrops = () => {
         })
 
         const { drops } = dropsData
-
         const dropsConverted = drops.map(drop => {
           return {
             title: drop.title,
@@ -68,8 +67,8 @@ const OwnDrops = () => {
             maxClaims: drop.maxClaims,
             zkPassAppId: drop.zkPassAppId,
             zkPassSchemaId: drop.zkPassSchemaId,
-            decimals: 18,
-            symbol: 'BRING',
+            decimals: drop.decimals as number,
+            symbol: drop.symbol as string,
             creatorAddress: drop.creatorAddress,
             claimsCount: drop.claimsCount || BigInt(0)
 

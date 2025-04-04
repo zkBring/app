@@ -191,7 +191,9 @@ const Edit: FC = () => {
           zkPassAppId,
           zkPassSchemaId,
           creatorAddress,
-          claimsCount
+          claimsCount,
+          decimals,
+          symbol
         } = drop
 
         const staked = await drop.getStakedAmount()
@@ -206,8 +208,8 @@ const Edit: FC = () => {
           maxClaims,
           zkPassAppId,
           zkPassSchemaId,
-          decimals: 18,
-          symbol: 'BRING',
+          decimals: decimals as number,
+          symbol: symbol as string,
           creatorAddress,
           claimsCount: claimsCount || BigInt(0)
         })
