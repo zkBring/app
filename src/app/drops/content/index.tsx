@@ -8,6 +8,7 @@ import {
 } from '@/types'
 import DropsList from './drops-list'
 import NoDrops from './no-drops'
+import DropsPagination from './drops-pagination'
 
 import {
   Page
@@ -45,7 +46,9 @@ const defineContent = (
 }
 
 const Content: FC<TProps> = ({
-  drops
+  drops,
+  resultSet,
+  includePageComponent
 }) => {
   const {
     user: {
@@ -58,9 +61,18 @@ const Content: FC<TProps> = ({
 
   const content = defineContent(drops, address)
 
-  return <Page>
+  if (includePageComponent) {
+    return <Page>
+      {content}
+      <DropsPagination resultSet={resultSet} baseUrl='/drops' />
+    </Page>
+  }
+
+  return <>
     {content}
-  </Page>
+    <DropsPagination resultSet={resultSet} baseUrl='/drops/own' />
+  </>
+
 }
 
 

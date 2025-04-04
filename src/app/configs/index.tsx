@@ -7,3 +7,6 @@ export const onchainApiKey = process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY
 export const dropFactoryBaseSepolia = process.env.NEXT_PUBLIC_DROP_FACTORY_BASE_SEPOLIA
 
 export const environment = process.env.NEXT_PUBLIC_ENVIRONMENT
+
+
+export const dropsAmountPerPage = 10

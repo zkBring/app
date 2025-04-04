@@ -28,6 +28,7 @@ import createSDK from './create-sdk'
 import createXShareLink from './create-x-share-link'
 import createWarpcastShareLink from './create-warpcast-share-link'
 import checkApproveTransaction from './check-approve-transaction'
+import defineAudienceIcon from './define-audience-icon'
 
 export {
   alertError,
@@ -59,5 +60,6 @@ export {
   getERC20TokenBalance,
   createSDK,
   createWarpcastShareLink,
-  checkApproveTransaction
+  checkApproveTransaction,
+  defineAudienceIcon
 }

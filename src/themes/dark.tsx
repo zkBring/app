@@ -104,7 +104,8 @@ const theme = {
   successBackgroundColor: '#151B1C',
   successTextColor: '#229B93',
 
-  primaryHighlightColor: '#229B93'
+  primaryHighlightColor: '#229B93',
+  dropStatusTextColor: '#38966A',
 
 }
 

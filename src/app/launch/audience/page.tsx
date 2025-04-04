@@ -28,16 +28,13 @@ import {
   clearLaunch
 } from '@/lib/slices'
 import { useDispatch } from 'react-redux'
-import {
-  DropAudienceIcon,
-  XAudienceIcon
-} from '@/components/icons'
 import { useRouter } from 'next/navigation'
 import { useAppSelector } from '@/lib/hooks'
 import {
   environment
 } from '@/app/configs'
 import zkTLSConfig from '@/app/configs/zk-tls'
+import { defineAudienceIcon } from '@/utils'
 
 const createOptions = () => {
   const zkTLS = zkTLSConfig[environment as TEnvironment]
@@ -47,17 +44,18 @@ const createOptions = () => {
   } = zkTLS
 
   const options = schemas.map(schema => {
+    const icon = defineAudienceIcon(schema.schemaId)
     return {
       title: schema.description,
       value: schema.schemaId,
-      image: <XAudienceIcon />,
+      image: icon
     }
   })
-
+  const icon = defineAudienceIcon('')
   options.push({
     title: 'Custom',
     value: 'custom',
-    image: <DropAudienceIcon />
+    image: icon
   })
 
   return options
