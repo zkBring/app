@@ -45,7 +45,6 @@ export default async function Drops() {
   }
 
   const { drops } = data
-
   const dropsData = drops.map(drop => {
     return {
       title: drop.title,
@@ -57,8 +56,8 @@ export default async function Drops() {
       maxClaims: drop.maxClaims,
       zkPassAppId: drop.zkPassAppId,
       zkPassSchemaId: drop.zkPassSchemaId,
-      decimals: 18,
-      symbol: 'BRING',
+      decimals: drop.decimals as number,
+      symbol: drop.symbol as string,
       creatorAddress: drop.creatorAddress,
       claimsCount: drop.claimsCount || BigInt(0)
     }

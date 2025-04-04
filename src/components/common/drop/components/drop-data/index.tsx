@@ -20,6 +20,8 @@ import { FC } from 'react'
 const DropData: FC<TProps> = ({
   drop
 }) => {
+
+  const claimedPercentage = Number((drop.claimsCount * BigInt(100)) / drop.maxClaims)
   return <Container>
     <Creator>
       <CreatorImage
@@ -33,10 +35,10 @@ const DropData: FC<TProps> = ({
     <Claimed>
       <InputCoinIcon />
       <ClaimedText>
-        0% claimed
+        {claimedPercentage}% claimed
       </ClaimedText>
       <DashedProgressBarStyled
-        current={Number((drop.claimsCount * BigInt(100)) / drop.maxClaims)}
+        current={claimedPercentage}
         max={100}
         dashCount={5}
       />
