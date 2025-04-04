@@ -32,6 +32,8 @@ import type TDropStatus from './drop-status'
 import type TFees from './fees'
 import type TWebproof from "./webproof"
 import type TButtonAppearance from "./button-appearance"
+import type TDropsSearchParams from './drops-search-params'
+import type TDropsPaginationData from './drops-pagination-data'
 
 export {
   TDropStatus,
@@ -65,5 +67,7 @@ export {
   TTransactionStageStatus,
   TWebproof,
   TEnvironment,
-  TButtonAppearance
+  TButtonAppearance,
+  TDropsSearchParams,
+  TDropsPaginationData
 }

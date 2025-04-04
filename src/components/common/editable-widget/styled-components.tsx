@@ -5,8 +5,6 @@ import {
   SmallSubtitle
 } from 'components/common'
 
-
-  
 export const WidgetStyled = styled(Widget)`
 
 ` 

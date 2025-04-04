@@ -59,6 +59,7 @@ export default async function Drop({
     maxClaims,
     zkPassAppId,
     zkPassSchemaId,
+    status,
     claimsCount,
     decimals,
     symbol
@@ -78,7 +79,8 @@ export default async function Drop({
       decimals: decimals as number,
       symbol: symbol as string,
       creatorAddress: drop.creatorAddress,
-      claimsCount: claimsCount || BigInt(0)
+      claimsCount: claimsCount || BigInt(0),
+      status
     }}
 
   />

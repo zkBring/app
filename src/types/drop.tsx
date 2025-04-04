@@ -1,3 +1,5 @@
+import TDropStatus from './drop-status'
+
 type TDrop = {
   title: string
   address: string
@@ -12,6 +14,7 @@ type TDrop = {
   decimals: number
   symbol: string
   creatorAddress: string
+  status: TDropStatus
 }
 
 

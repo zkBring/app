@@ -8,24 +8,20 @@ import {
   useEffect,
   useState
 } from 'react'
-import Content from './content'
+import Content from '../content'
 import {
-  environment
-} from '@/app/configs'
-import {
-  TDrop,
-  TEnvironment
+  TDrop, TDropsPaginationData,
 } from '@/types'
-import {
-  Drop
-} from 'zkbring-sdk'
+import { useSearchParams } from 'next/navigation'
 import {
   Page
 } from '@/components/common'
 import { useAppSelector } from '@/lib/hooks'
+import { dropsAmountPerPage } from '@/app/configs'
 
 const OwnDrops = () => {
-
+  const searchParams = useSearchParams()
+  const limit = Number(searchParams.get('limit')) || dropsAmountPerPage
   const [
     data,
     setData
@@ -34,7 +30,12 @@ const OwnDrops = () => {
   const [
     loading,
     setLoading
-  ] = useState<boolean>(false)
+  ] = useState<boolean>(true)
+  
+  const [
+    paginationData,
+    setPaginationData
+  ] = useState<TDropsPaginationData>()
 
   const {
     user: {
@@ -52,10 +53,12 @@ const OwnDrops = () => {
       try {
         const sdk = createSDK({})
         const dropsData = await sdk.getDrops({
-          creator: address
+          creator: address,
+          offset: Number(searchParams.get('offset')) || 0,
+          limit
         })
 
-        const { drops } = dropsData
+        const { drops, resultSet } = dropsData
         const dropsConverted = drops.map(drop => {
           return {
             title: drop.title,
@@ -70,12 +73,13 @@ const OwnDrops = () => {
             decimals: drop.decimals as number,
             symbol: drop.symbol as string,
             creatorAddress: drop.creatorAddress,
-            claimsCount: drop.claimsCount || BigInt(0)
+            claimsCount: drop.claimsCount || BigInt(0),
+            status: drop.status,
 
           }
         })
         setData(dropsConverted)
-        
+        setPaginationData({ ...resultSet, limit })
       } catch (err: unknown) {
         console.log({
           err
@@ -88,7 +92,10 @@ const OwnDrops = () => {
 
 
   return <Page>
-    {loading ? 'Loading...' : <Content drops={data || []} />}
+    {loading ? 'Loading...' : <Content
+      drops={data || []}
+      resultSet={paginationData}
+    />}
   </Page>
 }
 

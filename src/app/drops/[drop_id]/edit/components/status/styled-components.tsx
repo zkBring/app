@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import {
-  Widget
+  Widget,
+  SmallSubtitle
 } from '@/components/common'
 
 export const Text = styled.p`
@@ -12,4 +13,9 @@ export const Text = styled.p`
 
 export const WidgetStyled = styled(Widget)`
   margin-bottom: 20px;
+
+`
+
+export const SmallSubtitleStyled = styled(SmallSubtitle)`
+  text-align: left;
 `

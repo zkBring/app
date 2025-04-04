@@ -1,10 +1,7 @@
-import { TDrop } from "@/types"
-import { TDropStatus } from '@/types'
+import { Drop } from "zkbring-sdk"
 
 type TProps = {
-  drop: TDrop
-  status: TDropStatus
-  setStatus: (status: TDropStatus) => void
+  dropInstance: Drop | null
 }
 
 export default TProps

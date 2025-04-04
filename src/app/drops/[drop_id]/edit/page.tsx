@@ -141,7 +141,6 @@ const Edit: FC = () => {
     setCurrentDropInstance
   ] = useState<Drop | null>(null)
 
-
   const [
     loading,
     setLoading
@@ -193,6 +192,7 @@ const Edit: FC = () => {
           creatorAddress,
           claimsCount,
           decimals,
+          status,
           symbol
         } = drop
 
@@ -211,6 +211,7 @@ const Edit: FC = () => {
           decimals: decimals as number,
           symbol: symbol as string,
           creatorAddress,
+          status: status,
           claimsCount: claimsCount || BigInt(0)
         })
 
@@ -321,19 +322,20 @@ const Edit: FC = () => {
             setIsStaked(staked)
           }}
         />
-        
-        <Verification
-          dropId={dropAddress}
+        <EditableWidget
+          value={description}
+          title="Description"
+          action={() => {
+            setEditPopup(true)
+          }}
         />
 
       </Content>
 
       <Aside>
-        {/* <Status
-          status={status}
-          setStatus={setStatus}
-          drop={currentDrop}
-        /> */}
+        <Status
+          dropInstance={currentDropInstance}
+        />
         <WidgetStyled
           title="Campaign"
         >
@@ -373,16 +375,6 @@ const Edit: FC = () => {
           <AsideButtonsContainer>
             <ButtonStyled
               size='extra-small'
-              appearance='additional'
-              onClick={() => {
-                alert('DOWNLOAD')
-              }}
-            >
-              Download full report
-            </ButtonStyled>
-
-            <ButtonStyled
-              size='extra-small'
               target='_blank'
               appearance='additional'
               href={`/drops/${dropAddress}`}
@@ -392,14 +384,6 @@ const Edit: FC = () => {
           </AsideButtonsContainer>
 
         </WidgetStyled>
-
-        <EditableWidget
-          value={description}
-          title="Description"
-          action={() => {
-            setEditPopup(true)
-          }}
-        />
       </Aside>
     </Container>
   </Page>

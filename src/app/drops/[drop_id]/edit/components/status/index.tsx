@@ -3,7 +3,8 @@ import {
 } from 'react'
 import TProps from './types'
 import {
-  WidgetStyled
+  WidgetStyled,
+  SmallSubtitleStyled
 } from './styled-components'
 import { TDropStatus } from '@/types'
 import {
@@ -15,27 +16,27 @@ const defineStatus = (
 ) => {
   switch (status) {
     case 'active':
-      return 'In progress'
-    case 'initial':
-    case 'pending':
-      return 'Loading'
-    case 'paused':
-      return 'Paused'
+      return 'Active'
+    case 'stopped':
+      return 'Stopped'
+    case 'expired':
+      return 'Expired'
+    case 'finished':
+      return 'Finished'
     default:
-      return 'In progress'
+      return 'Loading'
   }
 }
 
 const Status: FC<TProps> = ({
-  drop,
-  status,
-  setStatus
+  dropInstance,
 }) => {
-
-  return <WidgetStyled
-    title="Drop status"
-  >
-    <Text>{defineStatus(status)}</Text> 
+  if (!dropInstance) {
+    return null
+  }
+  return <WidgetStyled>
+    <SmallSubtitleStyled>Drop status</SmallSubtitleStyled>
+    <Text>{defineStatus(dropInstance.status)}</Text> 
   </WidgetStyled>
 }
 

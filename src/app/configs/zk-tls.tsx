@@ -1,5 +1,6 @@
 import { TEnvironment } from "@/types"
 
+
 type TZKTLSConfigData = {
   zkPassAppId: string,
   schemas: {
@@ -17,8 +18,9 @@ type TZKTLSConfig = Record<
 
 const zkTLSConfig: TZKTLSConfig = { 
   dev: {
-    zkPassAppId: "6543a426-2afe-4efa-9d23-2d6ce8723e23",
-    schemas: [{
+    zkPassAppId: "0acb96f1-6e0d-4414-a744-96f2620a6682",
+    schemas: [
+      {
         schemaId: "c38b96722bd24b64b8d349ffd6391a8c",
         description: "Verify Twitter Followers", 
         shortDescription: "For X users", 
@@ -29,7 +31,7 @@ const zkTLSConfig: TZKTLSConfig = {
   },
   staging: {
     // zkPassAppId: "fceb8c8f-3fe6-4105-955f-8003bf1350da",
-    zkPassAppId: "6543a426-2afe-4efa-9d23-2d6ce8723e23",
+    zkPassAppId: "0acb96f1-6e0d-4414-a744-96f2620a6682",
     schemas: [{
         // schemaId: "94cde52ae2154d67befa7e0faafc223c",
         schemaId: "c38b96722bd24b64b8d349ffd6391a8c",
