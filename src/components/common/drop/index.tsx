@@ -49,7 +49,7 @@ const Drop: FC<TProps> = ({
   const Icon = defineAudiencePreviewIcon(drop.zkPassSchemaId)
   const configForZKTLS = ZKTLSConfig[environment as TEnvironment]
   const schema = configForZKTLS.schemas.find(schema => schema.schemaId === toUtf8String(drop.zkPassSchemaId))
-
+  const description = schema ? `For ${schema.serviceName} users` : 'For service users'
   return <LinkStyled href={`/drops/${address}`}>
     <Container>
       <AudienceBlock
@@ -58,7 +58,7 @@ const Drop: FC<TProps> = ({
       />
       <Content>
         <AudienceUsers>
-          {schema?.shortDescription}
+          {description}
         </AudienceUsers>
 
         <TitleContainer>
