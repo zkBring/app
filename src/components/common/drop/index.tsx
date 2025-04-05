@@ -18,11 +18,20 @@ import { ethers } from 'ethers'
 import {
   shortenString
 } from '@/utils'
+import { toUtf8String } from 'ethers'
 import {
   AudienceBlock,
   DropData
 } from './components'
 import ZKBringLogo from '@/images/zkbring-logo.png'
+import {
+  defineAudiencePreviewIcon
+} from '@/utils'
+import ZKTLSConfig from '@/app/configs/zk-tls'
+import {
+  environment
+} from '@/app/configs/index'
+import { TEnvironment } from '@/types'
 
 const Drop: FC<TProps> = ({
   drop
@@ -37,18 +46,24 @@ const Drop: FC<TProps> = ({
   } = drop
 
   const amountFormatted = ethers.formatUnits(amount, decimals)
+  const Icon = defineAudiencePreviewIcon(drop.zkPassSchemaId)
+  const configForZKTLS = ZKTLSConfig[environment as TEnvironment]
+  const schema = configForZKTLS.schemas.find(schema => schema.schemaId === toUtf8String(drop.zkPassSchemaId))
 
   return <LinkStyled href={`/drops/${address}`}>
     <Container>
-      <AudienceBlock drop={drop} />
+      <AudienceBlock
+        icon={Icon}
+        color={schema?.color || '#1C1C1C'}
+      />
       <Content>
         <AudienceUsers>
-          For X users
+          {schema?.shortDescription}
         </AudienceUsers>
 
         <TitleContainer>
           <Title>
-            {shortenString(amountFormatted)} {symbol}
+            {amountFormatted} {symbol}
           </Title>
 
           <ImageContainer>

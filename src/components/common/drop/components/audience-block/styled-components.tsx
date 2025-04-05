@@ -9,5 +9,4 @@ export const ImageContainer = styled.div`
   justify-content: center;
   background-color: ${props => props.theme.dropItemBackgroundColor};
   border: 2px solid ${props => props.theme.dropItemBorderColor};
-
 `

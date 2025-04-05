@@ -1,7 +1,8 @@
 import { TDrop } from "@/types"
 
 type TProps = {
-  drop: TDrop
+  icon: React.ReactNode
+  color: string
 }
 
 export default TProps

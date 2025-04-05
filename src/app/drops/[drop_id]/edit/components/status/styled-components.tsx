@@ -5,7 +5,7 @@ import {
 } from '@/components/common'
 
 export const Text = styled.p`
-  margin: 0;
+  margin: 0 0 10px;
   font-size: 25px;
   font-weight: 700;
   color: ${props => props.theme.dropStatusTextColor};

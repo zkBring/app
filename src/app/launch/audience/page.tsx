@@ -34,7 +34,7 @@ import {
   environment
 } from '@/app/configs'
 import zkTLSConfig from '@/app/configs/zk-tls'
-import { defineAudienceIcon } from '@/utils'
+import { defineAudienceLaunchIcon } from '@/utils'
 
 const createOptions = () => {
   const zkTLS = zkTLSConfig[environment as TEnvironment]
@@ -43,15 +43,21 @@ const createOptions = () => {
     schemas
   } = zkTLS
 
-  const options = schemas.map(schema => {
-    const icon = defineAudienceIcon(schema.schemaId)
+  const options = schemas
+  .filter(
+    schema => {
+      return schema.launch
+    }
+  )
+  .map(schema => {
+    const icon = defineAudienceLaunchIcon(schema.schemaId)
     return {
       title: schema.description,
       value: schema.schemaId,
       image: icon
     }
   })
-  const icon = defineAudienceIcon('')
+  const icon = defineAudienceLaunchIcon('')
   options.push({
     title: 'Custom',
     value: 'custom',

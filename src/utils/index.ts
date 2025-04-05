@@ -28,7 +28,8 @@ import createSDK from './create-sdk'
 import createXShareLink from './create-x-share-link'
 import createWarpcastShareLink from './create-warpcast-share-link'
 import checkApproveTransaction from './check-approve-transaction'
-import defineAudienceIcon from './define-audience-icon'
+import defineAudienceLaunchIcon from './define-audience-launch-icon'
+import defineAudiencePreviewIcon from "./define-audience-preview-icon"
 
 export {
   alertError,
@@ -61,5 +62,6 @@ export {
   createSDK,
   createWarpcastShareLink,
   checkApproveTransaction,
-  defineAudienceIcon
+  defineAudienceLaunchIcon,
+  defineAudiencePreviewIcon
 }
