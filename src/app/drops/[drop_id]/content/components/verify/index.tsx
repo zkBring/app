@@ -12,7 +12,15 @@ import {
   LockIconStyled,
   XIconStyled
 } from './styled-components'
-
+import {
+  defineAudiencePreviewIcon
+} from '@/utils'
+import ZKTLSConfig from '@/app/configs/zk-tls'
+import {
+  environment
+} from '@/app/configs/index'
+import { TEnvironment } from '@/types'
+import { toUtf8String } from 'ethers'
 import {
   StepTitle
 } from '../../styled-components'
@@ -32,14 +40,22 @@ const Verify: FC<TProps> = ({
     verify: state.verify
   }))
 
+  if(!dropInstance) {
+    return null
+  }
+
+  const Icon = defineAudiencePreviewIcon(dropInstance.zkPassSchemaId)
+  const configForZKTLS = ZKTLSConfig[environment as TEnvironment]
+  const schema = configForZKTLS.schemas.find(schema => schema.schemaId === toUtf8String(dropInstance.zkPassSchemaId))
+
   return <Container disabled={verified}>
     <StepTitle>
       1. Verify Eligibility
     </StepTitle>
     <WidgetStyled
-      title='Users who follow @zkBring'
+      title={schema?.description || 'Verify your account'}
       finished={verified}
-      image={<XIconStyled />}
+      image={Icon}
     >
       {!verified && <>
         <TextStyled>

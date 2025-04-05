@@ -122,8 +122,24 @@ const stake = async  (
     console.log({ err })
     return false
   }
-  
+}
 
+const stop = async  (
+  currentDropInstance: Drop
+) => {
+
+  try {
+    const {
+      txHash,
+      waitForStop
+    } = await currentDropInstance.stop()
+
+    const stop = await waitForStop()
+    return true
+  } catch (err) {
+    console.log({ err })
+    return false
+  }
 }
 
 
@@ -334,7 +350,19 @@ const Edit: FC = () => {
 
       <Aside>
         <Status
-          dropInstance={currentDropInstance}
+          status={currentDrop.status}
+          stop={async () => {
+            if (!currentDropInstance) {
+              return alert('Instance is not ready')
+            }
+            const stopped = await stop(currentDropInstance)
+            if (stopped) {
+              setCurrentDrop({
+                ...currentDrop,
+                status: 'stopped'
+              })
+            }
+          }}
         />
         <WidgetStyled
           title="Campaign"

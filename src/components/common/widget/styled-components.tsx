@@ -50,6 +50,10 @@ export const WidgetTitleImageContainer = styled.div`
   margin-right: 10px;
   border: 1px solid ${props => props.theme.dropItemBorderColor};
   background-color: ${props => props.theme.blankColor};
+
+  svg {
+    max-width: 16px;
+  }
 `
 
 

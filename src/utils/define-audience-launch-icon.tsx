@@ -11,7 +11,7 @@ const defineAudienceIcon: TDefineAudienceIcon = (
   schemaId
 ) => {
   switch (schemaId) {
-    case 'c38b96722bd24b64b8d349ffd6391a8c':
+    case 'aad08c14f0a24759a077939ad2d0b829':
       return <XAudienceIcon />
     default:
       return <DropAudienceIcon />

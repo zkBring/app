@@ -4,16 +4,15 @@ import {
 import { FC } from 'react'
 import TProps from './types'
 
-import {
-  AudienceTwitchIcon,
-  AudienceXIcon
-} from '@/components/icons'
-
 const Component: FC<TProps> = ({
-  drop
+  icon,
+  color
 }) => {
-  return <ImageContainer>
-    <AudienceXIcon />
+
+  return <ImageContainer
+    style={{ backgroundColor: color}}
+  >
+    {icon}
   </ImageContainer>
 }
 

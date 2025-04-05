@@ -10,6 +10,9 @@ import { TDropStatus } from '@/types'
 import {
   Text
 } from './styled-components'
+import {
+  Button
+} from '@/components/common'
 
 const defineStatus = (
   status: TDropStatus
@@ -29,14 +32,21 @@ const defineStatus = (
 }
 
 const Status: FC<TProps> = ({
-  dropInstance,
+  status,
+  stop
 }) => {
-  if (!dropInstance) {
+  if (!status) {
     return null
   }
   return <WidgetStyled>
     <SmallSubtitleStyled>Drop status</SmallSubtitleStyled>
-    <Text>{defineStatus(dropInstance.status)}</Text> 
+    <Text>{defineStatus(status)}</Text>
+    <Button
+      size='extra-small'
+      onClick={stop}
+    >
+      Stop drop
+    </Button>
   </WidgetStyled>
 }
 
