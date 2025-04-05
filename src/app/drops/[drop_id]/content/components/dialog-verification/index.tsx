@@ -85,6 +85,7 @@ const checkIfClaimedBefore = async (
     const isClaimed = await drop.hasUserClaimed({ uHash: uHash })
     return isClaimed
   } catch (err) {
+    console.log({ err })
     alert("Check failed")
     return null
   }
