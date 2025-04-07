@@ -61,9 +61,13 @@ const Content: FC<TProps> = ({
     user: {
       address: userAddress,
       signer
+    },
+    verify: {
+      verified
     }
   } = useAppSelector(state => ({
-    user: state.user
+    user: state.user,
+    verify: state.verify
   }))
 
   useEffect(() => {
@@ -86,6 +90,18 @@ const Content: FC<TProps> = ({
 
     init()
   }, [])
+
+  useEffect(() => {
+    if (!verified || !signer) { return }
+    const init = async () => {
+      (dropInstance as Drop).updateWalletOrProvider(signer)
+    }
+
+    init()
+  }, [
+    verified,
+    signer
+  ])
 
   useEffect(() => {
     if (!dropInstance) {
