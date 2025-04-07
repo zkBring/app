@@ -55,11 +55,6 @@ export default async function Drops({
     limit
   } = (await searchParams)
 
-  console.log({
-    offset,
-    limit
-  })
-
   const data = await getInitialData({
     offset,
     limit
