@@ -2,17 +2,12 @@ import { FC } from 'react'
 import TProps from './types'
 import {
   Container,
-  Page
+  ButtonStyled
 } from './styled-components'
 import { useRouter } from 'next/navigation'
-
-const PAGES_LIMIT = 10
-
-const defineIfPrevButtonIsDisabled = (
-  offset: number
-) => {
-  return offset === 0
-}
+import { 
+  dropsAmountPerPage
+} from '@/app/configs'
 
 const defineIfNextButtonIsDisabled = (
   total:number,
@@ -31,42 +26,19 @@ const Pagination: FC<TProps> = ({
   count,
   total // 125
 }) => {
-  const router = useRouter()
-  const potentialPagesCount = Math.ceil(total / limit) // 13 + 2 (forward and backward added)
 
-  const prevDisabled = defineIfPrevButtonIsDisabled(offset)
   const nextDisabled = defineIfNextButtonIsDisabled(
     total,
     limit,
     offset
   )
-  return <Container pagesCount={potentialPagesCount + 2} className={className}>
-
-    <Page
-      disabled={prevDisabled}
-      href={`${baseUrl}?limit=${limit}&offset=${offset - limit}`}
-    >
-      {`<`}
-    </Page>
-
-    {new Array(potentialPagesCount).fill(null).map((page, idx) => {
-      return <Page
-        disabled={
-          idx === (offset / limit)
-        }
-        href={`${baseUrl}?limit=${limit}&offset=${idx * limit}`}
-      >
-        {idx + 1}
-      </Page>
-    })}
-
-
-    <Page
+  return <Container className={className}>
+    <ButtonStyled
       disabled={nextDisabled}
-      href={`${baseUrl}?limit=${limit}&offset=${offset + limit}`}
+      href={`${baseUrl}?limit=${limit + dropsAmountPerPage}&offset=${offset}`}
     >
-      {`>`}
-    </Page>
+      Show more
+    </ButtonStyled>
 
   </Container>
 }

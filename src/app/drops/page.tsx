@@ -55,6 +55,11 @@ export default async function Drops({
     limit
   } = (await searchParams)
 
+  console.log({
+    offset,
+    limit
+  })
+
   const data = await getInitialData({
     offset,
     limit
@@ -90,7 +95,7 @@ export default async function Drops({
   return <Content
     drops={dropsData || []}
     includePageComponent
-    resultSet={{ ...resultSet, limit: Number(defaultLimit) }}
+    resultSet={{ ...resultSet, limit: Number(limit) }}
   />
 }
 
