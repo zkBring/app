@@ -20,6 +20,7 @@ const DropsPagination:  FC<TProps> = ({
     limit,
     count
   } = resultSet
+
   return <PaginationStyled
     total={total}
     offset={offset}

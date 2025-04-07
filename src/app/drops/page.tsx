@@ -90,7 +90,7 @@ export default async function Drops({
   return <Content
     drops={dropsData || []}
     includePageComponent
-    resultSet={{ ...resultSet, limit: Number(defaultLimit) }}
+    resultSet={{ ...resultSet, limit: Number(limit) }}
   />
 }
 
