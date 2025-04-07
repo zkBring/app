@@ -122,7 +122,9 @@ const DialogVerification: FC<TProps> = ({
             setLoading(false)
             return alert('Drop is not ready')
           }
+
           const transgateAvailable = await checkIfTransgateAvailable(dropInstance)
+
           if (!transgateAvailable) {
             setLoading(false)
             return showTransgateDialog()
