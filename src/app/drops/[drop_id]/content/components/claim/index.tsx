@@ -99,6 +99,7 @@ const defineContent = (
       You’re eligible! Claim your tokens now!
     </TextStyled>
   }
+
   if (claimed && txHash) {
     const explorerUrl = `${defineExplorerURL(chainId)}/tx/${txHash}`
 
@@ -153,9 +154,9 @@ const Claim: FC<TProps> = ({
   const dispatch = useDispatch()
 
   const content = defineContent(
-    chainId,
-    claimed,
-    txHash
+    chainId, // id of connected user chain
+    claimed, // if claimed
+    txHash // hash of claiming
   )
 
   return <Container disabled={!verified}>

@@ -73,13 +73,11 @@ const Content: FC<TProps> = ({
   }, [])
 
   useEffect(() => {
-    if (!signer || !userAddress) {
-      return
-    }
+
     const init = async () => {
       const sdk = createSDK({
         transgateModule: TransgateConnect,
-        signer
+        signer: signer || undefined
       })
 
       const dropInstance = await sdk.getDrop(drop.address)
@@ -87,10 +85,7 @@ const Content: FC<TProps> = ({
     }
 
     init()
-  }, [
-    signer,
-    userAddress
-  ])
+  }, [])
 
   useEffect(() => {
     if (!dropInstance) {
@@ -99,7 +94,6 @@ const Content: FC<TProps> = ({
     const init = async () => {
 
       const isClaimed = dropInstance.hasConnectedUserClaimed
-
       console.log({ isClaimed })
       if (isClaimed) {
         dispatch(setClaimed(true))
