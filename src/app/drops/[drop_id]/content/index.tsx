@@ -108,9 +108,7 @@ const Content: FC<TProps> = ({
       return
     }
     const init = async () => {
-
       const isClaimed = dropInstance.hasConnectedUserClaimed
-      console.log({ isClaimed })
       if (isClaimed) {
         dispatch(setClaimed(true))
         dispatch(setVerified(true))
@@ -159,7 +157,9 @@ const Content: FC<TProps> = ({
   // const link = `/verify/${encrypted_multiscan_qr_secret}/${encrypted_multiscan_qr_enc_code}`
 
   const amountFormatted = ethers.formatUnits(amount, decimals)
-  return <Page>
+  return <Page
+    preventSwitchNetworkRedirect
+  >
     {verificationStart &&
       <DialogVerification
         dropInstance={dropInstance}

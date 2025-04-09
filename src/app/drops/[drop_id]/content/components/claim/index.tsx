@@ -21,6 +21,7 @@ import {
   Drop
 } from 'zkbring-sdk'
 import {
+  switchNetwork,
   defineExplorerURL
 } from '@/utils'
 import { useAppSelector } from '@/lib/hooks'
@@ -31,6 +32,9 @@ import {
   setTxHash,
   setClaimed
 } from '@/lib/slices'
+
+import { networkId } from '@/app/configs'
+import { BrowserProvider, JsonRpcProvider } from 'ethers'
 
 
 const checkForClaim = async (
@@ -145,7 +149,8 @@ const Claim: FC<TProps> = ({
       txHash
     },
     user: {
-      chainId
+      chainId,
+      provider
     }
   } = useAppSelector(state => ({
     verify: state.verify,
@@ -196,7 +201,16 @@ const Claim: FC<TProps> = ({
       loading={loading}
       size='extra-small'
       disabled={!verified}
-      onClick={claimCallback}
+      onClick={async () => {
+        if (String(chainId) !== networkId) {
+          await switchNetwork(
+            Number(networkId),
+            provider as BrowserProvider,
+            () => {}
+          )
+        }
+        claimCallback()
+      }}
     >
       Claim
     </ButtonStyled>
