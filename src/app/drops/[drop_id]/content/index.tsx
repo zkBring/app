@@ -94,6 +94,8 @@ const Content: FC<TProps> = ({
   useEffect(() => {
     if (!verified || !signer) { return }
     const init = async () => {
+
+      console.log('updateWalletOrProvider');
       (dropInstance as Drop).updateWalletOrProvider(signer)
     }
 
