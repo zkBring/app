@@ -10,7 +10,7 @@ export const ProgressBarContainer = styled.div<{
   display: grid;
   gap: 2px;
   ${props => css`
-    grid-template-columns: repeat(${props.dashCount}, 6px);
+    grid-template-columns: repeat(${props.dashCount}, auto);
   `}
 `
 
@@ -19,8 +19,6 @@ export const Dash = styled.div<{
 }>`
   background: ${props => props.theme.primaryTextColor};
   height: 100%;
-  width: 6px;
-
   background-color: ${props => props.theme.dashedProgressBarEmpty};
 
   ${props => props.filled && css`

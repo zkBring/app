@@ -9,4 +9,8 @@ export const TitleComponent = styled.h1`
   text-align: center;
   color: ${props => props.theme.primaryTextColor};
 
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    font-size: 50px;
+    line-height: 60px;
+  }
 `

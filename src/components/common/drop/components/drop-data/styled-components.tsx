@@ -12,6 +12,10 @@ export const Container = styled.div`
   font-size: 13px;
   align-items: center;
   margin: 0;
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    font-size: 10px;
+  }
 `
 
 export const Creator = styled.div`

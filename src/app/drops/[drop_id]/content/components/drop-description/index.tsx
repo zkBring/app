@@ -5,7 +5,7 @@ import {
 } from 'react'
 import {
   Container,
-  Title,
+  TitleStyled,
   Description,
   ShowMore,
   ImageStyled
@@ -51,7 +51,7 @@ const DropDescription: FC<TProps> = ({
       alt='ZKBring Logo'
       src={ZKBringLogo}
     />
-    <Title>{title}</Title>
+    <TitleStyled>{title}</TitleStyled>
     {description && <Description>
       {descriptionFormatted}
       {

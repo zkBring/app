@@ -99,7 +99,6 @@ const DialogVerification: FC<TProps> = ({
 }) => {
 
   const [ loading, setLoading ] = useState<boolean>(false)
-
   const dispatch = useDispatch()
 
   return <DialogStyled

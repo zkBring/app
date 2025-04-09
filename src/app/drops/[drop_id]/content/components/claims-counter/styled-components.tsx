@@ -17,6 +17,9 @@ export const Label = styled.h3`
   margin-bottom: 15px;
   color: ${props => props.theme.primaryTextColor};
 
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    font-size: 13px;
+  }
 `
 
 export const LabelValue = styled.span`

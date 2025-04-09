@@ -30,6 +30,10 @@ export const Profile = styled.div`
   font-size: 12px;
   margin-left: auto;
   color: ${props => props.theme.primaryTextColor};
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    display: none;
+  }
 `
 
 export const Logout = styled.div`

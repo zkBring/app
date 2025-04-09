@@ -81,10 +81,4 @@ export const ConnectWalletStyled = styled(ConnectWallet)<TProps>`
       }
     `}
 
-
-
-
-  @media (max-width: 600px) {
-    display: none;
-  }
 `
