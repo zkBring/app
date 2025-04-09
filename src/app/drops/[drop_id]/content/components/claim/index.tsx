@@ -186,9 +186,8 @@ const Claim: FC<TProps> = ({
         size='small'
         appearance='action'
         disabled={!verified}
-        onConnect={claimCallback}
       >
-        Claim
+        Connect wallet
       </ConnectButton>
     }
 
