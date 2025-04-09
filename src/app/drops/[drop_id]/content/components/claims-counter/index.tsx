@@ -20,10 +20,10 @@ const ClaimsCounter: FC<TProps> = ({
   const claimAmountBN = BigInt(claimAmount)
   const limitBN = BigInt(limit)
   const ratioAlreadyClaimed = ((alreadyClaimedBN * BigInt(100)) / limitBN)
-
+  const tokensClaimed = claimAmountBN * alreadyClaimedBN
   return <WidgetStyled>
     <Label>
-      {ratioAlreadyClaimed} tokens claimed
+      {ethers.formatUnits(tokensClaimed, decimals)} tokens claimed
 
       <LabelValue>
         {ethers.formatUnits(limitBN * claimAmountBN, decimals)} {symbol}
