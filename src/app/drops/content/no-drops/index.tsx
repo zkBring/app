@@ -11,8 +11,6 @@ import {
 } from '../../styled-components'
 import TProps from './types'
 
-
-
 const NoDrops: FC<TProps> = ({
   address
 }) => {

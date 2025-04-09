@@ -10,3 +10,5 @@ export const environment = process.env.NEXT_PUBLIC_ENVIRONMENT
 
 
 export const dropsAmountPerPage = 10
+
+export const networkId = process.env.NEXT_PUBLIC_NETWORK_ID

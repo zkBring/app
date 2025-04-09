@@ -45,7 +45,6 @@ type TChains = {
 }
 
 const chains: TChains = {
-  
   8453: {
     chainName: 'Base',
     defaultWalletApp: 'coinbase_smart_wallet',

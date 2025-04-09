@@ -10,7 +10,8 @@ import {
   Container
 } from './styled-components'
 import {
-  Link
+  Link,
+  ConnectButton
 } from '@/components/common'
 import {
   StepTitle
@@ -55,15 +56,15 @@ const claim = async (
   recipient?: string | null
 ) => {
   if (!dropInstance) {
-    alert('Drop is not ready')
+    return alert('Drop is not ready')
   }
 
   if (!webproof) {
-    alert('webproof is not ready')
+    return alert('webproof is not ready')
   }
 
   if (!ephemeralKey) {
-    alert('ephemeralKey is not ready')
+    return alert('ephemeralKey is not ready')
   }
 
   if (!recipient) {
@@ -120,6 +121,7 @@ const defineContent = (
   </TextStyled>
 }
 
+
 const Claim: FC<TProps> = ({
   symbol,
   amount,
@@ -159,6 +161,48 @@ const Claim: FC<TProps> = ({
     txHash // hash of claiming
   )
 
+  const claimCallback = async () => {
+    setLoading(true)
+    const txHash = await claim(
+      (claimed: boolean) => {
+        setLoading(false)
+        dispatch(setClaimed(claimed))
+      },
+      dropInstance,
+      webproof,
+      ephemeralKey,
+      recipient,
+    )
+    if (txHash) {
+      dispatch(setTxHash(txHash))
+    } else {
+      dispatch(setLoading(false))
+    }
+  }
+
+  const defineButton = () => {
+    if (!recipient) {
+      return <ConnectButton
+        size='small'
+        appearance='action'
+        disabled={!verified}
+        onConnect={claimCallback}
+      >
+        Claim
+      </ConnectButton>
+    }
+
+    return <ButtonStyled
+      appearance='action'
+      loading={loading}
+      size='extra-small'
+      disabled={!verified}
+      onClick={claimCallback}
+    >
+      Claim
+    </ButtonStyled>
+  }
+
   return <Container disabled={!verified}>
     <StepTitle>
       2. Claim drop
@@ -169,32 +213,7 @@ const Claim: FC<TProps> = ({
       finished={claimed}
     >
       {content}
-      {!claimed && <ButtonStyled
-        appearance='action'
-        loading={loading}
-        size='extra-small'
-        disabled={!verified}
-        onClick={async () => {
-          setLoading(true)
-          const txHash = await claim(
-            (claimed: boolean) => {
-              setLoading(false)
-              dispatch(setClaimed(claimed))
-            },
-            dropInstance,
-            webproof,
-            ephemeralKey,
-            recipient,
-          )
-          if (txHash) {
-            dispatch(setTxHash(txHash))
-          } else {
-            dispatch(setLoading(false))
-          }
-        }}
-      >
-        Claim
-      </ButtonStyled>}
+      {!claimed && defineButton()}
     </WidgetStyled>
   </Container>
 }

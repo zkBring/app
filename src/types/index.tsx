@@ -34,8 +34,10 @@ import type TWebproof from "./webproof"
 import type TButtonAppearance from "./button-appearance"
 import type TDropsSearchParams from './drops-search-params'
 import type TDropsPaginationData from './drops-pagination-data'
+import type IConnectorError from './connector-error'
 
 export {
+  IConnectorError,
   TDropStatus,
   TFees,
   TAuthorizationStep,
