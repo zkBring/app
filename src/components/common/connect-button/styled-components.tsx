@@ -5,6 +5,17 @@ import {
 } from 'zkbring-onchainkit/wallet'
 import TProps from './types'
 
+export const ButtonContainer = styled.div`
+  width: fit-content;
+  position: relative;
+`
+
+export const DisabledOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+`
+
 export const ConnectWalletStyled = styled(ConnectWallet)<TProps>`
   cursor: pointer;
   font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -54,6 +65,21 @@ export const ConnectWalletStyled = styled(ConnectWallet)<TProps>`
         props.theme && props.theme.buttonDefaultBackgroundHoverColor};
     }
   `}
+
+
+  ${props => props.disabled &&
+    css`
+      background-color: ${(props) =>
+        props.theme && props.theme.buttonDisabledBackgroundColor};
+      color: ${(props) => props.theme && props.theme.additionalTextColor};
+      cursor: not-allowed;
+      opacity: .3;
+
+      &:hover {
+        background-color: ${(props) =>
+          props.theme && props.theme.buttonDisabledBackgroundColor};
+      }
+    `}
 
 
 

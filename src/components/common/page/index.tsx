@@ -30,6 +30,8 @@ import {
   useDisconnect
 } from "wagmi"
 import { useWalletClient } from 'wagmi'
+import { networkId } from '@/app/configs'
+import { useRouter } from 'next/navigation'
 
 const Page: FC<TProps> = ({
   children
@@ -51,8 +53,7 @@ const Page: FC<TProps> = ({
   ] = useState<any>(null)
 
   const dispatch = useAppDispatch()
-
-
+  const router = useRouter()
 
   useEffect(() => {
     if (!walletClient) {
@@ -74,6 +75,10 @@ const Page: FC<TProps> = ({
   useEffect(() => {
     if (!address || !chain || !userSigner || !userProvider) {
       return
+    }
+
+    if (String(chain.id) !== networkId) {
+      router.push('/wrong-network')
     }
 
     dispatch(setConnectedUserData({

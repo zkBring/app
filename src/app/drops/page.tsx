@@ -36,7 +36,10 @@ const getInitialData = cache(async ({
       status: 'active'
     })
 
-    return dropsData
+    return {
+      drops: dropsData.drops,
+      resultSet: { ...dropsData.resultSet, limit: Number(limit) }
+    }
   } catch (err: unknown) {
     console.log({
       err1: err
@@ -60,11 +63,9 @@ export default async function Drops({
     limit
   })
 
-
   if (!data) {
     return <h1>Not found</h1>
   }
-
 
   const { drops, resultSet } = data
   const dropsData = drops.map(drop => {
@@ -86,11 +87,10 @@ export default async function Drops({
     }
   })
 
-
   return <Content
     drops={dropsData || []}
     includePageComponent
-    resultSet={{ ...resultSet, limit: Number(limit) }}
+    resultSet={resultSet}
   />
 }
 

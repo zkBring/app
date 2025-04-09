@@ -14,7 +14,6 @@ const defineIfNextButtonIsDisabled = (
   limit: number,
   offset: number
 ) => {
-  
   return total <= (offset + limit)
 }
 
@@ -32,6 +31,11 @@ const Pagination: FC<TProps> = ({
     limit,
     offset
   )
+
+  if (nextDisabled) {
+    return null
+  }
+
   return <Container className={className}>
     <ButtonStyled
       disabled={nextDisabled}

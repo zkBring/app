@@ -4,7 +4,6 @@ import {
 import { FC } from 'react'
 import TProps from './types'
 
-
 const DropsPagination:  FC<TProps> = ({
   resultSet,
   baseUrl
