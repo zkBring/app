@@ -196,19 +196,33 @@ const Claim: FC<TProps> = ({
       </ConnectButton>
     }
 
+    if (String(chainId) !== networkId) {
+      return <ButtonStyled
+        appearance='action'
+        loading={loading}
+        size='extra-small'
+        disabled={!verified}
+        onClick={async () => {
+          setLoading(true)
+          await switchNetwork(
+            Number(networkId),
+            provider as BrowserProvider,
+            () => {
+              setLoading(false)
+            }
+          )
+        }}
+      >
+        Switch network
+      </ButtonStyled>      
+    }
+
     return <ButtonStyled
       appearance='action'
       loading={loading}
       size='extra-small'
       disabled={!verified}
       onClick={async () => {
-        if (String(chainId) !== networkId) {
-          await switchNetwork(
-            Number(networkId),
-            provider as BrowserProvider,
-            () => {}
-          )
-        }
         claimCallback()
       }}
     >
