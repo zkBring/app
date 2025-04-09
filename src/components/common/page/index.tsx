@@ -34,7 +34,8 @@ import { networkId } from '@/app/configs'
 import { useRouter } from 'next/navigation'
 
 const Page: FC<TProps> = ({
-  children
+  children,
+  preventSwitchNetworkRedirect
 }) => {
   const {
     address,
@@ -77,8 +78,10 @@ const Page: FC<TProps> = ({
       return
     }
 
-    if (String(chain.id) !== networkId) {
-      router.push('/wrong-network')
+    if (!preventSwitchNetworkRedirect) {
+      if (String(chain.id) !== networkId) {
+        router.push('/wrong-network')
+      }
     }
 
     dispatch(setConnectedUserData({
