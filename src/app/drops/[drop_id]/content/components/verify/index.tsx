@@ -64,7 +64,7 @@ const Verify: FC<TProps> = ({
         <ButtonStyled
           disabled={verified}
           appearance='action'
-          size='extra-small'
+          size='small'
           onClick={async () => {
             if (!dropInstance) {
               return alert('Connect your wallet first')

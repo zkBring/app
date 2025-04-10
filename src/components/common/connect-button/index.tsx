@@ -1,9 +1,8 @@
 import { FC } from 'react'
 import {
-  ConnectWalletStyled,
-  ButtonContainer,
-  DisabledOverlay
+  ConnectWalletStyled
 } from './styled-components'
+import Button from '../button'
 import TProps from './types'
 
 const ConnectButton: FC<TProps> = ({
@@ -13,16 +12,22 @@ const ConnectButton: FC<TProps> = ({
   disabled,
   onConnect
 }) => {
-  return <ButtonContainer>
-    {disabled && <DisabledOverlay />}
-    <ConnectWalletStyled
-      size={size}
-      disabled={disabled}
-      text={children || 'Connect wallet'}
+  if (disabled) {
+    return <Button
       appearance={appearance}
-      onConnect={onConnect}
-    />
-  </ButtonContainer>
+      disabled
+      size={size}
+    >
+      {children || 'Connect wallet'}
+    </Button>
+  }
+  return <ConnectWalletStyled
+    size={size}
+    disabled={disabled}
+    text={children || 'Connect wallet'}
+    appearance={appearance}
+    onConnect={onConnect}
+  />
 }
 
 export default ConnectButton

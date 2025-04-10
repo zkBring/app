@@ -9,7 +9,7 @@ export type TProps = {
   onClick?: () => void
   appearance?: TButtonAppearance
   className?: string
-  size?: 'default' | 'small' | 'extra-small'
+  size?: 'default' | 'small'
   href?: string
   to?: string
   target?: TButtonTarget

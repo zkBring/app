@@ -39,6 +39,8 @@ const Pagination: FC<TProps> = ({
   return <Container className={className}>
     <ButtonStyled
       disabled={nextDisabled}
+      size='small'
+      appearance='additional'
       href={`${baseUrl}?limit=${limit + dropsAmountPerPage}&offset=${offset}`}
     >
       Show more

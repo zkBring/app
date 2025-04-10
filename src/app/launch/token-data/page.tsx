@@ -10,14 +10,15 @@ import {
   defineIfUserOwnsContractERC20,
   getTokenERC20TokenList,
   getTokenERC20Data,
-  getERC20TokenBalance
+  getERC20TokenBalance,
+  isWhitelisted
 } from '@/utils'
 import {
   InputCoinIcon,
   InputProfileIcon
 } from '@/components/icons'
 import {
-  TTokenData, TZerionERC20Item
+  TTokenData
 } from '@/types'
 import {
   Page,
@@ -69,6 +70,16 @@ const LaunchTokenData: FC = () => {
     user: state.user,
     launch: state.launch
   }))
+
+  useEffect(() => {
+    if (address) {
+      if (!isWhitelisted(address)) {
+        return router.push('/drops')
+      }
+    }
+  }, [
+    address
+  ])
 
   const dispatch = useDispatch()
 

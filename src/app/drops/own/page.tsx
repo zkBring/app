@@ -1,9 +1,7 @@
 'use client'
 import {
-  generateMetadataUtil,
   createSDK
 } from '@/utils'
-import type { Metadata } from 'next'
 import {
   useEffect,
   useState
@@ -12,16 +10,21 @@ import Content from '../content'
 import {
   TDrop, TDropsPaginationData,
 } from '@/types'
+import {
+  isWhitelisted
+} from '@/utils'
 import { useSearchParams } from 'next/navigation'
 import {
   Page
 } from '@/components/common'
 import { useAppSelector } from '@/lib/hooks'
 import { dropsAmountPerPage } from '@/app/configs'
+import { useRouter } from 'next/navigation'
 
 const OwnDrops = () => {
   const searchParams = useSearchParams()
   const limit = Number(searchParams.get('limit')) || dropsAmountPerPage
+  const router = useRouter()
   const [
     data,
     setData
@@ -45,6 +48,16 @@ const OwnDrops = () => {
     launch: state.launch,
     user: state.user
   }))
+
+  useEffect(() => {
+    if (address) {
+      if (!isWhitelisted(address)) {
+        return router.push('/drops')
+      }
+    }
+  }, [
+    address
+  ])
 
   useEffect(() => {
     if (!address) { return }

@@ -16,7 +16,7 @@ const renderMainButton = (
 ) => {
   return <ButtonStyled
     title='Copy URL'
-    size='extra-small'
+    size='small'
     appearance='additional'
     onClick={() => {
       if (reclaimUrl) {

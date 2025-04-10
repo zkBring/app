@@ -6,7 +6,7 @@ const theme = {
   placeholderTextColor: 'rgba(255, 255, 255, .3)',
   dangerTextColor: '#FF2C2C',
 
-  highlightColor: '#0C5EFF',
+  highlightColor: '#0053FE',
 
 
   primaryBackgroundColor: '#0A0B0D',
@@ -19,20 +19,33 @@ const theme = {
   primaryBorderColor: '#1E1E1E',
   secondaryBorderColor: '#2C2C2F',
 
-  buttonActionBackgroundColor: '#0C5EFF',
-  buttonActionBackgroundHoverColor: '#357AFF',
-  buttonActionBackgroundActiveColor: '#095AF5',
-  buttonDisabledBackgroundColor: '#3A3A41',
+  buttonActionBackgroundColor: '#0053FE',
+  buttonActionBackgroundHoverColor: '#0042C9',
+  buttonActionBackgroundActiveColor: '#0042C9',
+  buttonActionBorderHoverColor: 'transparent',
+  buttonActionBorderActiveColor: 'transparent',
+  buttonActionBorderColor: 'transparent',
 
-  buttonDefaultBackgroundColor: '#1B1C1E',
-  buttonDefaultBackgroundHoverColor: '#1B1C1E',
-  buttonDefaultBackgroundActiveColor: '#1B1C1E',
-  buttonDefaultBorderHoverColor: '#121212',
-  buttonDefaultBorderActiveColor: '#121212',
-  buttonDefaultBorderColor: '#272727',
 
-  buttonDefaultDisabledBorderColor: '#E4E4E4',
-  buttonDefaultDisabledTextColor: '#9D9D9D',
+  buttonDefaultBackgroundColor: '#3A3A41',
+  buttonDefaultBackgroundHoverColor: '#29292E',
+  buttonDefaultBackgroundActiveColor: '#29292E',
+  buttonDefaultBorderHoverColor: 'transparent',
+  buttonDefaultBorderActiveColor: 'transparent',
+  buttonDefaultBorderColor: 'transparent',
+
+
+  buttonAdditionalBackgroundColor: 'transparent',
+  buttonAdditionalBackgroundHoverColor: 'transparent',
+  buttonAdditionalBackgroundActiveColor: 'transparent',
+  buttonAdditionalBorderHoverColor: '#3B3B3B',
+  buttonAdditionalBorderActiveColor: '#3B3B3B',
+  buttonAdditionalBorderColor: '#272727',
+
+
+  buttonDisabledBackgroundColor: '#1F1F23',
+  buttonDisabledTextColor: '#4C4C4F',
+  buttonDisabledBorderColor: 'transparent',
 
 
   buttonGradient: 'linear-gradient(to right, #00B2FF 0%, #FA00FF 50%, #00B2FF 100%)',
@@ -52,8 +65,7 @@ const theme = {
   widgetBorderColor: '#232326',
   blankColor: '#111113',
 
-
-
+  menuItemBackgroundColor: 'rgba(33, 33, 36, 0)',
   menuItemActiveBackgroundColor: 'rgba(33, 33, 36, .5)',
   menuItemHoverBackgroundColor: 'rgba(33, 33, 36, .5)',
 

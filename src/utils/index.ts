@@ -33,6 +33,7 @@ import checkApproveTransaction from './check-approve-transaction'
 import defineAudienceLaunchIcon from './define-audience-launch-icon'
 import defineAudiencePreviewIcon from "./define-audience-preview-icon"
 import defineAppNetwork from './define-app-network'
+import isWhitelisted from './is-whitelisted'
 
 export {
   alertError,
@@ -69,5 +70,6 @@ export {
   defineAudiencePreviewIcon,
   defineAppNetwork,
   toHex,
-  switchNetwork
+  switchNetwork,
+  isWhitelisted
 }

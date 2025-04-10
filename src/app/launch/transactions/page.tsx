@@ -10,7 +10,7 @@ import {
   Button
 } from '@/components/common'
 import {
-  countLaunchAmounts,
+  isWhitelisted,
   createSDK
 } from '@/utils'
 import {
@@ -171,6 +171,16 @@ const LaunchTransaction: FC = () => {
     launch: state.launch,
     user: state.user
   }))
+
+  useEffect(() => {
+    if (address) {
+      if (!isWhitelisted(address)) {
+        return router.push('/drops')
+      }
+    }
+  }, [
+    address
+  ])
 
 
   const stages = defineStages(transactionStage as TLaunchTransactionStage)

@@ -25,16 +25,33 @@ import {
 } from '@/lib/slices'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from '@/lib/hooks'
+import {
+  isWhitelisted
+} from '@/utils'
 
 const LaunchDropDescription: FC = () => {
 
   const {
     launch: {
       loading
+    },
+    user: {
+      address
     }
   } = useAppSelector(state => ({
-    launch: state.launch
+    launch: state.launch,
+    user: state.user
   }))
+
+  useEffect(() => {
+    if (address) {
+      if (!isWhitelisted(address)) {
+        return router.push('/drops')
+      }
+    }
+  }, [
+    address
+  ])
 
   useEffect(() => {
     dispatch(

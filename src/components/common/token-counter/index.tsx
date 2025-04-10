@@ -54,7 +54,7 @@ const defineControl = (
   }
 
   return <ButtonStyled
-    size='extra-small'
+    size='small'
     target='_blank'
     href={TOKEN_BUY_ADDRESS}
     appearance="additional"

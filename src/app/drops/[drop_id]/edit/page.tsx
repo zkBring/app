@@ -402,7 +402,7 @@ const Edit: FC = () => {
 
           <AsideButtonsContainer>
             <ButtonStyled
-              size='extra-small'
+              size='small'
               target='_blank'
               appearance='additional'
               href={`/drops/${dropAddress}`}
