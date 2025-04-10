@@ -120,7 +120,7 @@ export const Button = styled.button.attrs((props) => ({
       background-position: left top;
       transition: background-position 0.3s, transform 0.3s;
       border: none;
-      color: ${(props) => props.theme && props.theme.additionalTextColor};
+      color: ${(props) => props.theme && props.theme.additionalTextColor}!important;
       animation-name: ${backgroundAnimation};
       animation-duration: 10s;
       animation-iteration-count: infinite;
