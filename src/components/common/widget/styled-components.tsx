@@ -17,11 +17,15 @@ export const WidgetTitle = styled.h3`
   font-weight: 700;
   display: flex;
   align-items: center;
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    font-size: 18px;
+    line-height: 24px;
+  }
 `
 
 export const WidgetContent = styled.div<{ title?: string }>`
   width: 100%;
-
   ${props => props.title && css`
     margin-top: 20px;
   `}
@@ -41,7 +45,7 @@ export const FinishedIndicator = styled.div`
 `
 
 export const WidgetTitleImageContainer = styled.div`
-  width: 38px;
+  min-width: 38px;
   height: 38px;
   border-radius: 9px;
   display: flex;
@@ -53,6 +57,11 @@ export const WidgetTitleImageContainer = styled.div`
 
   svg {
     max-width: 16px;
+  }
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    min-width: 28px;
+    height: 28px;
   }
 `
 

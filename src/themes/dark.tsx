@@ -13,7 +13,7 @@ const theme = {
   secondaryBackgroundColor: '#161618',
   additionalBackgroundColor: '#1A1A1A',
 
-  mobileBreakpoint: '500px',
+  mobileBreakpoint: '600px',
 
 
   primaryBorderColor: '#1E1E1E',
@@ -106,7 +106,6 @@ const theme = {
 
   primaryHighlightColor: '#229B93',
   dropStatusTextColor: '#38966A',
-
 }
 
 export default theme

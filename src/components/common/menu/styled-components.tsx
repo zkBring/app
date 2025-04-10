@@ -4,8 +4,7 @@ import Link from 'next/link'
 export const Container = styled.nav`
   display: flex;
 
-
-  @media (max-width: 600px) {
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
     display: none;
   }
 `

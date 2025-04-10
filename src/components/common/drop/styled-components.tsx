@@ -11,6 +11,11 @@ export const Container = styled.div`
   gap: 23px;
   grid-template-columns: 100px 1fr;
 
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    grid-template-columns: 50px 1fr;
+    padding: 8px;
+    align-items: center;
+  }
 `
 
 export const TitleContainer = styled.div`
@@ -18,6 +23,9 @@ export const TitleContainer = styled.div`
   gap: 10px;
   align-items: center;
   margin-bottom: 15px;
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    margin-bottom: 5px;
+  }
 `
 
 export const Title = styled.h3`
@@ -28,6 +36,7 @@ export const Title = styled.h3`
 `
 
 export const ImageStyled = styled(Image)`
+
 `
 
 export const ImageContainer = styled.div`
@@ -54,4 +63,8 @@ export const AudienceUsers = styled.p`
   font-size: 13px;
   line-height: 26px;
   margin-bottom: 11px;
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    margin-bottom: 5px;
+  }
 `

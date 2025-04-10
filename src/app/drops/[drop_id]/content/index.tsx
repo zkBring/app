@@ -50,10 +50,13 @@ import {
   setVerified
 } from '@/lib/slices'
 import { useDispatch } from 'react-redux'
+import isMobile from 'is-mobile'
+import { useRouter } from 'next/navigation'
 
 const Content: FC<TProps> = ({
   drop
 }) => {
+  const router = useRouter()
 
   const [ dropInstance, setDropInstance ] = useState<Drop | null>(null)
   const dispatch = useDispatch()
@@ -228,6 +231,11 @@ const Content: FC<TProps> = ({
       <Verify
         dropInstance={dropInstance}
         onStart={() => {
+
+          if (isMobile()) {
+            router.push('/wrong-device')
+            return
+          }
           setVerificationStart(true)
         }}
       />
