@@ -195,7 +195,7 @@ const Content: FC<TProps> = ({
 
       <Share />
 
-      {userAddress && (userAddress.toLowerCase() === drop.creatorAddress.toLowerCase()) && <IconedButton size='extra-small' to={`/drops/${address}/edit`}>
+      {userAddress && (userAddress.toLowerCase() === drop.creatorAddress.toLowerCase()) && <IconedButton size='small' to={`/drops/${address}/edit`}>
         <InputPenIcon />Edit drop
       </IconedButton>}
 
