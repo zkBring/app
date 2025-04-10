@@ -200,7 +200,7 @@ const Claim: FC<TProps> = ({
       return <ButtonStyled
         appearance='action'
         loading={loading}
-        size='extra-small'
+        size='small'
         disabled={!verified}
         onClick={async () => {
           setLoading(true)
@@ -220,7 +220,7 @@ const Claim: FC<TProps> = ({
     return <ButtonStyled
       appearance='action'
       loading={loading}
-      size='extra-small'
+      size='small'
       disabled={!verified}
       onClick={async () => {
         claimCallback()

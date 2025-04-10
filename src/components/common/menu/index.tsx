@@ -8,13 +8,15 @@ import {
   LinkStyledActiveClassName
 } from './styled-components'
 import {
+  isWhitelisted
+} from '@/utils'
+import {
   AlienIcon,
   DropIcon,
   SatelliteIcon
 } from '@/components/icons'
 import { usePathname } from "next/navigation"
 import {
-  useAppDispatch,
   useAppSelector
 } from '@/lib/hooks'
 
@@ -36,12 +38,12 @@ const Menu: FC = () => {
           Explore
         </LinkStyled>
       </MenuItem>
-      {address && <MenuItem>
+      {isWhitelisted(address) ? <MenuItem>
         <LinkStyled href='/drops/own' className={pathname === "/drops/own" ? LinkStyledActiveClassName : undefined}>
           <SatelliteIcon />
           My Drops
         </LinkStyled>
-      </MenuItem>}
+      </MenuItem> : null}
       <MenuItem>
         <LinkStyled href='/about' className={pathname === "/about" ? LinkStyledActiveClassName : undefined}>
           <AlienIcon /> About

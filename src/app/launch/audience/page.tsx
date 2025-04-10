@@ -34,7 +34,10 @@ import {
   environment
 } from '@/app/configs'
 import zkTLSConfig from '@/app/configs/zk-tls'
-import { defineAudienceLaunchIcon } from '@/utils'
+import {
+  defineAudienceLaunchIcon,
+  isWhitelisted
+} from '@/utils'
 
 const createOptions = () => {
   const zkTLS = zkTLSConfig[environment as TEnvironment]
@@ -77,15 +80,6 @@ const LaunchAudience: FC = () => {
     dispatch(clearLaunch())
   }, [])
 
-  const [
-    proofProvider,
-    setProofProvider
-  ] = useState<TProofProvider | string>(proofProvidersOptions[0].value)
-
-  const router = useRouter()
-  const dispatch = useDispatch()
-
-
   const {
     launch: {
       loading
@@ -97,6 +91,27 @@ const LaunchAudience: FC = () => {
     launch: state.launch,
     user: state.user
   }))
+
+  useEffect(() => {
+    if (address) {
+      if (!isWhitelisted(address)) {
+        return router.push('/drops')
+      }
+    }
+  }, [
+    address
+  ])
+
+  const [
+    proofProvider,
+    setProofProvider
+  ] = useState<TProofProvider | string>(proofProvidersOptions[0].value)
+
+  const router = useRouter()
+  const dispatch = useDispatch()
+
+
+
 
   useEffect(() => {
     if (!address) {

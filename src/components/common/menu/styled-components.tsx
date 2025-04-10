@@ -36,6 +36,7 @@ export const LinkStyled = styled(Link)<{
   align-items: center;
   gap: 12px;
   transition: background-color .3s;
+  background-color: ${props => props.theme.menuItemBackgroundColor};
 
   &:hover {
     background-color: ${props => props.theme.menuItemHoverBackgroundColor};

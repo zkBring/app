@@ -7,7 +7,8 @@ import {
 } from './styled-components'
 import { NetworkIndicator } from '../..'
 import {
-  shortenString
+  shortenString,
+  isWhitelisted
 } from '@/utils'
 import {
   LogoutIcon,
@@ -28,12 +29,8 @@ import {
 
 
 const AccountComponent = () => {
-  
   const { disconnect } = useDisconnect()
   const dispatch = useAppDispatch()
-
-
-
   const {
     user: {
       address,
@@ -45,14 +42,13 @@ const AccountComponent = () => {
       address: state.user.address
     },
   }))
-
-  const launchDropButton = <Button
+  const launchDropButton = isWhitelisted(address) ? <Button
     appearance='action'
-    size='extra-small'
+    size='small'
     to={address ? '/launch/audience' : '/auth'}
   >
     Launch drop
-  </Button>
+  </Button> : null
 
   if (!address) {  
     return <Profile>

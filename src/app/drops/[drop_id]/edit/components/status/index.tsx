@@ -42,7 +42,7 @@ const Status: FC<TProps> = ({
     <SmallSubtitleStyled>Drop status</SmallSubtitleStyled>
     <Text>{defineStatus(status)}</Text>
     <Button
-      size='extra-small'
+      size='small'
       onClick={stop}
     >
       Stop drop
