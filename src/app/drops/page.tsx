@@ -32,8 +32,8 @@ const getInitialData = cache(async ({
     const dropsData = await sdk.getDrops({
       offset: Number(offset),
       limit: Number(limit),
-      staked: true,
-      status: 'active'
+      status: 'active',
+      listed: true
     })
 
     return {

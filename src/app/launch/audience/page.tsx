@@ -110,9 +110,6 @@ const LaunchAudience: FC = () => {
   const router = useRouter()
   const dispatch = useDispatch()
 
-
-
-
   useEffect(() => {
     if (!address) {
       return router.push('/auth')

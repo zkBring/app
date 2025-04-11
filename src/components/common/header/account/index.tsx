@@ -28,6 +28,40 @@ import {
 } from '@/lib/slices'
 
 
+const defineLaunchButton = (
+  address: string | null
+) => {
+  if (!address) {
+    return <Button
+      appearance='action'
+      size='small'
+      to='/auth'
+    >
+      Launch drop
+    </Button>
+  }
+
+  if (isWhitelisted(address)) {
+    return <Button
+      appearance='action'
+      size='small'
+      to='/launch/audience'
+    >
+      Launch drop
+    </Button>
+  }
+
+  return <Button
+    appearance='action'
+    size='small'
+    href='https://form.typeform.com/to/kmi5YYVY'
+    target='_blank'
+  >
+    Launch drop
+  </Button>
+}
+
+
 const AccountComponent = () => {
   const { disconnect } = useDisconnect()
   const dispatch = useAppDispatch()
@@ -42,13 +76,7 @@ const AccountComponent = () => {
       address: state.user.address
     },
   }))
-  const launchDropButton = isWhitelisted(address) ? <Button
-    appearance='action'
-    size='small'
-    to={address ? '/launch/audience' : '/auth'}
-  >
-    Launch drop
-  </Button> : null
+  const launchDropButton = defineLaunchButton(address)
 
   if (!address) {  
     return <Profile>
