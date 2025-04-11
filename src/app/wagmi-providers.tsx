@@ -26,8 +26,8 @@ function Provider (props: {
           config={{
             appearance: {
               name: 'zkBring',        // Displayed in modal header
-              logo: 'https://your-logo.com',// Displayed in modal header
-              mode: 'auto',                 // 'light' | 'dark' | 'auto'
+              logo: '/zkbring-logo.png',// Displayed in modal header
+              mode: 'dark',                 // 'light' | 'dark' | 'auto'
               theme: 'default',             // 'default' or custom theme
             },
             wallet: { 
