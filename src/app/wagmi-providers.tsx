@@ -1,7 +1,6 @@
 'use client'
 import { OnchainKitProvider } from 'zkbring-onchainkit';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { baseSepolia } from 'wagmi/chains' // add baseSepolia for testing
 import { type ReactNode } from 'react'
 import { type State, WagmiProvider } from 'wagmi'
 import { defineAppNetwork } from '@/utils'
@@ -16,7 +15,7 @@ function Provider (props: {
   initialState?: State;
 }) {
   const queryClient = new QueryClient()
- 
+
   return (
     <WagmiProvider config={config} initialState={props.initialState}>
       <QueryClientProvider client={queryClient}>

@@ -110,17 +110,14 @@ const Content: FC<TProps> = ({
   ])
 
   useEffect(() => {
-    if (!dropInstance) {
-      return
-    }
+
     const init = async () => {
-      const isClaimed = dropInstance.hasConnectedUserClaimed
+      const isClaimed = drop.hasConnectedUserClaimed
       if (isClaimed) {
         dispatch(setClaimed(true))
         dispatch(setVerified(true))
-        const txHash = dropInstance.connectedUserClaimTxHash
+        const txHash = drop.connectedUserClaimTxHash
         console.log({ txHash })
-
         if (txHash) {
           dispatch(setTxHash(txHash))
         }
@@ -229,6 +226,7 @@ const Content: FC<TProps> = ({
 
       <Verify
         dropInstance={dropInstance}
+        drop={drop}
         onStart={() => {
 
           if (isMobile()) {

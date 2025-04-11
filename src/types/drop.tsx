@@ -15,6 +15,8 @@ type TDrop = {
   symbol: string
   creatorAddress: string
   status: TDropStatus
+  connectedUserClaimTxHash?: string | null
+  hasConnectedUserClaimed?: boolean | null
 }
 
 

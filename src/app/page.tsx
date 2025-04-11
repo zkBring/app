@@ -28,7 +28,6 @@ const getInitialData = cache(async ({
   limit?: string
 }) => {
   try {
-
     const sdk = createSDK({})
     const dropsData = await sdk.getDrops({
       offset: Number(offset),

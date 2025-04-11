@@ -29,7 +29,8 @@ import { useAppSelector } from '@/lib/hooks'
 
 const Verify: FC<TProps> = ({
   onStart,
-  dropInstance
+  dropInstance,
+  drop
 }) => {
 
   const {
@@ -40,13 +41,9 @@ const Verify: FC<TProps> = ({
     verify: state.verify
   }))
 
-  if(!dropInstance) {
-    return null
-  }
-
-  const Icon = defineAudiencePreviewIcon(dropInstance.zkPassSchemaId)
+  const Icon = defineAudiencePreviewIcon(drop.zkPassSchemaId)
   const configForZKTLS = ZKTLSConfig[environment as TEnvironment]
-  const schema = configForZKTLS.schemas.find(schema => schema.schemaId === toUtf8String(dropInstance.zkPassSchemaId))
+  const schema = configForZKTLS.schemas.find(schema => schema.schemaId === toUtf8String(drop.zkPassSchemaId))
 
   return <Container disabled={verified}>
     <StepTitle>
