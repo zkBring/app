@@ -2,7 +2,7 @@
 
 import {
   Container
-} from '../styled-components'
+} from '../../styled-components'
 import {
   TDrop
 } from '@/types'
@@ -64,7 +64,7 @@ const Content: FC<TProps> = ({
   if (includePageComponent) {
     return <Page>
       {content}
-      <DropsPagination resultSet={resultSet} baseUrl='/drops' />
+      <DropsPagination resultSet={resultSet} baseUrl='/' />
     </Page>
   }
 

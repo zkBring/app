@@ -1,4 +1,4 @@
-import React, { FC, UIEvent } from 'react'
+import React, { FC, UIEvent, useEffect } from 'react'
 import {
   DialogWrapper,
   Dialog,
@@ -13,6 +13,14 @@ const DialogComponent: FC<TProps> = ({
   className,
   wrapperClassName
 }) => {
+
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden'
+
+    return () => {
+      document.body.style.overflowY = ''
+    }
+  }, [])
   const onClick = (e: UIEvent<HTMLElement>) => {
     const target = e.target as HTMLElement
     const currentTarget = e.currentTarget as HTMLElement

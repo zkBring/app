@@ -38,8 +38,8 @@ const WrongNetwork: FC<TProps> = () => {
   }))
 
   useEffect(() => {
-    if (String(chainId) == networkId) {
-      router.push('/drops')
+    if (String(chainId) === networkId) {
+      router.push('/')
     }
   }, [
     chainId

@@ -33,7 +33,7 @@ const Menu: FC = () => {
   return <Container>
     <MenuList>
       <MenuItem>
-        <LinkStyled href='/drops' className={pathname === "/drops" ? LinkStyledActiveClassName : undefined}>
+        <LinkStyled href='/' className={pathname === "/" ? LinkStyledActiveClassName : undefined}>
           <DropIcon />
           Explore
         </LinkStyled>

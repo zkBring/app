@@ -8,7 +8,7 @@ import {
 
 import {
   Container
-} from '../../styled-components'
+} from '../../../styled-components'
 import TProps from './types'
 
 const NoDrops: FC<TProps> = ({
