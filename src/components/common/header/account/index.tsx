@@ -31,16 +31,6 @@ import {
 const defineLaunchButton = (
   address: string | null
 ) => {
-  if (!address) {
-    return <Button
-      appearance='action'
-      size='small'
-      to='/auth'
-    >
-      Launch drop
-    </Button>
-  }
-
   if (isWhitelisted(address)) {
     return <Button
       appearance='action'
