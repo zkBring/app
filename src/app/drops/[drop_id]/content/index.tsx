@@ -90,9 +90,10 @@ const Content: FC<TProps> = ({
       const dropInstance = await sdk.getDrop(drop.address)
       setDropInstance(dropInstance)
     }
-
     init()
-  }, [])
+  }, [
+    signer
+  ])
 
   useEffect(() => {
     if (!verified || !signer) { return }
@@ -141,8 +142,6 @@ const Content: FC<TProps> = ({
     installTransgateDialog,
     setInstallTransgateDialog
   ] = useState<boolean>(false)
-
-
 
   const {
     title,
