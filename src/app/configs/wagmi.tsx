@@ -29,8 +29,7 @@ export const networks = [
   avalanche
 ]
 
-//Set up the Wagmi Adapter (Config)
-export const wagmiAdapter = new WagmiAdapter({
+const wagmiConfig = {
   storage: createStorage({
     storage: cookieStorage
   }),
@@ -40,6 +39,9 @@ export const wagmiAdapter = new WagmiAdapter({
   connectors: [
     coinbaseWallet()
   ]
-})
+}
+
+//Set up the Wagmi Adapter (Config)
+export const wagmiAdapter = new WagmiAdapter(wagmiConfig)
 
 export const config = wagmiAdapter.wagmiConfig
