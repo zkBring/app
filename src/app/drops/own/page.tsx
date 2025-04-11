@@ -52,7 +52,7 @@ const OwnDrops = () => {
   useEffect(() => {
     if (address) {
       if (!isWhitelisted(address)) {
-        return router.push('/drops')
+        return router.push('/')
       }
     }
   }, [

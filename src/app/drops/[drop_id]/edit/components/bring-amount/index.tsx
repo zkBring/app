@@ -20,6 +20,8 @@ const BringAmount: FC<TProps> = ({
   isStaked,
   action
 }) => {
+
+  return null
   
   const [
     bringAmount,

@@ -95,7 +95,7 @@ const LaunchAudience: FC = () => {
   useEffect(() => {
     if (address) {
       if (!isWhitelisted(address)) {
-        return router.push('/drops')
+        return router.push('/')
       }
     }
   }, [
@@ -109,9 +109,6 @@ const LaunchAudience: FC = () => {
 
   const router = useRouter()
   const dispatch = useDispatch()
-
-
-
 
   useEffect(() => {
     if (!address) {

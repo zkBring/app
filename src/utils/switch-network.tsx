@@ -27,7 +27,7 @@ async function switchNetwork (
     callback && callback()
   } catch (err) {
     const switchError = err as IConnectorError
-    if (switchError.code && switchError.code === 4902) {
+    if (switchError.code) {
       try {
         const chainObj = chains[chainId]
         if (chainObj) {
@@ -41,14 +41,13 @@ async function switchNetwork (
 
           // @ts-ignore
           await provider.send('wallet_addEthereumChain',
-          [
-            data
-          ],
-        )
+            [
+              data
+            ],
+          )
           callback && callback()
         }
       } catch (err) {
-        alertError('Check console for more information')
         callback && callback()
         console.error({ err })
       }

@@ -4,6 +4,9 @@ const launchWhitelist: { address: string }[] = [
   },
   {
     address: '0xC270728400F64f8DCD2030B589470e4C30F64bbd'
+  },
+  {
+    address: '0x8Af76194567587F5010539cB7c506315bc723880'
   }
 ]
 

@@ -31,7 +31,7 @@ const PageHeader: FC = () => {
   }))
 
   return <Header>
-    <LogoLink to='/drops'>
+    <LogoLink to='/'>
       <LogoIcon />
     </LogoLink>
     <Menu />
