@@ -8,17 +8,16 @@ import {
   Content,
   TextStyled,
   WidgetStyled,
-  SmallSubtitleStyled,
-  SmallTextStyled,
   IconedListStyled,
-  ButtonStyled
+  ButtonStyled,
+  Buttons,
+  SmallTextStyled,
+  LinkStyled
 } from './styled-components'
 import {
   VerificationCheckIcon,
-  VerificationClickIcon,
   VerificationLockIcon,
-  VerificationProfileIcon,
-  VerificationCoinIcon
+  VerificationProfileIcon
 } from '@/components/icons'
 import { useDispatch } from 'react-redux'
 import {
@@ -26,26 +25,28 @@ import {
   setVerified,
   setWebproof
 } from '@/lib/slices'
-
+import {
+  docsLink,
+  extensionDownloadLink
+} from '@/app/configs'
 import TProps from './types'
 import { Drop } from 'zkbring-sdk'
 
 const verificationSteps = [
   {
-    title: '1. Click "Start verification" to activate secure verification',
-    icon: <VerificationClickIcon />
+    title: 'Privacy-preserving: ',
+    icon: <VerificationLockIcon />,
+    value: 'No personal data is shared'
   }, {
-    title: '2. Your browser connects to verification nodes using TLS protocol',
-    icon: <VerificationLockIcon />
+    title: 'Local verification: ',
+    icon: <VerificationCheckIcon />,
+    value: 'Everything happens on your device'
+
   }, {
-    title: '3. Verification happens locally on your device',
-    icon: <VerificationCheckIcon />
-  }, {
-    title: '4. We don\'t access or store any of your personal information',
-    icon: <VerificationProfileIcon />
-  }, {
-    title: '5. Claim tokens right after the proof is ready',
-    icon: <VerificationCoinIcon />
+    title: 'Secured by math: ',
+    icon: <VerificationProfileIcon />,
+    value: 'Built with zero-knowledge proofs'
+
   }
 ]
 
@@ -93,9 +94,10 @@ const checkIfClaimedBefore = async (
 
 const DialogVerification: FC<TProps> = ({
   onClose,
-  dropInstance,
+  dropInstance, 
   setClaimIsReady,
-  showTransgateDialog
+  showTransgateDialog,
+  installStarted
 }) => {
 
   const [ loading, setLoading ] = useState<boolean>(false)
@@ -103,19 +105,40 @@ const DialogVerification: FC<TProps> = ({
 
   return <DialogStyled
     onClose={onClose}
-    title="Generate webproof"
+    title="Private Verification with zkTLS"
   >
     <Content>
       <TextStyled>
-      Your device generates a mathematical proof locally using zkTLS webproof, ensuring complete privacy.
+        ZkTLS lets you prove facts about your online accounts-without exposing personal data. It runs entirely on your device for full privacy.
       </TextStyled>
 
+      <WidgetStyled>
+        <IconedListStyled
+          items={verificationSteps}
+        />
+      </WidgetStyled>
+
+      <SmallTextStyled>
+        To verify via zkTLS, you'll need to install the free <LinkStyled href={extensionDownloadLink} target="_blank">zkPass TransGate</LinkStyled> extension.
+      </SmallTextStyled>
+    </Content>
+
+    <Buttons>
       <ButtonStyled
-        size='small'
+        href={docsLink}
+        target='_blank'
+      >
+        Learn more
+      </ButtonStyled>
+
+      <ButtonStyled
         appearance='action'
         loading={loading}
         disabled={!dropInstance || loading}
         onClick={async () => {
+          if (installStarted) {
+            return window.location.reload()
+          }
           setLoading(true)
           if (!dropInstance) {
             setLoading(false)
@@ -161,21 +184,7 @@ const DialogVerification: FC<TProps> = ({
       >
         Start verification
       </ButtonStyled>
-
-      <WidgetStyled>
-        <SmallSubtitleStyled>
-          How it works
-        </SmallSubtitleStyled>
-
-        <SmallTextStyled>
-        Your data stays private throughout the entire process. The proof only shows you meet the requirements. All happening locally on your device, keeping your data private.
-        </SmallTextStyled>
-
-        <IconedListStyled
-          items={verificationSteps}
-        />
-      </WidgetStyled>
-    </Content>
+    </Buttons>
   </DialogStyled>
 }
 

@@ -5,7 +5,8 @@ import {
   MenuList,
   MenuItem,
   LinkStyled,
-  LinkStyledActiveClassName
+  LinkStyledActiveClassName,
+  Button
 } from './styled-components'
 import {
   isWhitelisted
@@ -19,8 +20,11 @@ import { usePathname } from "next/navigation"
 import {
   useAppSelector
 } from '@/lib/hooks'
+import TProps from './types'
 
-const Menu: FC = () => {
+const Menu: FC<TProps> = ({
+  openDialog
+}) => {
   const pathname = usePathname()
 
   const {
@@ -45,9 +49,9 @@ const Menu: FC = () => {
         </LinkStyled>
       </MenuItem> : null}
       <MenuItem>
-        <LinkStyled href='/about' className={pathname === "/about" ? LinkStyledActiveClassName : undefined}>
+        <Button onClick={openDialog}>
           <AlienIcon /> About
-        </LinkStyled>
+        </Button>
       </MenuItem>
     </MenuList>
   </Container>

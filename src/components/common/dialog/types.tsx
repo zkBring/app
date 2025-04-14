@@ -4,4 +4,5 @@ export type TProps = {
   className?: string
   wrapperClassName?: string
   children?: React.ReactNode
+  icon?: React.ReactNode
 }

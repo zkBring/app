@@ -21,8 +21,8 @@ export const Dialog = styled.div`
   max-width: 680px;
   position: relative;
   width: 100%;
-  background: ${(props) => (props.theme && props.theme.primaryBackgroundColor)};
-  border-radius: 16px;
+  background: ${(props) => (props.theme && props.theme.widgetBackgroundColor)};
+  border-radius: 20px;
   border: 1px solid ${(props) => (props.theme && props.theme.widgetBorderColor)};
   padding: 50px;
 `
@@ -32,4 +32,10 @@ export const DialogTitle = styled.h3`
   font-size: 32px;
   font-weight: 700;
   text-align: center;
+`
+
+export const IconWrapper = styled.div`
+  margin: 0 auto 30px;
+  display: flex;
+  justify-content: center;
 `

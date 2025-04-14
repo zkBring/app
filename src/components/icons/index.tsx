@@ -36,8 +36,10 @@ import AudienceXIcon from './audience-x-icon'
 import AudienceTwitchIcon from './audience-twitch-icon'
 import AlienIcon from './alien-icon'
 import PixeledDropIcon from './pixeled-drop-icon'
+import FingerTouchIcon from './finger-touch-icon'
 
 export {
+  FingerTouchIcon,
   PixeledDropIcon,
   VerificationCheckIcon,
   AudienceXIcon,

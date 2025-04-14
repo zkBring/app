@@ -7,20 +7,25 @@ import {
   ButtonStyled
 } from './styled-components'
 import TProps from './types'
+import {
+  extensionDownloadLink
+} from '@/app/configs'
 
 const DialogTransgateNotAvailable: FC<TProps> = ({
   onClose
 }) => {
 
   return <DialogStyled
-    onClose={onClose}
+    onClose={() => onClose()}
     title="Please install zkTLS verification extension"
   >
     <Content>
       <ButtonStyled
         appearance='action'
-        href='https://chromewebstore.google.com/detail/zkpass-transgate/afkoofjocpbclhnldmmaphappihehpma'
-        target='_blank'
+        onClick={() => {
+          window.open(extensionDownloadLink, '_blank')
+          onClose(true)
+        }}
       >
         Install
       </ButtonStyled>

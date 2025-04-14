@@ -14,6 +14,7 @@ export const ListItem = styled.li`
   gap: 24px;
   font-size: 15px;
   line-height: 22px;
+  color: ${props => props.theme.primaryTextColor};
 `
 
 export const ListItemIcon = styled.div`
@@ -22,3 +23,9 @@ export const ListItemIcon = styled.div`
   align-items: center;
   justify-content: center;
 `
+
+export const ListItemValue = styled.span`
+  color: ${props => props.theme.secondaryTextColor};
+`
+
+export const ListItemText = styled.div``

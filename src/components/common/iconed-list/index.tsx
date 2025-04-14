@@ -5,7 +5,9 @@ import TProps from './types'
 import {
   Container,
   ListItem,
-  ListItemIcon
+  ListItemIcon,
+  ListItemValue,
+  ListItemText
 } from './styled-components'
 
 const IconedList: FC<TProps> = ({
@@ -16,13 +18,17 @@ const IconedList: FC<TProps> = ({
     {items.map(item => {
       const {
         title,
-        icon
+        icon,
+        value
       } = item
       return <ListItem>
         <ListItemIcon>
           {icon}
         </ListItemIcon>
-        {title}
+
+        <ListItemText>
+          {title}<ListItemValue>{value}</ListItemValue>
+        </ListItemText>
       </ListItem>
     })}
   </Container>

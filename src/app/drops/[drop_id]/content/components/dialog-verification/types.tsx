@@ -5,6 +5,7 @@ type TProps = {
   dropInstance: Drop | null
   setClaimIsReady: () => void
   showTransgateDialog: () => void
+  installStarted: boolean
 }
 
 export default TProps

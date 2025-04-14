@@ -3,7 +3,6 @@ import { TDrop } from '@/types'
 
 type TProps = {
   onStart: () => void
-  dropInstance: Drop | null
   drop: TDrop
 }
 

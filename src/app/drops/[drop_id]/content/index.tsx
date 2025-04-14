@@ -80,7 +80,6 @@ const Content: FC<TProps> = ({
   }, [])
 
   useEffect(() => {
-
     const init = async () => {
       const sdk = createSDK({
         transgateModule: TransgateConnect,
@@ -88,6 +87,20 @@ const Content: FC<TProps> = ({
       })
 
       const dropInstance = await sdk.getDrop(drop.address)
+
+      const {
+        hasConnectedUserClaimed,
+        connectedUserClaimTxHash
+      } = dropInstance
+
+      if (hasConnectedUserClaimed) {
+        dispatch(setClaimed(true))
+        dispatch(setVerified(true))
+        if (connectedUserClaimTxHash) {
+          dispatch(setTxHash(connectedUserClaimTxHash))
+        }
+      }
+
       setDropInstance(dropInstance)
     }
     init()
@@ -129,10 +142,14 @@ const Content: FC<TProps> = ({
     dropInstance
   ])
 
-
   const [
     verificationStart,
     setVerificationStart
+  ] = useState<boolean>(false)
+
+  const [
+    installStarted,
+    setInstallStarted
   ] = useState<boolean>(false)
 
   const [
@@ -158,12 +175,14 @@ const Content: FC<TProps> = ({
   // const link = `/verify/${encrypted_multiscan_qr_secret}/${encrypted_multiscan_qr_enc_code}`
 
   const amountFormatted = ethers.formatUnits(amount, decimals)
+
   return <Page
     preventSwitchNetworkRedirect
   >
     {verificationStart &&
       <DialogVerification
         dropInstance={dropInstance}
+        installStarted={installStarted}
         onClose={() => {
           setVerificationStart(false)
         }}
@@ -179,7 +198,12 @@ const Content: FC<TProps> = ({
       />
     }
     {installTransgateDialog && <DialogTransgateNotAvailable
-       onClose={() => {
+      onClose={(
+        installStarted
+      ) => {
+        if (installStarted) {
+          setInstallStarted(true)
+        }
         setInstallTransgateDialog(false)
       }}
     />}
@@ -225,10 +249,8 @@ const Content: FC<TProps> = ({
       />
 
       <Verify
-        dropInstance={dropInstance}
         drop={drop}
         onStart={() => {
-
           if (isMobile()) {
             router.push('/wrong-device')
             return

@@ -12,3 +12,6 @@ export const environment = process.env.NEXT_PUBLIC_ENVIRONMENT
 export const dropsAmountPerPage = 10
 
 export const networkId = process.env.NEXT_PUBLIC_NETWORK_ID
+
+export const docsLink = 'https://zkbring.com/'
+export const extensionDownloadLink = 'https://chromewebstore.google.com/detail/zkpass-transgate/afkoofjocpbclhnldmmaphappihehpma'
