@@ -1,5 +1,8 @@
 'use client'
-import { FC } from 'react'
+import {
+  FC,
+  useState
+} from 'react'
 import {
   Header,
   LogoLink
@@ -16,6 +19,7 @@ import {
   Menu
 } from '../'
 import Account from './account'
+import About from './about'
 
 const PageHeader: FC = () => {
   const {
@@ -30,11 +34,23 @@ const PageHeader: FC = () => {
     }
   }))
 
+  const [
+    aboutDialogOpened,
+    setAboutDialogOpened
+  ] = useState<boolean>(false)
+
   return <Header>
+    {aboutDialogOpened && <About
+      onClose={() => setAboutDialogOpened(false)}
+    />}
     <LogoLink to='/'>
       <LogoIcon />
     </LogoLink>
-    <Menu />
+    <Menu
+      openDialog={() => {
+        setAboutDialogOpened(true)
+      }}
+    />
     <Account />
   </Header>
 }

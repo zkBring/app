@@ -34,3 +34,7 @@ a {
     color-scheme: dark;
   }
 }
+
+.object-cover {
+  object-fit: contain!important;
+}

@@ -1,5 +1,6 @@
 type TListItem = {
   title: string
+  value: string
   icon: React.ReactNode
 }
 

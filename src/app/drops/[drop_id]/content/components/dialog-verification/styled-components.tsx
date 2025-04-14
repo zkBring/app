@@ -3,15 +3,15 @@ import {
   Dialog,
   Text,
   Widget,
-  SmallSubtitle,
-  SmallText,
   IconedList,
-  Button
+  Button,
+  SmallText,
+  Link
 } from "@/components/common"
 
 
 export const DialogStyled = styled(Dialog)`
-
+  max-width: 600px;
 `
 
 export const Content = styled.div`
@@ -21,26 +21,38 @@ export const Content = styled.div`
 export const TextStyled = styled(Text)`
   text-align: center;
   margin-bottom: 30px;
+  font-size: 15px;
 `
 
 export const WidgetStyled = styled(Widget)`
   text-align: left;
-`
-
-export const SmallSubtitleStyled = styled(SmallSubtitle)`
-  text-align: left;
-`
-
-export const SmallTextStyled = styled(SmallText)`
-  margin-bottom: 20px;
-  text-align: left;
-
+  padding: 30px 40px;
+  margin-bottom: 30px;
 `
 
 export const IconedListStyled = styled(IconedList)`
-
 `
 
 export const ButtonStyled = styled(Button)`
-  margin: 0 auto 30px;
+
+`
+
+export const Buttons = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+
+  button {
+    width: 100%;
+  }
+`
+
+export const SmallTextStyled = styled(SmallText)`
+  margin-bottom: 30px;
+  text-align: center;
+  color: ${props => props.theme.secondaryTextColor};
+`
+
+export const LinkStyled = styled(Link)`
+  color: ${props => props.theme.primaryTextColor};
 `

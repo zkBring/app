@@ -1,8 +1,14 @@
-import React, { FC, UIEvent, useEffect } from 'react'
+import React,
+{
+  FC,
+  UIEvent,
+  useEffect
+} from 'react'
 import {
   DialogWrapper,
   Dialog,
-  DialogTitle
+  DialogTitle,
+  IconWrapper
 } from './styled-components'
 import { TProps } from './types'
 
@@ -11,7 +17,8 @@ const DialogComponent: FC<TProps> = ({
   onClose,
   children,
   className,
-  wrapperClassName
+  wrapperClassName,
+  icon
 }) => {
 
   useEffect(() => {
@@ -21,6 +28,7 @@ const DialogComponent: FC<TProps> = ({
       document.body.style.overflowY = ''
     }
   }, [])
+
   const onClick = (e: UIEvent<HTMLElement>) => {
     const target = e.target as HTMLElement
     const currentTarget = e.currentTarget as HTMLElement
@@ -32,6 +40,9 @@ const DialogComponent: FC<TProps> = ({
   return (
     <DialogWrapper onClick={onClick} className={wrapperClassName}>
       <Dialog className={className}>
+        {icon && <IconWrapper>
+          {icon}  
+        </IconWrapper>}
         {title && <DialogTitle>{title}</DialogTitle>}
         {children}
       </Dialog>

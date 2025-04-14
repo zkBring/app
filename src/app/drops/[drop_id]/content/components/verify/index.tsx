@@ -29,7 +29,6 @@ import { useAppSelector } from '@/lib/hooks'
 
 const Verify: FC<TProps> = ({
   onStart,
-  dropInstance,
   drop
 }) => {
 
@@ -63,10 +62,8 @@ const Verify: FC<TProps> = ({
           appearance='action'
           size='small'
           onClick={async () => {
-            if (!dropInstance) {
-              return alert('Connect your wallet first')
-            }
-            const claimed = dropInstance.hasConnectedUserClaimed
+            console.log({ drop })
+            const claimed = drop.hasConnectedUserClaimed
             if (claimed) {
               return alert('Already claimed by current user')
             }
