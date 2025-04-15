@@ -4,9 +4,32 @@ import React, { FC } from 'react'
 import {
   Button,
   ExternalLink,
-  InternalLink
+  InternalLink,
+  SpinnerStyled
 } from './styled-components'
 import { TProps } from './types'
+
+const defineContent = (
+  loading: boolean,
+  children: React.ReactNode | React.ReactNode[],
+  title?: string
+) => {
+  if (loading) {
+    if (title) return <>
+      <SpinnerStyled />
+      {title}
+    </>
+
+    if (children) return <>
+      <SpinnerStyled />
+      {children}
+    </>
+  }
+
+  if (title) return title
+
+  if (children) return children
+}
 
 const ButtonOriginalComponent: FC<TProps> = ({
   title,
@@ -22,7 +45,7 @@ const ButtonOriginalComponent: FC<TProps> = ({
     <Button
       disabled={disabled}
       onClick={() => {
-        if (loading || !onClick) {
+        if (loading || !onClick || disabled) {
           return
         }
         onClick()
@@ -33,8 +56,11 @@ const ButtonOriginalComponent: FC<TProps> = ({
       size={size}
       data-testid='button'
     >
-      {/* {loading && <ButtonLoader size='small' />} */}
-      {title || children}
+      {defineContent(
+        Boolean(loading),
+        children,
+        title
+      )}
     </Button>
   )
 }

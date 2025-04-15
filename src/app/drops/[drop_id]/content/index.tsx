@@ -81,25 +81,22 @@ const Content: FC<TProps> = ({
 
   useEffect(() => {
     const init = async () => {
+      console.log({ signer })
       const sdk = createSDK({
         transgateModule: TransgateConnect,
         signer: signer || undefined
       })
 
       const dropInstance = await sdk.getDrop(drop.address)
-
+      console.log({ dropInstance })
       const {
         hasConnectedUserClaimed,
         connectedUserClaimTxHash
       } = dropInstance
 
-      if (hasConnectedUserClaimed) {
-        dispatch(setClaimed(true))
-        dispatch(setVerified(true))
-        if (connectedUserClaimTxHash) {
-          dispatch(setTxHash(connectedUserClaimTxHash))
-        }
-      }
+      dispatch(setClaimed(Boolean(hasConnectedUserClaimed)))
+      dispatch(setVerified(Boolean(hasConnectedUserClaimed)))
+      dispatch(setTxHash(connectedUserClaimTxHash || null))
 
       setDropInstance(dropInstance)
     }
@@ -109,11 +106,9 @@ const Content: FC<TProps> = ({
   ])
 
   useEffect(() => {
-    if (!verified || !signer) { return }
+    if (!verified || !signer || !dropInstance) { return }
     const init = async () => {
-
-      console.log('updateWalletOrProvider');
-      (dropInstance as Drop).updateWalletOrProvider(signer)
+      dropInstance.updateWalletOrProvider(signer)
     }
 
     init()
@@ -130,7 +125,6 @@ const Content: FC<TProps> = ({
         dispatch(setClaimed(true))
         dispatch(setVerified(true))
         const txHash = drop.connectedUserClaimTxHash
-        console.log({ txHash })
         if (txHash) {
           dispatch(setTxHash(txHash))
         }

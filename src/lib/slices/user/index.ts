@@ -50,8 +50,8 @@ const userSlice = createSlice({
     },
 
     setConnectedUserData (state, action: PayloadAction<{
-      address: string
-      chainId: number
+      address: string | null
+      chainId: number | null
       signer: JsonRpcSigner | null
       provider: BrowserProvider | null
     }>) {
@@ -68,7 +68,7 @@ const userSlice = createSlice({
         chainId,
         signer,
         provider,
-        authorizationStep: 'connected'
+        authorizationStep: signer ? 'connected' : 'connect'
       }
     }
   },

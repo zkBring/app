@@ -1,13 +1,8 @@
-import styled, { css, keyframes } from 'styled-components'
+import styled, { css } from 'styled-components'
 import Loader from '../loader'
 import { TProps } from './types'
 import Link from '../link'
-
-const backgroundAnimation = keyframes`
-  0% { background-position: left top; }
-  50% { background-position: right bottom; }
-  100% { background-position: left top; }
-`
+import Spinner from '../spinner'
 
 export const ButtonLoader = styled(Loader)`
   margin-right: 8px;
@@ -28,7 +23,7 @@ export const Button = styled.button.attrs((props) => ({
   justify-content: center;
   border-radius: 12px;
   min-width: 50px;
-
+  position: relative;
   //default
   transition: color 0.3s, background-color 0.3s, border-color 0.3s;
   background-color: ${(props) =>
@@ -115,19 +110,10 @@ export const Button = styled.button.attrs((props) => ({
   ${(props) =>
     props.loading &&
     css`
-      background-image: ${(props) => (props.theme && props.theme.buttonGradient)};
-      background-size: 200%;
-      background-position: left top;
-      transition: background-position 0.3s, transform 0.3s;
-      border: none;
-      color: ${(props) => props.theme && props.theme.additionalTextColor}!important;
-      animation-name: ${backgroundAnimation};
-      animation-duration: 10s;
-      animation-iteration-count: infinite;
-      transition: background-position 0.3s, transform 0.3s;
-      background-position: left top;
-      background-size: 200%;
 
+      cursor: not-allowed;
+      color: transparent!important;
+      
 
       ${!props.disabled &&
       css`
@@ -157,4 +143,11 @@ export const ExternalLink = styled.a`
 
 export const InternalLink = styled(Link)`
   text-decoration: none;
+`
+
+export const SpinnerStyled = styled(Spinner)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
 `
