@@ -1,5 +1,4 @@
 import DashedProgressBar from './dashed-progress-bar'
-
 import Loader from './loader'
 import Button from "./button"
 import Title from './title'
@@ -17,6 +16,7 @@ import Input from './input'
 import NetworkIndicator from './network-indicator'
 import Drop from './drop'
 import List from './list'
+import Dialog from './dialog'
 import Menu from './menu'
 import Header from './header'
 import LaunchWidget from './launch-widget'
@@ -34,7 +34,6 @@ import Stages from './stages'
 import ProgressBar from './progress-bar'
 import Widget from './widget'
 import Stats from './stats'
-import Dialog from './dialog'
 import SmallSubtitle from './small-subtitle'
 import SmallText from './small-text'
 import IconedList from './iconed-list'
@@ -67,7 +66,6 @@ export {
   ExplorerButton,
   TokenPreview,
   TokenImage,
-  Header,
   TokenPreviewERC20,
   TokenPreviewNFT,
   Popup,
@@ -88,8 +86,9 @@ export {
   ProgressBar,
   Widget,
   Stats,
-  Menu,
   Dialog,
+  Menu,
+  Header,
   EditableWidget,
   ConnectButton,
   Pagination
