@@ -45,8 +45,11 @@ import {
   TableText,
   TableValue
 } from './table/styled-components'
+import Spinner from './spinner'
+import Footer from './footer'
 
 export {
+  Spinner,
   DashedProgressBar,
   TableRow,
   TableText,
@@ -91,5 +94,6 @@ export {
   Header,
   EditableWidget,
   ConnectButton,
-  Pagination
+  Pagination,
+  Footer
 }

@@ -11,7 +11,8 @@ import { TProps } from './types'
 import { ThemeProvider } from 'styled-components'
 import { dark } from '@/themes'
 import {
-  Header
+  Header,
+  Footer
 } from '@/components/common'
 import {
   defineEthersSigner,
@@ -75,6 +76,13 @@ const Page: FC<TProps> = ({
 
   useEffect(() => {
     if (!address || !chain || !userSigner || !userProvider) {
+      dispatch(setConnectedUserData({
+        address: null,
+        chainId: null,
+        signer: null,
+        provider: null
+      }))
+
       return
     }
 
@@ -103,6 +111,7 @@ const Page: FC<TProps> = ({
     <Main>
       {children}
     </Main>
+    <Footer />
   </ThemeProvider>
 }
 

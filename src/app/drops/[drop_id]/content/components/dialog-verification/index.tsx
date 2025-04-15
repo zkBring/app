@@ -109,7 +109,7 @@ const DialogVerification: FC<TProps> = ({
   >
     <Content>
       <TextStyled>
-        ZkTLS lets you prove facts about your online accounts-without exposing personal data. It runs entirely on your device for full privacy.
+        zkTLS lets you prove facts about your online accounts-without exposing personal data. It runs entirely on your device for full privacy.
       </TextStyled>
 
       <WidgetStyled>

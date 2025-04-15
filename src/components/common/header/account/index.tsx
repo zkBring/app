@@ -90,7 +90,6 @@ const AccountComponent = () => {
         onClick={() => {
           dispatch(setUserAddress(null))
           disconnect()
-          window.location.reload()
         }}
       >
         <LogoutIcon />
