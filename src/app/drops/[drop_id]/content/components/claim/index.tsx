@@ -32,7 +32,7 @@ import {
   setTxHash,
   setClaimed
 } from '@/lib/slices'
-
+import plausibleApi from '@/app/api/plausible'
 import { networkId } from '@/app/configs'
 import { BrowserProvider, JsonRpcProvider } from 'ethers'
 
@@ -43,6 +43,9 @@ const checkForClaim = async (
 ) => {
   try {
     await waitForClaim()
+    plausibleApi.invokeEvent({
+      eventName: 'claim_finished'
+    })
     claimFinished(true)
   } catch (err) {
     console.log({ err })
@@ -76,11 +79,19 @@ const claim = async (
   }
 
   try {
+    plausibleApi.invokeEvent({
+      eventName: 'claim_started'
+    })
     const { txHash, waitForClaim } = await (dropInstance as Drop).claim({
       webproof: webproof as TWebproof,
       recipient,
       ephemeralKey: ephemeralKey as string
     })
+
+    plausibleApi.invokeEvent({
+      eventName: 'claim_processing'
+    })
+    
   
     checkForClaim(
       waitForClaim,
