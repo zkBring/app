@@ -9,7 +9,7 @@ import {
   optimism,
   avalanche
 } from 'wagmi/chains'
-import { coinbaseWallet } from 'wagmi/connectors'
+import { coinbaseWallet, walletConnect } from 'wagmi/connectors'
 
 import {
   projectId

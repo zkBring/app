@@ -10,7 +10,7 @@
     "clean": "npx rimraf .next"
   },
   "dependencies": {
-    "zkbring-onchainkit": "^0.0.1",
+    "zkbring-onchainkit": "^0.0.2-rc.1",
     "@reduxjs/toolkit": "^2.3.0",
     "@reown/appkit": "^1.6.2",
     "@reown/appkit-adapter-wagmi": "^1.6.2",
