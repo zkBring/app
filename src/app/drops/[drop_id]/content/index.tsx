@@ -186,7 +186,6 @@ const Content: FC<TProps> = ({
         }}
 
         showTransgateDialog={() => {
-          setVerificationStart(false)
           setInstallTransgateDialog(true)
         }}
       />
