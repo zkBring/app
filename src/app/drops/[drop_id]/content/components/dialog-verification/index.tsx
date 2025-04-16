@@ -31,6 +31,7 @@ import {
 } from '@/app/configs'
 import TProps from './types'
 import { Drop } from 'zkbring-sdk'
+import plausibleApi from '@/app/api/plausible'
 
 const verificationSteps = [
   {
@@ -65,7 +66,13 @@ const startVerification = async (
   drop: Drop
 ) => {
   try {
+    plausibleApi.invokeEvent({
+      eventName: 'verification_started'
+    })
     const result = await drop.generateWebproof()
+    plausibleApi.invokeEvent({
+      eventName: 'verification_finished'
+    })
     const { webproof, ephemeralKey } = result
     
     return {
@@ -148,12 +155,18 @@ const DialogVerification: FC<TProps> = ({
           const transgateAvailable = await checkIfTransgateAvailable(dropInstance)
 
           if (!transgateAvailable) {
+            plausibleApi.invokeEvent({
+              eventName: 'transgate_not_available'
+            })
             setLoading(false)
             return showTransgateDialog()
           }
 
           const verificationResult = await startVerification(dropInstance)
           if (!verificationResult) {
+            plausibleApi.invokeEvent({
+              eventName: 'verification_failed'
+            })
             setLoading(false)
             return 
           }
@@ -170,6 +183,9 @@ const DialogVerification: FC<TProps> = ({
 
           if (claimedBefore) {
             setLoading(false)
+            plausibleApi.invokeEvent({
+              eventName: 'already_claimed'
+            })
             return alert('Already claimed by user')
           }
 

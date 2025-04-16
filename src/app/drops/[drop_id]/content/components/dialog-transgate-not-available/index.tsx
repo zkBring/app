@@ -10,6 +10,7 @@ import TProps from './types'
 import {
   extensionDownloadLink
 } from '@/app/configs'
+import plausibleApi from '@/app/api/plausible'
 
 const DialogTransgateNotAvailable: FC<TProps> = ({
   onClose
@@ -23,6 +24,12 @@ const DialogTransgateNotAvailable: FC<TProps> = ({
       <ButtonStyled
         appearance='action'
         onClick={() => {
+          plausibleApi.invokeEvent({
+            eventName: 'transgate_install_redirect',
+            data: {
+              source: 'dialog'
+            }
+          })
           window.open(extensionDownloadLink, '_blank')
           onClose(true)
         }}

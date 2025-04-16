@@ -9,8 +9,7 @@ import {
   Container,
   SmallTextStyled,
   LinkStyled,
-  LockIconStyled,
-  XIconStyled
+  LockIconStyled
 } from './styled-components'
 import {
   defineAudiencePreviewIcon
@@ -26,6 +25,7 @@ import {
 } from '../../styled-components'
 import TProps from './types'
 import { useAppSelector } from '@/lib/hooks'
+import plausibleApi from '@/app/api/plausible'
 
 const Verify: FC<TProps> = ({
   onStart,
@@ -62,15 +62,18 @@ const Verify: FC<TProps> = ({
           appearance='action'
           size='small'
           onClick={async () => {
-            console.log({ drop })
             const claimed = drop.hasConnectedUserClaimed
             if (claimed) {
               return alert('Already claimed by current user')
             }
+
+            plausibleApi.invokeEvent({
+              eventName: 'verification_dialog_open'
+            })
             onStart()
           }}
         >
-          Verify with zkTLS
+          Verify privately with zkTLS
         </ButtonStyled>
 
         <SmallTextStyled>
