@@ -198,7 +198,7 @@ const DialogVerification: FC<TProps> = ({
 
         }}
       >
-        Start verification
+        {installStarted ? 'Reload' : 'Start verification'}
       </ButtonStyled>
     </Buttons>
   </DialogStyled>
