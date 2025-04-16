@@ -37,10 +37,7 @@ const wagmiConfig = {
   projectId,
   networks,
   connectors: [
-    coinbaseWallet(),
-    walletConnect({
-      projectId: 'bb452af261737ea08a96cf85ad67a8e1',
-    }),
+    coinbaseWallet()
   ]
 }
 
