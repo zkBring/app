@@ -9,7 +9,7 @@ import {
   optimism,
   avalanche
 } from 'wagmi/chains'
-import { coinbaseWallet } from 'wagmi/connectors'
+import { coinbaseWallet, walletConnect } from 'wagmi/connectors'
 
 import {
   projectId
@@ -37,7 +37,10 @@ const wagmiConfig = {
   projectId,
   networks,
   connectors: [
-    coinbaseWallet()
+    coinbaseWallet(),
+    walletConnect({
+      projectId: 'bb452af261737ea08a96cf85ad67a8e1',
+    }),
   ]
 }
 

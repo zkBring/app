@@ -7,7 +7,8 @@ import { defineAppNetwork } from '@/utils'
 import 'zkbring-onchainkit/styles.css'
 import { config } from '@/app/configs/wagmi'
 import {
-  onchainApiKey
+  onchainApiKey,
+  projectId
 } from '@/app/configs'
  
 function Provider (props: {
@@ -22,6 +23,7 @@ function Provider (props: {
         <OnchainKitProvider
           apiKey={onchainApiKey} 
           chain={defineAppNetwork()} // add baseSepolia for testing 
+          projectId={projectId}
           config={{
             appearance: {
               name: 'zkBring',        // Displayed in modal header

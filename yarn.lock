@@ -6825,10 +6825,10 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zkbring-onchainkit@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/zkbring-onchainkit/-/zkbring-onchainkit-0.0.1.tgz#3977f55fb37e07f334e23027602b27d7cda3eabd"
-  integrity sha512-FJA295qSuepTImG8EU17RvM2wVCGvvUrQksuMUyDdLORqaOSasX1V7vL67DOG/dxKw5XC4wbDqjr8Jmpcf13Rg==
+zkbring-onchainkit@^0.0.2-rc.1:
+  version "0.0.2-rc.1"
+  resolved "https://registry.yarnpkg.com/zkbring-onchainkit/-/zkbring-onchainkit-0.0.2-rc.1.tgz#ba1ab998d8b5f928ad8d9b259b32d05018fc9cfa"
+  integrity sha512-Zdqh2xmZmvTiZ2ZvcD7eikHaCvxTd6DnZyk6ayEt4s5OSQt4+TtqKpDI3M0Nxm/wvvOKm8tou2AWwUXD5OWNBg==
   dependencies:
     "@farcaster/frame-sdk" "^0.0.28"
     "@farcaster/frame-wagmi-connector" "^0.0.16"

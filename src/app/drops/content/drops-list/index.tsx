@@ -5,7 +5,6 @@ import {
 } from 'react'
 import { Drops } from './styled-components'
 import { Drop } from '@/components/common'
-
 import { TProps } from './types'
 
 const DropsList: FC<TProps> = ({
