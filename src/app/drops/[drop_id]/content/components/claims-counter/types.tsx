@@ -4,6 +4,8 @@ type TProps = {
   limit: string
   symbol?: string
   decimals: number
+  chainId: number
+  tokenAddress: string
 }
 
 export default TProps

@@ -27,7 +27,7 @@ const WrongNetwork: FC<TProps> = () => {
   const [
     loading,
     setLoading
-  ] = useState<boolean>( false)
+  ] = useState<boolean>(false)
   const {
     user: {
       provider,

@@ -37,6 +37,7 @@ import AudienceTwitchIcon from './audience-twitch-icon'
 import AlienIcon from './alien-icon'
 import PixeledDropIcon from './pixeled-drop-icon'
 import FingerTouchIcon from './finger-touch-icon'
+import DocumentIcon from './document-icon'
 
 export {
   FingerTouchIcon,
@@ -77,5 +78,6 @@ export {
   SatelliteIcon,
   VerificationCoinIcon,
   WarpcastIcon,
-  AlienIcon
+  AlienIcon,
+  DocumentIcon
 }
