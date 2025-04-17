@@ -56,3 +56,9 @@ export const SmallTextStyled = styled(SmallText)`
 export const LinkStyled = styled(Link)`
   color: ${props => props.theme.primaryTextColor};
 `
+
+export const CanvasStyled = styled.canvas`
+  width: 100px;
+  height: 100px;
+  display: block;
+`

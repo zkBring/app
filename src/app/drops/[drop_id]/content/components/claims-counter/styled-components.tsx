@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import {
   Widget,
+  Link,
   DashedProgressBar
 } from '@/components/common'
 
@@ -24,6 +25,14 @@ export const Label = styled.h3`
 
 export const LabelValue = styled.span`
   color: ${props => props.theme.secondaryTextColor};
+
 `
 
 export const DashedProgressBarStyled = styled(DashedProgressBar)``
+
+export const LinkStyled = styled(Link)`
+  color: ${props => props.theme.secondaryTextColor};
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`

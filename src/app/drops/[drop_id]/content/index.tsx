@@ -52,6 +52,9 @@ import {
 import { useDispatch } from 'react-redux'
 import isMobile from 'is-mobile'
 import { useRouter } from 'next/navigation'
+import {
+  networkId
+} from '@/app/configs'
 
 const Content: FC<TProps> = ({
   drop
@@ -81,22 +84,27 @@ const Content: FC<TProps> = ({
 
   useEffect(() => {
     const init = async () => {
-      console.log({ signer })
       const sdk = createSDK({
         transgateModule: TransgateConnect,
         signer: signer || undefined
       })
 
       const dropInstance = await sdk.getDrop(drop.address)
-      console.log({ dropInstance })
       const {
         hasConnectedUserClaimed,
         connectedUserClaimTxHash
       } = dropInstance
 
-      dispatch(setClaimed(Boolean(hasConnectedUserClaimed)))
-      dispatch(setVerified(Boolean(hasConnectedUserClaimed)))
-      dispatch(setTxHash(connectedUserClaimTxHash || null))
+      if (hasConnectedUserClaimed !== undefined) {
+
+        // hasConnectedUserClaimed is boolean
+        dispatch(setClaimed(hasConnectedUserClaimed))
+        dispatch(setTxHash(connectedUserClaimTxHash || null))
+
+        if (hasConnectedUserClaimed) {
+          dispatch(setVerified(true))
+        }
+      }
 
       setDropInstance(dropInstance)
     }
@@ -156,11 +164,13 @@ const Content: FC<TProps> = ({
     address,
     amount,
     description,
+    token,
     maxClaims,
     decimals,
     symbol,
     claimsCount,
-    creatorAddress
+    creatorAddress,
+    
   } = drop
   
 // encrypted_multiscan_qr_enc_code: "GMqe7zrdsrNp"
@@ -239,6 +249,8 @@ const Content: FC<TProps> = ({
         limit={String(maxClaims)}
         symbol={symbol}
         decimals={decimals}
+        chainId={Number(networkId as string)}
+        tokenAddress={token}
       />
 
       <Verify
