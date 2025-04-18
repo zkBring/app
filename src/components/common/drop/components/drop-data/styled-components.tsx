@@ -3,6 +3,9 @@ import Image from 'next/image'
 import {
   DashedProgressBar
 } from '@/components/common'
+import {
+  InputCoinIcon
+} from '@/components/icons'
 
 export const Container = styled.div`
   display: flex;
@@ -22,6 +25,10 @@ export const Creator = styled.div`
   display: flex;
   gap: 6px;
   align-items: center;
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    display: none;
+  }
 `
 
 export const CreatorImage = styled(Image)`
@@ -42,3 +49,7 @@ export const ClaimedText = styled.p`
 `
 
 export const DashedProgressBarStyled = styled(DashedProgressBar)``
+
+export const InputCoinIconStyled = styled(InputCoinIcon)`
+  max-width: 12px;
+`

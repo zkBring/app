@@ -4,15 +4,14 @@ import {
   Container,
   Creator,
   CreatorImage,
-  DashedProgressBarStyled
+  DashedProgressBarStyled,
+  InputCoinIconStyled
 } from './styled-components'
 import TProps from './types'
 import {
   shortenString
 } from '@/utils'
-import {
-  InputCoinIcon
-} from '@/components/icons'
+
 import CreatorImageSrc from '@/images/creator-image.png'
 
 import { FC } from 'react'
@@ -33,7 +32,7 @@ const DropData: FC<TProps> = ({
       {shortenString(drop.creatorAddress)}
     </Creator>
     <Claimed>
-      <InputCoinIcon />
+      <InputCoinIconStyled />
       <ClaimedText>
         {claimedPercentage}% claimed
       </ClaimedText>

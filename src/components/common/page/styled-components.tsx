@@ -5,6 +5,6 @@ export const Main = styled.main`
   max-width: 1024px;
   padding: 20px;
   @media (max-width: ${props => props.theme.mobileBreakpoint}) {
-    padding: 14px;
+    padding: 0 20px 20px;
   }
 `

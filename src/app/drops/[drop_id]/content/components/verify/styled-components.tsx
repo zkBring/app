@@ -13,7 +13,9 @@ import {
 
 
 export const WidgetStyled = styled(Widget)`
-
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    padding: 20px;
+  }
 `
 
 export const TextStyled = styled(Text)`
@@ -30,6 +32,10 @@ export const Container = styled.div<{
   disabled: boolean
 }>`
   margin-bottom: 50px;
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    margin-bottom: 30px;
+  }
+
   ${props => props.disabled && css`
     opacity: 80%;
   `}

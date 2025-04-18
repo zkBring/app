@@ -12,4 +12,8 @@ export const Subtitle = styled.p`
   font-size: 15px;
   margin: 0 0 60px;
   text-align: center;
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    margin: 0 0 30px;
+  }
 `

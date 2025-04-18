@@ -9,6 +9,7 @@ export const Drops = styled.div`
 
   @media (max-width: ${props => props.theme.mobileBreakpoint}) {
     grid-template-columns: 1fr;
+    gap: 20px
   }
 `
 
