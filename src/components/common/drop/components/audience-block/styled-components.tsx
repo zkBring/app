@@ -11,9 +11,9 @@ export const ImageContainer = styled.div`
   border: 2px solid ${props => props.theme.dropItemBorderColor};
 
   @media (max-width: ${props => props.theme.mobileBreakpoint}) {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
+    width: 64px;
+    height: 64px;
+    border-radius: 15px;
 
     svg {
       max-width: 35px;

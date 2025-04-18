@@ -4,12 +4,13 @@ import Image  from 'next/image'
 import { 
   Title
 } from '@/components/common'
+
 export const Container = styled.div`
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 `
 
-export const TitleStyled =   styled(Title)`
-
+export const TitleStyled = styled(Title)`
+  margin: 0 0 20px;
 `
 
 export const Description = styled.p`

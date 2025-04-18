@@ -10,6 +10,10 @@ export const Container = styled.div`
   align-items: center;
   margin: 0 auto 40px;
   justify-content: center;
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    margin-bottom: 40px;
+  }
 `
 
 export const ShareItem = styled.a`

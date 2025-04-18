@@ -15,8 +15,8 @@ export const Header = styled.header<TAccount>`
 
   @media (max-width: ${props => props.theme.mobileBreakpoint}) {
     min-height: 30px;
-    padding: 14px;
-    margin-bottom: 20px;
+    padding: 20px;
+    margin-bottom: 0px;
   }
 `
 

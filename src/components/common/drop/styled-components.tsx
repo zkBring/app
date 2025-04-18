@@ -12,9 +12,10 @@ export const Container = styled.div`
   grid-template-columns: 100px 1fr;
 
   @media (max-width: ${props => props.theme.mobileBreakpoint}) {
-    grid-template-columns: 50px 1fr;
+    grid-template-columns: min-content 1fr;
     padding: 8px;
     align-items: center;
+    gap: 20px;
   }
 `
 
@@ -25,6 +26,7 @@ export const TitleContainer = styled.div`
   margin-bottom: 15px;
   @media (max-width: ${props => props.theme.mobileBreakpoint}) {
     margin-bottom: 5px;
+    font-size: 13px;
   }
 `
 
@@ -32,7 +34,11 @@ export const Title = styled.h3`
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 24px;
+  font-weight: 700;
   line-height: 26px;
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    font-size: 20px;
+  }
 `
 
 export const ImageStyled = styled(Image)`
@@ -48,6 +54,11 @@ export const ImageContainer = styled.div`
   justify-content: center;
   width: 28px;
   height: 28px;
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    width: 24px;
+    height: 24px;
+  }
 `
 
 export const LinkStyled = styled(Link)`

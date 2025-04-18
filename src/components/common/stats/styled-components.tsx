@@ -5,6 +5,10 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 10px;
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    grid-template-columns: 1fr 1fr;
+  }
 `
 
 export const Subtitle = styled.h3`
@@ -39,4 +43,29 @@ export const Limit = styled.span`
 export const WidgetComponent = styled(Widget)`
   padding: 15px 20px;
   border-radius: 10px;
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    padding: 10px 15px;
+  }
+
+  &:last-child {
+    @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+
+      grid-column: 1/3;
+
+
+
+      & > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        h3 {
+          margin: 0;
+          align-items: center;
+        }
+      }
+    }
+  }
 `

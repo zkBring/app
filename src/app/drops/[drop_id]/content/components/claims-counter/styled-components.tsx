@@ -7,6 +7,11 @@ import {
 
 export const WidgetStyled = styled(Widget)`
   margin-bottom: 50px;
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    padding: 15px;
+  }
+
 `
 
 export const Label = styled.h3`
